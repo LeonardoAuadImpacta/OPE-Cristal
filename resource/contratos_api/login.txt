@@ -1,0 +1,14 @@
+uri : api.cristal.snk/auth/login
+method: POST
+
+request: 
+{
+    "email": string,
+    "senha": string
+}
+
+response: 
+{
+    "pseudonimo",
+    "token"
+}
