@@ -1,0 +1,22 @@
+.snk-text-center {
+    text-align: center;
+}
+
+.snk-text-rigth {
+    text-align: right;
+}
+
+.snk-text-base-color {
+    color: #aa2514;
+}
+
+.snk-background-base-color {
+    background-color: #aa2514;
+}
+
+.snk-text-title {
+    letter-spacing: 5pt;
+    font-weight: bold;
+}
+
+
