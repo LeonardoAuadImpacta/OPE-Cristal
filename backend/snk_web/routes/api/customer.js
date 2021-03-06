@@ -16,6 +16,12 @@ const createCustomerSchema = {
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
+  birthdate:{
+    in: ["body"],
+    errorMessage: "Data de nascimento inválida",
+    isDate: true,
+    toDate: true
+  },
   email: {
     in: ["body"],
     errorMessage: "E-mail inválido",
