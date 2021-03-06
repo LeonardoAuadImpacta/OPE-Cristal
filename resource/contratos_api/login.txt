@@ -1,4 +1,4 @@
-uri : api.cristal.snk/auth/login
+uri : api/v1/login
 method: POST
 
 request: 
@@ -9,6 +9,5 @@ request:
 
 response: 
 {
-    "pseudonimo",
-    "token"
+    "token": string
 }

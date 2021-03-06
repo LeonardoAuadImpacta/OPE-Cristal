@@ -1,17 +1,15 @@
-uri : api.cristal.snk/auth/cliente
+uri : api/v1/customer
 method: POST
 
 request: 
 {
-    "nome": string,
-    "sobrenome": string,
-    "data_nascimento": date,
+    "firstName": string,
+    "lastName": string,
+    "birthdate": date (formato "YYYY-MM-DD"),
+    "gender": string (enum[ "M" , "F", "NB" ]),
     "email": string,
-    "sexo": enum[ "M" , "F" ]
+    "password": string
 }
 
 response: 
-{
-    "pseudonimo",
-    "token"
-}
+{}
