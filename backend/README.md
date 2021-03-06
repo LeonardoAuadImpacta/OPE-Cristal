@@ -112,7 +112,9 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
           ```
 ## Tecnologias
 - [Node.js®](https://nodejs.org/): ambiente de execução de JavaScript para server-side
-- [Express](https://expressjs.com/): framework web para construção das APIs
+- [express](https://expressjs.com/): framework web para construção das APIs
+- [express-validator](https://express-validator.github.io/docs/index.html): pacote com interceptors do `express` que ajudam a validar o conteúdo que estamos recebendo no corpo das requisições. \
+  Ele por sua é apenas um wrapper em cima das validações existentes no pacote [validator.js](https://github.com/validatorjs/validator.js#validators)
 - [Passport.js](http://www.passportjs.org/): middleware para autenticações das requisições
 - [TypeORM](https://typeorm.io/): biblioteca de ORM para comunicação com BD
 
