@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const loginRoutes = require("./login");
-const customerRoutes = require("./customer");
+const clienteRoutes = require("./cliente");
 
 router.get("/", function (req, res, next) {
   res.json({ version: "v1.0.0" });
@@ -12,6 +12,6 @@ router.get("/", function (req, res, next) {
 router.use("/login", loginRoutes);
 
 // Authenticated endpoints
-router.use("/customer", customerRoutes);
+router.use("/cliente", clienteRoutes);
 
 module.exports = router;

@@ -3,20 +3,20 @@ const router = express.Router();
 const { checkSchema } = require("express-validator");
 
 const validate = require("../../middlewares/validation");
-const customerController = require("../../controllers/customer");
+const clienteController = require("../../controllers/cliente");
 
-const createCustomerSchema = {
-  firstName: {
+const createClienteSchema = {
+  nome: {
     in: ["body"],
     errorMessage: "Nome inválido",
     isEmpty: { negated: true },
   },
-  lastName: {
+  sobrenome: {
     in: ["body"],
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
-  birthdate:{
+  dataNascimento:{
     in: ["body"],
     errorMessage: "Data de nascimento inválida",
     isDate: true,
@@ -28,7 +28,7 @@ const createCustomerSchema = {
     isEmail: true,
     normalizeEmail: true,
   },
-  password: {
+  senha: {
     in: ["body"],
     errorMessage: "Senha inválida",
     isLength: {
@@ -36,7 +36,7 @@ const createCustomerSchema = {
       options: { min: 8 },
     },
   },
-  gender: {
+  genero: {
     in: ["body"],
     errorMessage: "Gênero inválido",
     isEmpty: { negated: true },
@@ -45,8 +45,8 @@ const createCustomerSchema = {
 
 router.post(
   "/",
-  validate([checkSchema(createCustomerSchema)]),
-  customerController
+  validate([checkSchema(createClienteSchema)]),
+  clienteController
 );
 
 module.exports = router;

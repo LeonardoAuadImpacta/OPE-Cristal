@@ -13,7 +13,7 @@ const doLoginSchema = {
     isEmail: true,
     normalizeEmail: true,
   },
-  password: {
+  senha: {
     in: ["body"],
     isLength: {
       errorMessage: "Senha deve possuir no mínimo 8 caracteres",

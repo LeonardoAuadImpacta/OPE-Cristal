@@ -26,16 +26,17 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
 ## Endpoints
 
 - _/api/v1_
-  - _/customer_
+  - _/cliente_
     - _POST_ criação de contas para clientes
       - _request_:
         ```json
         {
-          "firstName": string,
-          "lastName": string,
-          "gender": string,
-          "password": string,
-          "email": string
+          "nome": "Nome",
+          "sobrenome": "Sobrenome",
+          "genero": "M",
+          "dataNascimento": "1990-12-01",
+          "senha": "senha123",
+          "email": "email@test.com"
         }
         ```
      - _responses_
@@ -50,22 +51,27 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
              "details": [
                {
                  "msg": "Nome inválido",
-                 "param": "firstName",
+                 "param": "nome",
                  "location": "body"
                },
                {
                  "msg": "Sobrenome inválido",
-                 "param": "lastName",
+                 "param": "sobrenome",
                  "location": "body"
                },
                {
                  "msg": "Senha deve possuir no mínimo 8 caracteres",
-                 "param": "password",
+                 "param": "senha",
                  "location": "body"
                },
                {
                  "msg": "Gênero inválido",
-                 "param": "gender",
+                 "param": "genero",
+                 "location": "body"
+               },
+               {
+                 "msg": "Data de nascimento inválida",
+                 "param": "dataNascimento",
                  "location": "body"
                },
                {
@@ -83,7 +89,7 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
         ```json
         {
           "email": "teste@exemplo.com",
-          "password": "thepasswordhere"
+          "senha": "thepasswordhere"
         }
         ```
       - _responses_
@@ -98,7 +104,7 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
               "location": "body"
             },{
               "msg": "Senha inválida",
-              "param": "password",
+              "param": "senha",
               "location": "body"
             }]
           }

@@ -1,14 +1,14 @@
-uri : api/v1/customer
+uri : api/v1/cliente
 method: POST
 
 request: 
 {
-    "firstName": string,
-    "lastName": string,
-    "birthdate": date (formato "YYYY-MM-DD"),
-    "gender": string (enum[ "M" , "F", "NB" ]),
+    "nome": string,
+    "sobrenome": string,
+    "dataNascimento": date (formato "YYYY-MM-DD"),
+    "genero": string (enum[ "M" , "F", "NB" ]),
     "email": string,
-    "password": string
+    "senha": string
 }
 
 response: 
