@@ -2,30 +2,49 @@
     <div>
         <form @submit=cadastrar>
             <label class="snk-text-center snk-text-base-color snk-text-title">Cadastro</label>
-            <input type="text" name="nome" placeholder="Nome"/>
-            <input type="text" name="sobrenome" placeholder="Sobrenome"/>
-            <input type="email" name="email" placeholder="E-mail"/>
+            <input v-model="nome" type="text" name="nome" placeholder="Nome"/>
+            <input v-model="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome"/>
+            <input v-model="email" type="email" name="email" placeholder="E-mail"/>
 
-            <input v-model="password" type="password" name="senha" id="senha" placeholder="Senha"/>
-            <input v-model="password" type="password" name="confirma-senha" id="confirma-senha" placeholder="Confirmar senha"/>
+            <input  v-model="password" type="password" name="senha" id="senha" placeholder="Senha" ref="password"/>
+            <input  v-model="confirm_password" type="password"  name="confirma-senha" id="confirma-senha" placeholder="Confirmar senha" />
 
-            <input class="snk-background-base-color snk-text-title snk-cursor-pointer" type="submit" value="Cadastrar">
+            <input  @click="verificaSenha()" class="snk-background-base-color snk-text-title snk-cursor-pointer" type="submit" value="Cadastrar">
             <div class="snk-flex">
                 <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
             </div>
-            
+
+
+          
         </form>  
     </div>  
 </template>
 
 <script>
+
+
 export default {
+    data() {
+        return {
+            nome: "Bruno",
+            sobrenome: "Kito",
+            email: "Bruno@kito.com.br",
+            password: "",
+            conifirm_password: ""
+        }
+    },
     methods: {
         trocarTela: function() {
             this.$emit("trocarTela", false);
         },
+        verificaSenha: function(e) {
+            if (this.password != this.conifirm_password){
+                alert("Passwords não batem")
+                // desenvolver ação de validade
+                e.preventDefault()
+            } 
+        },
         cadastrar: function(e) {
-            
             e.preventDefault();
         }
     }
