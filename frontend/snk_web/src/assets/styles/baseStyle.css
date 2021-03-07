@@ -19,4 +19,15 @@
     font-weight: bold;
 }
 
+.snk-cursor-pointer {
+    cursor: pointer;
+}
+
+.snk-flex { 
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 

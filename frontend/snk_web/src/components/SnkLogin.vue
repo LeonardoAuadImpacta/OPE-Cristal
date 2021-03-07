@@ -1,22 +1,47 @@
 <template>
     <div>
-        <form>
+        <form @submit=logar>
             <label class="snk-text-center snk-text-base-color snk-text-title">Login</label>
-            <input type="email" name="email" placeholder="E-mail"/>
-            <input type="password" name="senha" id="senha" placeholder="Senha"/>
-            <input class="snk-background-base-color snk-text-title" type="submit" value="entrar">
-            <p class="snk-text-rigth snk-text-base-color">esqueceu a senha ? </p>
+            <input v-model="email" type="email" name="email" placeholder="E-mail"/>
+            <input v-model="password" type="password" name="senha" id="senha" placeholder="Senha"/>
+            <input class="snk-background-base-color snk-text-title snk-cursor-pointer" type="submit" value="entrar">
+            <div class="snk-flex">
+                <p  @click="trocarTela()"   class="snk-cursor-pointer">criar conta</p>
+                <p class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
+            </div>
+            
         </form>  
     </div>  
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            token: "fdsafdsbfbfdabfsdabfdaqb",
+            pseudonime: "Kito",
+            email: "",
+            password: ""
+        }
+    },
+
+    methods: {
+            logar: function(e) {
+                
+                
+                // TODO consumir API de login 
+                e.preventDefault()
+            },
+            trocarTela: function() {
+                this.$emit("trocarTela",true);
+            }
+    }
 
 }
 </script>
 
-<style >
+<style scoped >
+
 div {
     
   background-color: white;
@@ -45,7 +70,7 @@ form p, form label ,input[type=submit] {
     
 }
  input[type=email]:focus , input[type=password]:focus {
-    border: 1px solid #aa2514;
+    border: 2px solid #aa2514;
     outline: none;
     font-size: 15pt;
     border-radius: 5px;
