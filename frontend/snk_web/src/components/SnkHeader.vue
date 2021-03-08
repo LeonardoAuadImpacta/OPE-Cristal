@@ -1,26 +1,40 @@
 <template>
-    <div class="body-top"> </div>
-    <div v-if="logado" class="header">
-        <div  class="snk-flex">
+    <v-card>
+        <div class="body-top"> </div>
+        <div v-if="logado" class="header">
+            <div  class="snk-flex">
+                <img class="snk-logo" src="../assets/mini_logo.png"/>
+                <h1>{{snk_title}}</h1>
+            </div>
+            <div class="snk-filtro">
+                <v-text-field
+                    label="Pesquisar"
+                    placeholder="Ex: Nike, tamanho 41, azul"
+                    outlined
+                    dense
+                ></v-text-field>
+            </div>
+                 
+            
+            
+            <div  class="snk-flex">
+                <img :src="urlImg" class="userPhoto"/>
+                <p>{{username}}</p>
+                 <img   @click="logout()" src="../assets/exit.png" class="snk-logout snk-cursor-pointer" />
+            </div>
+           
+        </div>
+
+        <div v-if="false==logado" class="header off">
             <img class="snk-logo" src="../assets/mini_logo.png"/>
             <h1>{{snk_title}}</h1>
         </div>
-        
-        <div  class="snk-flex">
-            <img :src="urlImg" />
-            <p>{{username}}</p>
-        </div>
-        <img   @click="logout()" src="../assets/exit.png" class="snk-logout snk-cursor-pointer" />
-    </div>
-
-    <div v-if="false==logado" class="header off">
-        <img class="snk-logo" src="../assets/mini_logo.png"/>
-        <h1>{{snk_title}}</h1>
-    </div>
+    </v-card>
 </template>
 
 <script>
 export default {
+    name:'SnkHeader',
     props: {
     snk_title: String
     
@@ -66,11 +80,11 @@ export default {
         background-color:rgba(240, 240, 240) ;
         position: fixed;
         top: 0;
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         justify-content: space-between;
         border-bottom: 5px solid #aa2514;
-        align-items: flex-end;
+        align-items: center;
         padding: 0.5%;
     }
 
@@ -82,24 +96,34 @@ export default {
         margin-block-end: 0;
     }
     .header .snk-logo {
-        max-height: 10vh;
+        max-height: 8vh;
     }
     .snk-flex{
         background-color: rgba(0, 0, 0, 0);
         justify-content: flex-start;
-        align-items: flex-end
+        align-items: center;
+        width: 20%;
     }
 
-    .snk-flex img {
-        max-width: 10vh;
+    .snk-flex img.userPhoto {
+        max-width: 8vh;
         margin-right: 10%;
         border-radius: 50%;
     }
     .snk-logout{
-        max-width: 10vh;
+        max-width: 8vh;
         margin-right: 2%;
+        margin-left: 30%;
     }
     .off {
         justify-content: center;
+    }
+    .snk-filtro {
+        width: 50%;
+    }
+    .v-text-field{
+        top: 2vh;
+        width: 100%;
+        padding-right: 100%;
     }
 </style>>

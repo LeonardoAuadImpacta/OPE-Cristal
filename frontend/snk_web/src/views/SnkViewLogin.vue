@@ -1,10 +1,13 @@
 <template>
-  <SnkHeader snk_title="Sneakers"/>
-  <main>
-    <SnkLogin @trocarTela="trocarTela" v-if="false == tela_cadastro" class="SnkLogin"/>
-    <img  src="../assets/banner_login_base.jpg" class="img-login">
-    <SnkPreCadastro @trocarTela="trocarTela" v-if="tela_cadastro" class="SnkLogin"/>
-  </main>
+  <v-app>
+
+    <SnkHeader snk_title="Sneakers"/>
+    <main>
+      <SnkLogin @trocarTela="trocarTela" v-if="false == tela_cadastro" class="SnkLogin"/>
+      <img  src="../assets/banner_login_base.jpg" class="img-login">
+      <SnkPreCadastro @trocarTela="trocarTela" v-if="tela_cadastro" class="SnkLogin"/>
+    </main>
+  </v-app>
 </template>
 
 <script>

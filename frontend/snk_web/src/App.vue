@@ -1,9 +1,21 @@
 <template>
-  <div id="nav">
-  </div>
-  <router-view/>
+  <v-app>
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
+<script>
+export default {
 
-</style>
+  name: 'App',
+
+  components: {
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>

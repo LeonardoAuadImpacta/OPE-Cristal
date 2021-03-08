@@ -1,5 +1,5 @@
 <template>
-  <SnkHeader snk_title="Bem Vindo"/>
+  <SnkHeader snk_title="SNK"/>
 </template>
 
 <script>

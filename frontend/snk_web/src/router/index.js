@@ -1,12 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import SnkShop from '../views/SnkShop.vue'
 import SnkViewLogin from '../views/SnkViewLogin.vue'
+import App from '../App.vue'
+import VueRouter from 'vue-router'
+import Vue from 'vue'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/outher-shop',
-    name: 'SnkShop',
-    component: SnkShop
+    path: '/',
+    name: 'App',
+    component: App
   },
   {
     path: '/shop',
@@ -23,9 +26,11 @@ const routes = [
   }
 ]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
