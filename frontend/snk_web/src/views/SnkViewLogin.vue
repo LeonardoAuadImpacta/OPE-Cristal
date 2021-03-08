@@ -22,7 +22,7 @@
     },
     data() {
         return {
-          tela_cadastro : false 
+          tela_cadastro : false
       }
     },
     methods:  {
@@ -34,22 +34,17 @@
 </script>
 
 
-<style>
+<style scoped>
 @import '../assets/styles/baseStyle.css';
 
 
-body,html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Rubik', sans-serif;
-  background-color: #aa2514 ;
-}
 .SnkLogin{
   max-width: 50%;
   min-width: 50%;
 
   max-height: 80vh;
   min-height: 80vh;
+  border: 5px solid #aa2514;
 
 }
 main {
@@ -59,5 +54,6 @@ main {
 .img-login {
   background-color: silver;
   max-width: 50%;
+  border: 5px solid #aa2514;
 }
 </style>
