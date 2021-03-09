@@ -12,6 +12,8 @@
                     placeholder="Ex: Nike, tamanho 41, azul"
                     outlined
                     dense
+                    color=#aa2514
+                    append-icon='mdi-magnify'
                 ></v-text-field>
             </div>
                  
@@ -38,7 +40,7 @@ export default {
     props: {
     snk_title: String
     
-  },
+    },
     data() {
         return {
             urlImg: "https://scontent.fcgh24-1.fna.fbcdn.net/v/t1.0-9/109539824_1988370634628013_858700618360225499_o.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGoLQv_-crNGasn5UNDWmkD4eUaCUcKhYnh5RoJRwqFiYyLCFpQY7F7w1Buvscm6IQ6ZvISsFvO6aJHtB799hCU&_nc_ohc=5wUEjOgNOlQAX-YVCmy&_nc_ht=scontent.fcgh24-1.fna&oh=c159353b950ee4e673a5b73daed8126c&oe=606B1234",
