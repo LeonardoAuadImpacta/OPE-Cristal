@@ -22,7 +22,12 @@
             <div  class="snk-flex">
                 <img :src="urlImg" class="userPhoto"/>
                 <p>{{username}}</p>
-                 <img   @click="logout()" src="../assets/exit.png" class="snk-logout snk-cursor-pointer" />
+                 <v-icon
+                    color="#aa2514"
+                    x-large   
+                    @click="logout()" 
+                    class="snk-logout snk-cursor-pointer" >
+                mdi-logout</v-icon>
             </div>
            
         </div>
@@ -78,6 +83,7 @@ export default {
         position: relative;
     }
     .header {
+        z-index: 2;
         max-height:10vh ;
         background-color:rgba(240, 240, 240) ;
         position: fixed;
