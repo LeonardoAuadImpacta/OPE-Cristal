@@ -127,47 +127,41 @@ Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
 ## Modelagem de dados
 
 <details>
-    <summary>Detalhes</summary>
+  <summary>Detalhes</summary>
 
-    User
-    - id
-    - email
-    - password
-    - password_salt
+### Entidades
 
-    Admin (User)
-    - id
-    - name
+**Cliente**
+- id
+- nome
+- sobrenome
+- email
+- senha
+- senha_salt
 
-    Customer (User)
-    - id
-    - name
-    - phone
-    - address
+**Produto**
+- id
+- nome
+- descrição
+- preço_atual
 
-    Product
-    - id
-    - name
-    - description
-    - current_value
+**Pedido**
+- id
+- cliente (fk)
+- desconto
+- status [carrinho de compras, pedido realizado, pedido atendido, entregue, cancelado, ...]
 
-    Order
-    - id
-    - id_customer (fk)
-    - discount
-    - status [carrinho de compras, pedido realizado, pedido atendido, entregue, cancelado, ...]
+**ProdutoPedido**
+- id
+- id_pedido (fk)
+- id_produto (fk)
+- quantidade
+- preço_venda
 
-    ItemOrder
-    - id
-    - id_order (fk)
-    - id_product (fk)
-    - quantity
-    - order_value (unitary)
-
-    Funcionalidade:
-    - Auto-cadastro do cliente.
-    - Login.
-    - Cadastro de produto.
-    - Abrir o carrinho de compras e colocar itens nele.
-    - Fechar a venda.
+## Funcionalidades
+- Auto-cadastro do cliente.
+- Login.
+- Cadastro de produto.
+- Abrir o carrinho de compras e colocar itens nele.
+- Fechar a venda.
 </details>
