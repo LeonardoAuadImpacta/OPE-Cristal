@@ -1,12 +1,17 @@
-create database Clientes;
-use Clientes;
 create table Usuario (idUsuario int primary key, email varchar(30),
 	senha varchar(16), senha_salt varchar(16));
     
 create table AdministradorUsuario (idAdmin int primary key, nome varchar(20));
 
-create table ClienteUsuario (idCliente int primary key, nome varchar(30),
-	telefone varchar(16), endereçoRua varchar(40), endereçoNumero int);
+
+
+
+create table Cliente (
+	idCliente int primary key,
+    nome varchar(30),
+	telefone varchar(16),
+	endereçoRua varchar(40),
+    endereçoNumero int);
     
 create table Produto (idProduto int primary key, nome varchar(30),
 	descricao varchar(45), valorAtual decimal(8,2));
