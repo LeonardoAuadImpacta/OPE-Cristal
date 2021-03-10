@@ -16,11 +16,11 @@ const createClienteSchema = {
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
-  dataNascimento:{
+  dataNascimento: {
     in: ["body"],
     errorMessage: "Data de nascimento inválida",
     isDate: true,
-    toDate: true
+    toDate: true,
   },
   email: {
     in: ["body"],
