@@ -1,11 +1,11 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="344"
+    max-width="350px"
   >
     <v-img
       :src="card.url"
-      height="350px"
+      height="200px"
     ></v-img>
 
     <v-card-title>

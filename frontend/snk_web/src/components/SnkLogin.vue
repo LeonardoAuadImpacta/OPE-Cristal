@@ -9,6 +9,8 @@
                 <p  @click="trocarTela()"   class="snk-cursor-pointer">criar conta</p>
                 <p class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
             </div>
+
+            <router-link to="/admin-area"><p>  W I P : AREA ADMIN</p></router-link>
         </form>  
     </div>  
 </template>

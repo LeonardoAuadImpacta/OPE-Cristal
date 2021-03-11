@@ -23,6 +23,7 @@ export default {
 <style scoped>
   .SnkCatalogo {
     padding: 5%;
+    box-shadow: none !important
 
   }
 

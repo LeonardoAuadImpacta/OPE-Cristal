@@ -20,9 +20,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue')
   },
   {
-      path:'/login',
-      name:'SnkViewLogin',
-      component: SnkViewLogin
+    path:'/login',
+    name:'SnkViewLogin',
+    component: SnkViewLogin
+  }, 
+  {
+    path:'/admin-area',
+    name: 'SnkAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SnkAdmin.vue')
   }
 ]
 
