@@ -1,6 +1,6 @@
 <template>
   <v-card class="snk-catalogo">
-      <div class="snk-card" v-for="card in cards" :key="card"><SnkCard :card="card"/></div>     
+      <div class="snk-card" v-for="(card, idx) in cards" :key="idx"><SnkCard :card="card"/></div>     
   </v-card>    
 </template>
 
@@ -25,20 +25,19 @@ export default {
         display: grid;
         grid-template-columns: auto auto auto ;
         grid-template-rows: auto;
-        grid-template-areas: main;
         column-gap: auto;
         row-gap: 5%;
         padding: 5%;
     }
 
-    @media (max-width: 800px) {
-        .snk-catalogo{
-             grid-template-columns: auto;
-             row-gap: 1%;
-        }
-        .snk-card {
-            width: 95%;
-        }
+@media (max-width: 800px) {
+    .snk-catalogo{
+        grid-template-columns: auto;
+        row-gap: 1%;
     }
+    .snk-card {
+        width: 95%;
+    }
+}
 
 </style>

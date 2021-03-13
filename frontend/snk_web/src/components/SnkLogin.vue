@@ -1,5 +1,14 @@
 <template>
     <div>
+        <div class="snk-alert">
+            <v-alert 
+            :value ="error"
+            color="#e2583d"
+            type="error">
+                E-mail ou senha invalidos
+            </v-alert>
+        </div>
+        
         <form @submit=logar>
             <label class="snk-text-center snk-text-base-color snk-text-title">Login</label>
             <input v-model="email" type="email" name="email" placeholder="E-mail"/>
@@ -9,34 +18,75 @@
                 <p  @click="trocarTela()"   class="snk-cursor-pointer">criar conta</p>
                 <p class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
             </div>
-
-            <router-link to="/admin-area"><p>  W I P : AREA ADMIN</p></router-link>
         </form>  
     </div>  
 </template>
 
 <script>
+import users from '../assets/mock_service/AuthMockService.json'
 export default {
     data() {
         return {
             token: "fdsafdsbfbfdabfsdabfdaqb",
             pseudonime: "Kito",
             email: "",
-            password: ""
+            password: "",
+            error: false
         }
     },
 
     methods: {
             logar: function(e) {
-                localStorage.logado = true
-                this.$router.push({ name: 'SnkShop' });
+                let response = this.mockLogin(this.email,this.password);
+                console.log(response.status)
+                if(response.status == 200) {
+                    
+                    this.$store.commit("setUserSession", response.body);
+                    if(response.body.profile == "ADMIN") {
+                        this.$router.push({ name: 'SnkAdmin' });
+                    }else {
+                        this.$router.push({ name: 'SnkShop' });
+                    }
+                }
+                else {
+                    this.error= true
+                }
+                
 
                 // TODO consumir API de login 
                 e.preventDefault()
             },
             trocarTela: function() {
                 this.$emit("trocarTela",true);
+            },
+            mockLogin(email,password) {
+                let userLogin
+                users.forEach(user => {
+                    
+                    if(user.email == email && user.password == password ) {
+                        console.log(user)
+                        console.log(email)
+                        console.log(password)
+                        userLogin = user
+                       
+                    }
+                });
+
+                if(userLogin) {
+                     return {
+                            status : 200,
+                            body: userLogin
+                        }
+                }
+                return {
+                    status: 401,
+                    message: "Eamil ou senha invalidos"
+                }
             }
+
+    },
+    beforeMount() {
+        this.$store.commit("logout");
     }
 
 }
@@ -86,5 +136,11 @@ input[type=submit] {
     font-family: 'Rubik', sans-serif;
     font-size: 15pt;
     
+}
+.snk-alert{
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    z-index: 10;
 }
 </style>

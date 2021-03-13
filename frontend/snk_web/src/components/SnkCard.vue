@@ -16,6 +16,18 @@
       {{card.sub_titulo}}
     </v-card-subtitle>
 
+    <div class="snk-flex-around">
+         <label>
+            {{formatPrice(card.preco)}}
+         </label>
+        <v-btn
+        @click=adicionar(card) 
+        class="snk-qtd"
+        color="#aa2514">
+            Adicionar
+        </v-btn>
+    </div>
+
     <v-card-actions>
       <v-btn
         color="orange lighten-2"
@@ -62,10 +74,28 @@
     data: () => ({
       show: false,
     }),
+    methods:{
+         formatPrice(value) {
+            let val = (value/1).toFixed(2).replace('.', ',')
+            return "R$ ".concat(val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+        },
+        adicionar(card) {
+            card.titulo
+        }
+    }
   }
 </script>
 
 
 <style scoped>
+    .snk-qtd {
+        color: white;
+    }
+    .snk-flex-around label {
+        max-width: 30%;
+        vertical-align: middle;
+        font-weight: bold;
+        padding-top: 7px;
+    }
 
 </style>

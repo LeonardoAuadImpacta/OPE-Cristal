@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-main>
     <SnkHeader snk_title="SNK"/>
     <SnkCarrossel/>
     <SnkCatalogo class="SnkCatalogo"/>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <SnkHeader snk_title="Admin Ârea"/>
+    <SnkHeader snk_title="Admin"/>
   </v-content>
 </template>
 

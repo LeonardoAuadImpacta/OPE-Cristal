@@ -34,6 +34,11 @@ body,html {
     justify-content: space-between;
 }
 
+.snk-flex-around { 
+    display: flex;
+    justify-content: space-around;
+}
+
 
 
 

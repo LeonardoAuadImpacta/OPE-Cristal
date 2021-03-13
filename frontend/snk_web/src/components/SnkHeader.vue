@@ -56,13 +56,13 @@ export default {
     methods : {
         logout: function() {
            
-            localStorage.logado = false
+            this.$store.commit("logout");
             this.$router.push({ name: 'SnkViewLogin' });
         }
     },
     mounted(){
-        
-        if (localStorage.logado == 'true') {
+        let session = this.$store.state.session
+        if (session) {
             this.logado = true
         }else {
             this.logado = false
