@@ -1,6 +1,6 @@
 <template>
   <v-card class="snk-catalogo">
-      <div class="snk-card" v-for="(card, idx) in cards" :key="idx"><SnkCard @addCar="addCar" :card="card"/></div>     
+      <div class="snk-card" v-for="(card, idx) in cards" :key="idx"><SnkCard :card="card"/></div>     
   </v-card>    
 </template>
 
@@ -18,9 +18,7 @@ export default {
         }
     },
     methods: {
-        addCar() {
-            this.$emit("addCar");
-        }
+        
     }
 }
 </script>

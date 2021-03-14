@@ -81,7 +81,6 @@
         },
         adicionar(card) {
           this.$store.commit("adicionarItem",card)
-          this.$emit("addCar");
         }
     }
   }

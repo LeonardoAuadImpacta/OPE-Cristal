@@ -54,7 +54,6 @@ export default {
     name:'SnkHeader',
     props: {
     snk_title: String,
-    addCar: Number
     
     },
     data() {
@@ -82,6 +81,11 @@ export default {
         }else {
             this.logado = false
         }        
+    },
+    computed: {
+        addCar() {
+            return this.$store.state.carrinho.length
+        }
     }
 
 }
