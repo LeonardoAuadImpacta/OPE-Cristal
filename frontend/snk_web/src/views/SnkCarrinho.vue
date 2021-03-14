@@ -1,9 +1,7 @@
 <template>
     <v-main>
         <SnkHeader snk_title="Carrinho"/>
-        <router-link
-        to="/shop"
-        >
+        <router-link to="/shop">
             voltar
         </router-link>
         <v-stepper
@@ -109,16 +107,19 @@
             </v-btn>
             </v-stepper-content>
         </v-stepper>
+        <SnkFootersComp/>
     </v-main>
 </template>
 
 <script>
 
 import SnkHeader from '../components/SnkHeader.vue'
+import SnkFootersComp from '../components/SnkFootersComp'
 import SnkTableCarrinho from '../components/SnkTableCarrrinho.vue'
 export default {
     components: {
         SnkHeader,
+        SnkFootersComp,
         SnkTableCarrinho
     },
     name: 'SnkCarrinho',

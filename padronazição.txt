@@ -1,0 +1,6 @@
+border-radium: rounded-lg;
+Color-pallete:
+    transparent,
+    #aa2514 -Primary,
+    #e2583d -Dark,
+    #740000 -Light;

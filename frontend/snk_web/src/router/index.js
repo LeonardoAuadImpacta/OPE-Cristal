@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'ASnkViewLoginpp',
+    component: SnkViewLogin
+  },
+  {
     path: '/shop',
     name: 'SnkShop',
     component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue'),

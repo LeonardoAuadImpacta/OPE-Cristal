@@ -9,13 +9,14 @@
             <input  v-model="password" type="password" name="senha" id="senha" placeholder="Senha" ref="password"/>
             <input  v-model="confirm_password" type="password"  name="confirma-senha" id="confirma-senha" placeholder="Confirmar senha" />
 
-            <input  @click="verificaSenha()" class="snk-background-base-color snk-text-title snk-cursor-pointer" type="submit" value="Cadastrar">
+            <input  
+                @click="verificaSenha()" 
+                class="snk-background-base-color snk-text-title snk-cursor-pointer rounded-lg" 
+                type="submit" 
+                value="Cadastrar">
             <div class="snk-flex">
                 <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
             </div>
-
-
-          
         </form>  
     </div>  
 </template>
@@ -60,9 +61,9 @@ div {
 form{
     display: flex;
     flex-direction: column;
-    padding: 20% 30% 20% 30%;
+    padding: 0% 20%;
     justify-content: space-evenly;
-    min-height: 65%;
+    height: 100%;
 }
 form p, form label ,input[type=submit] {
     font-weight: bold;
@@ -77,6 +78,7 @@ form p, form label ,input[type=submit] {
     border-bottom: 2px solid #aa2514;
     -webkit-transition: width .35s ease-in-out;
     transition: 0.3s ease-in-out;
+    margin: 3% 0;
     
 }
  input[type=email]:focus , input[type=password]:focus , input[type=text]:focus {
@@ -90,9 +92,7 @@ input[type=submit] {
     text-transform: uppercase;
     color: white;
     padding: 5%;
-    border-radius: 5px;
     font-family: 'Rubik', sans-serif;
     font-size: 15pt;
-    
 }
 </style>
