@@ -10,8 +10,7 @@
                 class="elevation-1"
             ></v-data-table>
         </v-container>
-        <router-link to="/shop"
-        >
+        <router-link to="/shop">
             voltar
         </router-link>
         <SnkTableCarrinho/>

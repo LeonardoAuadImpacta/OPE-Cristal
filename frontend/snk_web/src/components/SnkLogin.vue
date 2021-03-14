@@ -105,8 +105,7 @@ form{
     flex-direction: column;
     padding: 10% 20%;
     justify-content: space-evenly;
-    margin: 10% 0;
-    min-height: 50%;
+    height: 100%;
 }
 form p, form label ,input[type=submit] {
     font-weight: bold;
