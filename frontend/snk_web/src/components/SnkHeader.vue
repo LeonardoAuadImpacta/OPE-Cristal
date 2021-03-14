@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <div class="body-top"> </div>
-        <div v-if="logado" class="header">
+        <div v-if="logged" class="header">
             <div  class="snk-flex">
                 <img class="snk-logo" src="../assets/mini_logo.png"/>
                 <h1>{{snk_title}}</h1>
@@ -41,7 +41,7 @@
            
         </div>
 
-        <div v-if="false==logado" class="header off">
+        <div v-if="false==logged" class="header off">
             <img class="snk-logo" src="../assets/mini_logo.png"/>
             <h1>{{snk_title}}</h1>
             <router-link  to="/login"><label>ENTRAR</label></router-link>
@@ -59,8 +59,7 @@ export default {
     data() {
         return {
             urlImg: "https://scontent.fcgh24-1.fna.fbcdn.net/v/t1.0-9/109539824_1988370634628013_858700618360225499_o.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGoLQv_-crNGasn5UNDWmkD4eUaCUcKhYnh5RoJRwqFiYyLCFpQY7F7w1Buvscm6IQ6ZvISsFvO6aJHtB799hCU&_nc_ohc=5wUEjOgNOlQAX-YVCmy&_nc_ht=scontent.fcgh24-1.fna&oh=c159353b950ee4e673a5b73daed8126c&oe=606B1234",
-            username: 'Kito',
-            logado: false,
+            username: 'Kito' 
         
         }
     },
@@ -69,9 +68,6 @@ export default {
            
             this.$store.commit("logout");
             this.$router.push({ name: 'SnkViewLogin' });
-        },
-        atualizarQtdCarrinhos() {
-            this.addCar = this.$store.state.carrinho.length
         }
     },
     mounted(){
@@ -85,7 +81,11 @@ export default {
     computed: {
         addCar() {
             return this.$store.state.carrinho.length
-        }
+        },
+
+        logged() {
+            return this.$store.state.session != null
+        } 
     }
 
 }
