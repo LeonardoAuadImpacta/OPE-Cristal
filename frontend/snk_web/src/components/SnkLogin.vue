@@ -142,7 +142,4 @@ input[type=submit] {
     font-size: 15pt;
     
 }
-.snk-alert{
-    
-}
 </style>
