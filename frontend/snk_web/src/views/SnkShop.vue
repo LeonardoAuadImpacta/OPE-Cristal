@@ -1,8 +1,8 @@
 <template>
   <v-main>
-    <SnkHeader snk_title="SNK"/>
+    <SnkHeader :snk_title="title" :addCar="upCar"/>
     <SnkCarrossel/>
-    <SnkCatalogo class="SnkCatalogo"/>
+    <SnkCatalogo @addCar="addCar" class="SnkCatalogo"/>
   </v-main>
 </template>
 
@@ -16,6 +16,17 @@ export default {
       SnkHeader,
       SnkCarrossel,
       SnkCatalogo
+    },
+    data() {
+      return {
+        title: "SNK",
+        upCar: 0
+      }
+    },
+    methods: {
+      addCar() {
+        this.upCar += 1
+      }
     }
 }
 </script>

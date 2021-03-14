@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    session: null
+    session: null,
+    carrinho: []
   },
   mutations: {
     setUserSession(state, payload) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
 
     logout(state) {
       state.session =null
+    },
+    adicionarItem(state,item) {
+      state.carrinho.push(item)
     }
   },
   actions: {

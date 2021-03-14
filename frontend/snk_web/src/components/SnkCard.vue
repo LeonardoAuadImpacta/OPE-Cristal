@@ -80,7 +80,8 @@
             return "R$ ".concat(val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
         },
         adicionar(card) {
-            card.titulo
+          this.$store.commit("adicionarItem",card)
+          this.$emit("addCar");
         }
     }
   }

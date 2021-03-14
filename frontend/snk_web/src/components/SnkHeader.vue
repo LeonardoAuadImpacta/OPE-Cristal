@@ -16,6 +16,15 @@
                     append-icon='mdi-magnify'
                 ></v-text-field>
             </div>
+
+            <router-link to="/carrinho"
+            style="text-decoration: none; color: inherit;"
+            >
+                {{addCar}}
+                <v-icon>
+                    mdi-cart-minus
+                </v-icon>
+            </router-link>
                  
             
             
@@ -35,6 +44,7 @@
         <div v-if="false==logado" class="header off">
             <img class="snk-logo" src="../assets/mini_logo.png"/>
             <h1>{{snk_title}}</h1>
+            <router-link  to="/login"><label>ENTRAR</label></router-link>
         </div>
     </v-card>
 </template>
@@ -43,14 +53,16 @@
 export default {
     name:'SnkHeader',
     props: {
-    snk_title: String
+    snk_title: String,
+    addCar: Number
     
     },
     data() {
         return {
             urlImg: "https://scontent.fcgh24-1.fna.fbcdn.net/v/t1.0-9/109539824_1988370634628013_858700618360225499_o.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGoLQv_-crNGasn5UNDWmkD4eUaCUcKhYnh5RoJRwqFiYyLCFpQY7F7w1Buvscm6IQ6ZvISsFvO6aJHtB799hCU&_nc_ohc=5wUEjOgNOlQAX-YVCmy&_nc_ht=scontent.fcgh24-1.fna&oh=c159353b950ee4e673a5b73daed8126c&oe=606B1234",
             username: 'Kito',
-            logado: false
+            logado: false,
+        
         }
     },
     methods : {
@@ -58,6 +70,9 @@ export default {
            
             this.$store.commit("logout");
             this.$router.push({ name: 'SnkViewLogin' });
+        },
+        atualizarQtdCarrinhos() {
+            this.addCar = this.$store.state.carrinho.length
         }
     },
     mounted(){
@@ -66,9 +81,8 @@ export default {
             this.logado = true
         }else {
             this.logado = false
-        }
+        }        
     }
-
 
 }
 </script>

@@ -1,13 +1,6 @@
 <template>
     <div>
-        <div class="snk-alert">
-            <v-alert 
-            :value ="error"
-            color="#e2583d"
-            type="error">
-                E-mail ou senha invalidos
-            </v-alert>
-        </div>
+        
         
         <form @submit=logar>
             <label class="snk-text-center snk-text-base-color snk-text-title">Login</label>
@@ -17,6 +10,14 @@
             <div class="snk-flex">
                 <p  @click="trocarTela()"   class="snk-cursor-pointer">criar conta</p>
                 <p class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
+            </div>
+            <div class="snk-alert">
+                <v-alert 
+                :value ="error"
+                type="error"
+                transition="scroll-y-transition">
+                    E-mail ou senha invalidos
+                </v-alert>
             </div>
         </form>  
     </div>  
@@ -49,7 +50,7 @@ export default {
                     }
                 }
                 else {
-                    this.error= true
+                    this.flagAlert()
                 }
                 
 
@@ -82,6 +83,10 @@ export default {
                     status: 401,
                     message: "Eamil ou senha invalidos"
                 }
+            },
+            flagAlert() {
+                this.error= true
+                setTimeout(() => this.error=false, 2000);
             }
 
     },
@@ -138,9 +143,6 @@ input[type=submit] {
     
 }
 .snk-alert{
-    position: fixed;
-    top: 5%;
-    right: 5%;
-    z-index: 10;
+    
 }
 </style>

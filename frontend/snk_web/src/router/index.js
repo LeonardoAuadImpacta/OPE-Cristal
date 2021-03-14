@@ -28,6 +28,11 @@ const routes = [
     path:'/admin-area',
     name: 'SnkAdmin',
     component: () => import(/* webpackChunkName: "about" */ '../views/SnkAdmin.vue')
+  },
+  {
+    path:'/carrinho',
+    name: 'SnkCarrinho',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SnkCarrinho.vue')
   }
 ]
 
