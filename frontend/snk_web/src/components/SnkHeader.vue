@@ -22,7 +22,7 @@
             >
                 {{addCar}}
                 <v-icon>
-                    mdi-cart-minus
+                    mdi-cart-outline
                 </v-icon>
             </router-link>
                  

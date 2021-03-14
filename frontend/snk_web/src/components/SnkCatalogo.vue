@@ -1,7 +1,9 @@
 <template>
-  <v-card class="snk-catalogo">
-      <div class="snk-card" v-for="(card, idx) in cards" :key="idx"><SnkCard :card="card"/></div>     
-  </v-card>    
+    <v-card class="snk-catalogo">
+        <div class="snk-card" v-for="(card, idx) in cards" :key="idx">
+            <SnkCard :card="card"/>
+        </div>     
+    </v-card>    
 </template>
 
 <script>

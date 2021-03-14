@@ -15,24 +15,25 @@
     <v-card-subtitle>
       {{card.sub_titulo}}
     </v-card-subtitle>
-
+    
     <div class="snk-flex-around">
-         <label>
-            {{formatPrice(card.preco)}}
-         </label>
-        <v-btn
-        @click=adicionar(card) 
-        class="snk-qtd"
-        color="#aa2514">
-            Adicionar
-        </v-btn>
+      <label>
+        {{formatPrice(card.preco)}}
+      </label>
+      <v-btn @click=adicionar(card) class="snk-qtd" color="#aa2514">
+        <div class="snk-alert">
+          <v-alert :value ="carPlus" outlined color="transparent" transition="scroll-y-reverse-transition">
+            <v-icon color="#aa2514">
+              mdi-cart-plus
+            </v-icon>
+          </v-alert>
+        </div>
+        Adicionar
+      </v-btn>
     </div>
 
     <v-card-actions>
-      <v-btn
-        color="orange lighten-2"
-        text
-      >
+      <v-btn color="orange lighten-2" text >
         Detalhes
       </v-btn>
 
@@ -74,6 +75,7 @@
     },
     data: () => ({
       show: false,
+      carPlus: false
     }),
     methods:{
          formatPrice(value) {
@@ -81,6 +83,8 @@
             return "R$ ".concat(val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
         },
         adicionar(card) {
+          this.carPlus= true
+          setTimeout(() => this.carPlus=false, 500)
           this.$store.commit("adicionarItem",card)
         }
     }
@@ -97,6 +101,10 @@
         vertical-align: middle;
         font-weight: bold;
         padding-top: 7px;
+    }
+    .snk-alert{
+      position: absolute;
+      top: -300%;
     }
 
 </style>
