@@ -64,6 +64,7 @@
     name: 'SnkCard',
     props: {
         card: {
+            id: Number,
             url: String,
             titulo: String,
             sub_titulo: String,

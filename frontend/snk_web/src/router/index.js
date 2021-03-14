@@ -1,5 +1,4 @@
 import SnkViewLogin from '../views/SnkViewLogin.vue'
-import App from '../App.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -7,17 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'App',
-    component: App
-  },
-  {
     path: '/shop',
     name: 'SnkShop',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue'),
+    alias: '/'
   },
   {
     path:'/login',

@@ -13,7 +13,6 @@ export default {
         SnkHeader
     },
     beforeMount() {
-        console.log(`At this point, vm.$el has not been created yet.`)
         localStorage.logado = true
     }
 }

@@ -39,7 +39,7 @@ export default {
     methods: {
             logar: function(e) {
                 let response = this.mockLogin(this.email,this.password);
-                console.log(response.status)
+
                 if(response.status == 200) {
                     
                     this.$store.commit("setUserSession", response.body);
@@ -65,9 +65,7 @@ export default {
                 users.forEach(user => {
                     
                     if(user.email == email && user.password == password ) {
-                        console.log(user)
-                        console.log(email)
-                        console.log(password)
+                       
                         userLogin = user
                        
                     }
