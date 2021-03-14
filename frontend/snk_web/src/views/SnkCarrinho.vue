@@ -10,15 +10,18 @@
                 class="elevation-1"
             ></v-data-table>
         </v-container>
+        <SnkFootersComp/>
     </v-main>
 </template>
 
 <script>
 
 import SnkHeader from '../components/SnkHeader.vue'
+import SnkFootersComp from '../components/SnkFootersComp'
 export default {
     components: {
-        SnkHeader
+        SnkHeader,
+        SnkFootersComp
     },
     name: 'SnkCarrinho',
     data() {

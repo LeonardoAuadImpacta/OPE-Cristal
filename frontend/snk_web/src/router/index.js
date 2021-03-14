@@ -1,5 +1,4 @@
 import SnkViewLogin from '../views/SnkViewLogin.vue'
-import App from '../App.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
@@ -8,8 +7,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'App',
-    component: App
+    name: 'ASnkViewLoginpp',
+    component: SnkViewLogin
   },
   {
     path: '/shop',
