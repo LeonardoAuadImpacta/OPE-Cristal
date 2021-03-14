@@ -41,7 +41,7 @@
                 <div>{{ props.item.qtd }}</div>
                 <template v-slot:input>
                     <div class="mt-4 title">
-                    Update Iron
+                    Quantidade
                     </div>
                     <v-text-field
                     v-model="props.item.qtd"
@@ -89,13 +89,6 @@ export default {
             max25chars: v => v.length <= 25 || 'Input too long!',
             pagination: {},
             headers: [
-                {
-                text: 'Carrinho',
-                align: 'start',
-                sortable: false,
-                value: 'name',
-                pageble: false
-                },
                 { text: 'Codigo', value: 'item.id' },
                 { text: 'Titulo', value: 'item.titulo' },
                 { text: 'Preço', value: 'item.preco' },
