@@ -212,6 +212,10 @@ export default {
         justify-content: center;
     }
     .snk-filtro {
+        width: 10%;
+        transition: 1s;
+    }
+    .snk-filtro:focus-within  {
         width: 50%;
     }
     .v-text-field{
