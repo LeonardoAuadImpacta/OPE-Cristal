@@ -54,4 +54,4 @@ Cliente.init(
 // the defined model is the class itself
 console.log(Cliente === models.Cliente); // true
 
-export default Cliente;
+module.exports = Cliente;

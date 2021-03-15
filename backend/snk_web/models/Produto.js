@@ -34,4 +34,4 @@ Produto.init(
 // the defined model is the class itself
 console.log(Produto === models.Produto); // true
 
-export default Produto;
+module.exports = Produto;
