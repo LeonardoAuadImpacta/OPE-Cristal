@@ -1,7 +1,3 @@
-// create table Pedido (idPedido int primary key, fkCliente int, desconto decimal(8,2));
-// alter table Pedido add foreign key(fkCliente) references ClienteUsuario(idCliente);
-// alter table Pedido add statusPedido int;
-
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
 
@@ -39,4 +35,4 @@ Pedido.init(
 // the defined model is the class itself
 console.log(Pedido === models.Pedido); // true
 
-export default Pedido;
+module.exports = Pedido;
