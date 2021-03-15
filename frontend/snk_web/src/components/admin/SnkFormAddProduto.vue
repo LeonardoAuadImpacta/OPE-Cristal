@@ -5,7 +5,7 @@
             <v-container>
                 <v-row>
                     <v-col cols="12" sm="6" md="7">
-                        <v-text-field v-model="nomeProduto" :rules="nameRules"  label="Nome do Poduto" required ></v-text-field>
+                        <v-text-field v-model="nomeProduto" outlined clearable :rules="nameRules"  label="Nome do Poduto" required ></v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="6" md="5"  class="line">
@@ -16,7 +16,7 @@
             <v-container>
                 <v-row>
                     <v-col cols="12" sm="6" md="7"  class="line">
-                        <v-text-field v-model="urlProduto" :rules="urlRules" label="URL do produto" required ></v-text-field>
+                        <v-text-field v-model="urlProduto" outlined clearable :rules="urlRules" label="URL do produto" required ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="5"  class="line">
                         <v-text-field v-model="quantidade" outlined clearable :rules="quantidadeRules" label="Quantidade" required ></v-text-field>
