@@ -8,6 +8,7 @@
             v-model="e6"
             vertical
             dark
+            
         >
             <v-stepper-step
             :complete="e6 > 1"
@@ -18,7 +19,10 @@
             <small>Confirme seus itens</small>
             </v-stepper-step>
 
-            <v-stepper-content step="1">
+            <v-stepper-content 
+            color="primary"
+            class="" 
+            step="1">
                 <SnkTableCarrinho/>
             <v-btn
                 color="#aa2514"
@@ -41,14 +45,10 @@
             </v-stepper-step>
 
             <v-stepper-content step="2">
-            <v-card
-                color="grey lighten-1"
-                class="mb-12"
-                height="200px"
-            ></v-card>
+            <SnkEndereco @selecionarEndereco="selecionarEndereco"/>
             <v-btn
                 color="#aa2514"
-                @click="e6 = 3"
+                @click="confimarEndereco"
                 class="white--text"
             >
                 Continue
@@ -116,18 +116,34 @@
 import SnkHeader from '../components/SnkHeader.vue'
 import SnkFootersComp from '../components/SnkFootersComp'
 import SnkTableCarrinho from '../components/SnkTableCarrrinho.vue'
+import SnkEndereco from '../components/compra/SnkEndereco.vue'
 export default {
     components: {
         SnkHeader,
         SnkFootersComp,
-        SnkTableCarrinho
+        SnkTableCarrinho,
+        SnkEndereco
     },
     name: 'SnkCarrinho',
     data() {
         return {
-            e6: 1
+            e6: 1,
+            endereco: null
         }
     },
+    methods: {
+        selecionarEndereco(val){
+            this.endereco = val
+        },
+        confimarEndereco(){
+            if(this.endereco != null ) {
+                this.e6 = 3
+            }else {
+                // TODO dialog select agree
+            }
+            
+        }
+    }
 
 }
 </script>
@@ -136,6 +152,5 @@ export default {
     .snk-confirm {
         color: white;
     }
-
 
 </style>
