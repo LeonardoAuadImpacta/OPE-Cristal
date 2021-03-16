@@ -1,4 +1,8 @@
 module.exports = (req, res, next) => {
-  const token = "a-token";
-  res.json({ token: token });
+  const token = "snk-token";
+  res.json({
+    token: token,
+    username: "Kito",
+    profile: "CUSTOMER"
+  });
 };
