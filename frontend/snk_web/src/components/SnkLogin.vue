@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit=logar>
+        <form @submit=logarV2>
             <label class="snk-text-center snk-text-base-color snk-text-title">Login</label>
             <input v-model="email" type="email" name="email" placeholder="E-mail"/>
             <input v-model="password" type="password" name="senha" id="senha" placeholder="Senha"/>
@@ -14,7 +14,7 @@
                 :value ="error"
                 type="error"
                 transition="scroll-y-transition">
-                    E-mail ou senha invalidos
+                    {{errorMsg}}
                 </v-alert>
             </div>
         </form>  
@@ -23,6 +23,7 @@
 
 <script>
 import users from '../assets/mock_service/AuthMockService.json'
+import axios from 'axios';
 export default {
     data() {
         return {
@@ -30,7 +31,9 @@ export default {
             pseudonime: "Kito",
             email: "",
             password: "",
-            error: false
+            error: false,
+            errorMsg: "",
+            timeAlert: 2000
         }
     },
 
@@ -53,6 +56,48 @@ export default {
                 
 
                 // TODO consumir API de login 
+                e.preventDefault()
+            },
+            logarV2: function(e) {
+                const body = JSON.stringify({
+                        email: this.email,
+                        senha: this.password
+                })
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                axios.post(
+                    "http://localhost:3000/api/v1/login",
+                    body,
+                    {headers}
+                )
+                .then( response => {
+                    if(response.ok) {
+                    
+                        this.$store.commit("setUserSession", response.json());
+                        if(response.body.profile == "ADMIN") {
+                            this.$router.push({ name: 'SnkAdmin' });
+                        }else {
+                            this.$router.push({ name: 'SnkShop' });
+                        }
+                    }
+                    else {
+                        this.flagAlert('iii')
+                    }
+                })
+                .then(response => { 
+                    console.log(response)
+                })
+                .catch(error => {
+                    error.response.data.details.forEach((det,i) =>{
+                        setTimeout(() => {
+                            this.error = true
+                            this.flagAlert(det.msg)
+                        }, i * this.timeAlert * 1.5);
+                    })
+                });
+
                 e.preventDefault()
             },
             trocarTela: function() {
@@ -80,9 +125,10 @@ export default {
                     message: "Eamil ou senha invalidos"
                 }
             },
-            flagAlert() {
+            flagAlert(msg) {
+                this.errorMsg = msg
                 this.error= true
-                setTimeout(() => this.error=false, 2000);
+                setTimeout(() => this.error=false, this.timeAlert);
             }
 
     },
