@@ -72,11 +72,12 @@ export default {
                     body,
                     {headers}
                 )
-                .then( response => {
-                    if(response.ok) {
-                    
-                        this.$store.commit("setUserSession", response.json());
-                        if(response.body.profile == "ADMIN") {
+                .then( res => {
+                    if(res.status == 200) {
+                        
+                        let response = res.data;
+                        this.$store.commit("setUserSession", response);
+                        if(response.profile == "ADMIN") {
                             this.$router.push({ name: 'SnkAdmin' });
                         }else {
                             this.$router.push({ name: 'SnkShop' });
@@ -85,9 +86,6 @@ export default {
                     else {
                         this.flagAlert('iii')
                     }
-                })
-                .then(response => { 
-                    console.log(response)
                 })
                 .catch(error => {
                     error.response.data.details.forEach((det,i) =>{
