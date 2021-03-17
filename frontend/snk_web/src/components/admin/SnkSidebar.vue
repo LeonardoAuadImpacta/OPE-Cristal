@@ -61,7 +61,7 @@ export default {
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    color: white;
+    color: #FAFAFA;
     background-color: transparent;
 }
 
@@ -71,7 +71,7 @@ export default {
 
 .side-btn.active {
     position: relative;
-    background-color: white;
+    background-color: #FAFAFA;
     color: #740000;
     font-weight: 600;
     margin-left: 10px;
@@ -92,7 +92,7 @@ export default {
     right: 0;
     height: 30px;
     width: 30px;
-    background-color: white;
+    background-color:#FAFAFA;
 }
 
 .side-btn.active .link-container::before {

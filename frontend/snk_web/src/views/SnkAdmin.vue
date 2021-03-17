@@ -45,7 +45,7 @@ export default {
 }
 
 .content {
-    background-color: white;
+    background-color:#FAFAFA;
     border-radius: 10px;
     margin: 6px 6px 6px 0px;
 }

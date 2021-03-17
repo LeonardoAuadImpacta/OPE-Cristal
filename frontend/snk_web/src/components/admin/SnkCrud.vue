@@ -18,7 +18,7 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          max-width="30%"
+          max-width="40%"
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -42,51 +42,75 @@
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="6"
                   >
                     <v-text-field
-                        color="black"
+                      color="black"
                       v-model="editedItem.nomeProduto"
                       label="Nome do Produto"
+                      :rules="nomeRules"
+                      outlined clearable
+                      required
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="3"
                   >
                     <v-text-field
                       color="black"
                       v-model="editedItem.precoProduto"
+                      :rules="precoRules"
                       label="Preço"
+                      outlined clearable
+                      required
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
-                    md="4"
+                    md="3"
                   >
                     <v-text-field
                       color="black"
                       v-model="editedItem.qteProduto"
+                      :rules="qteRules"
                       label="Quantidade"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      color="black"
-                      v-model="editedItem.urlProduto"
-                      label="URL da Imagem"
+                      outlined clearable
+                      required
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
                     md="8"
+                  >
+                    <v-text-field
+                      color="black"
+                      v-model="editedItem.urlProduto"
+                      :rules="urlRules"
+                      label="URL da Imagem"
+                      outlined clearable
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                        <v-select
+                            :items="categoria"
+                            label="Categoria"
+                            outlined>
+                        </v-select>
+                    </v-col>
+
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="12"
                   >
                     <v-textarea 
                         color="black"
@@ -103,14 +127,15 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                class="blue-grey lighten-5 red--text"
                 text
                 @click="close"
               >
                 Cancelar
               </v-btn>
               <v-btn
-                color="blue darken-1"
+                class="blue-grey lighten-5 green--text"
+                outlined
                 text
                 @click="save"
               >
@@ -124,8 +149,8 @@
             <v-card-title class="headline">Tem certeza que deseja deletar este item?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn class="blue-grey lighten-5 red--text" text @click="closeDelete">Cancelar</v-btn>
+              <v-btn class="blue-grey lighten-5 green--text" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -178,6 +203,7 @@
         { text: 'Descrição', value: 'descricaoProduto' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
+      categoria: ['Corrida', 'Skateboarding', 'Academia','Sportwear','Acessórios'],
       produtos: [],
       editedIndex: -1,
       editedItem: {
@@ -185,7 +211,7 @@
         precoProduto: 0,
         qteProduto: 0,
         urlProduto: '',
-        descricaoProduto: '',
+        descricaoProduto: ''
       },
       defaultItem: {
         nameProduto: '',
