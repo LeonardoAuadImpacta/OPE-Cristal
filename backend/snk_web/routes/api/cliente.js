@@ -41,6 +41,21 @@ const createClienteSchema = {
     errorMessage: "Gênero inválido",
     isEmpty: { negated: true },
   },
+  enderecoRua: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
+  enderecoNumero: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
+  enderecoComplemento: {
+    in: ["body"],
+  },
+  telefone: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
 };
 
 router.post(
