@@ -101,6 +101,7 @@
                         md="4"
                     >
                         <v-select
+                            v-model="editedItem.categoria"
                             :items="categoria"
                             label="Categoria"
                             outlined>
@@ -201,6 +202,7 @@
         { text: 'Qantidade', value: 'qteProduto' },
         { text: 'URL', value: 'urlProduto' },
         { text: 'Descrição', value: 'descricaoProduto' },
+        { text: 'Categoria', value: 'categoria' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       categoria: ['Corrida', 'Skateboarding', 'Academia','Sportwear','Acessórios'],
@@ -245,56 +247,64 @@
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
          {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
           {
             nomeProduto: 'Nike S/B',
             precoProduto: 120,
             qteProduto: 30,
             urlProduto: 'http://alo.com',
-            descricaoProduto: 'tenis para uso de skate'
+            descricaoProduto: 'tenis para uso de skate',
+            categoria:'Academia'
           },
         ]
       },
