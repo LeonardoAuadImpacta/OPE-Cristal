@@ -61,7 +61,9 @@ const createClienteSchema = {
 router.post(
   "/",
   validate([checkSchema(createClienteSchema)]),
-  clienteController
+  clienteController.create
 );
+
+router.get("/:id", clienteController.get);
 
 module.exports = router;
