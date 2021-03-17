@@ -7,7 +7,7 @@
     </v-content>
   -->
   <div class="admin-bar">
-      <Sidebar/>
+      <SnkSidebar/>
       <div class="content">
           <router-view/>
       </div>
@@ -19,7 +19,7 @@
 /*import SnkHeader from '../components/SnkHeader.vue'
 import SnkFootersComp from '../components/SnkFootersComp'
 import SnkFormAddProduto from '../components/admin/SnkFormAddProduto.vue'*/
-import Sidebar from '../components/admin/Sidebar.vue'
+import SnkSidebar from '../components/admin/SnkSidebar.vue'
 
 export default {
     name: 'SnkAdmin',
@@ -27,7 +27,7 @@ export default {
         //SnkHeader,
         //SnkFootersComp,
         //SnkFormAddProduto
-        Sidebar
+        SnkSidebar
     },
     beforeMount() {
         localStorage.logado = true
@@ -39,7 +39,7 @@ export default {
 .admin-bar {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    background-color:#aa2514;
+    background-color:#740000;
     height: 100vh;
     width: 100vw;
 }
