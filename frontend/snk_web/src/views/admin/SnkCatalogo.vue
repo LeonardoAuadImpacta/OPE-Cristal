@@ -1,7 +1,7 @@
 <template>
     <div class="messages" >
         <v-container>
-            <h1 class="red white--text"> Controle de Catálogo</h1>
+            <h1 class="black accent-4 white--text"> Controle de Catálogo</h1>
             <v-card>
                 <SnkCrud/>
             </v-card>

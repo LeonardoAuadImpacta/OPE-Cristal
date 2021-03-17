@@ -32,7 +32,7 @@
             </v-btn>
           </template>
           <v-card class="grey lighten-2">
-            <v-card-title class="red white--text">
+            <v-card-title class="grey darken-2 white--text">
               <span class="headline" >{{ formTitle }}</span>
             </v-card-title >
 
