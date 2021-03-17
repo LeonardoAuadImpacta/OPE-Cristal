@@ -8,6 +8,7 @@ Certifique-se de ter o [Node.js® v14.16.0](https://nodejs.org/download/release/
 
 Para o desenvolvimento local, utilizamos o **Docker + docker-compose** para subir instância local de components externos (apenas banco de dados por enquanto).\
 Instale essas ferramentas de acordo com seu Sistema Operacional através da documentação oficial:
+
 - [Docker](https://docs.docker.com/engine/install/#desktop)
 - [docker-compose](https://docs.docker.com/compose/)
 
@@ -24,6 +25,7 @@ nvm use
 ## Desenvolvimento
 
 ### Servidor web
+
 Execute o comando `npm install` na raiz do projeto para instalar as dependências.
 
 Para subir o servidor local execute `npm run dev`.
@@ -33,6 +35,7 @@ O servidor será inicializado na porta padrão `:3000`, e estará disponível em
 Tente acessar `localhost:3000/api/v1` para validar a resposta da raiz da API.
 
 ### Banco de dados
+
 Entre na raiz do projeto `cd snk_web` e execute o comando `docker-compose up`.\
 
 A sua instância do MySQL deverá subir e os logs aparecerão na sua sessão do terminal.\
