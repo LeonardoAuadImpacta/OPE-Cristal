@@ -4,18 +4,18 @@ const sequelize = require("../lib/database");
 const Pedido = require("./Pedido");
 const Produto = require("./Produto");
 
-class ItemPedido extends Model {}
+class ItemCarrinho extends Model {}
 
-ItemPedido.init(
+ItemCarrinho.init(
   {
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
     },
-    idPedido: {
+    idCarrinho: {
       type: DataTypes.BIGINT,
       references: {
-        model: Pedido,
+        model: Carrinho,
         key: "id",
       },
     },
@@ -37,11 +37,11 @@ ItemPedido.init(
   },
   {
     sequelize,
-    modelName: "ItemPedido",
+    modelName: "ItemCarrinho",
   }
 );
 
 // the defined model is the class itself
-console.log(ItemPedido === models.ItemPedido); // true
+console.log(ItemCarrinho === models.ItemCarrinho); // true
 
-module.exports = ItemPedido;
+module.exports = ItemCarrinho;

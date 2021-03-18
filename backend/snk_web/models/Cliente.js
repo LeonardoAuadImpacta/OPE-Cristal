@@ -18,20 +18,13 @@ Cliente.init(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+    pseudonimo: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
     telefone: {
       type: DataTypes.STRING(16),
       allowNull: false,
-    },
-    enderecoRua: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    enderecoNumero: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
-    },
-    enderecoComplemento: {
-      type: DataTypes.STRING(30),
     },
     email: {
       type: DataTypes.STRING(20),
