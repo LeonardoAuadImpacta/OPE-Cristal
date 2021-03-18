@@ -16,7 +16,7 @@ const createClienteSchema = {
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
-  dataNascimento: {
+  data_nascimento: {
     in: ["body"],
     errorMessage: "Data de nascimento inválida",
     isDate: true,
@@ -41,15 +41,15 @@ const createClienteSchema = {
     errorMessage: "Gênero inválido",
     isEmpty: { negated: true },
   },
-  enderecoRua: {
+  endereco_rua: {
     in: ["body"],
     isEmpty: { negated: true },
   },
-  enderecoNumero: {
+  endereco_numero: {
     in: ["body"],
     isEmpty: { negated: true },
   },
-  enderecoComplemento: {
+  endereco_complemento: {
     in: ["body"],
   },
   telefone: {

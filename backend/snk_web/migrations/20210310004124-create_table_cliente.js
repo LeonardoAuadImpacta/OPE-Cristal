@@ -23,15 +23,15 @@ module.exports = {
           type: DataTypes.STRING(16),
           allowNull: false,
         },
-        enderecoRua: {
+        endereco_rua: {
           type: DataTypes.STRING(50),
           allowNull: false,
         },
-        enderecoNumero: {
+        endereco_numero: {
           type: DataTypes.STRING(10),
           allowNull: false,
         },
-        enderecoComplemento: {
+        endereco_complemento: {
           type: DataTypes.STRING(30),
         },
         email: {
@@ -43,21 +43,21 @@ module.exports = {
           type: DataTypes.STRING(20),
           allowNull: false,
         },
-        senhaSalt: {
+        senha_salt: {
           type: DataTypes.STRING,
         },
-        updatedAt: DataTypes.DATE,
-        createdAt: DataTypes.DATE,
+        updated_at: DataTypes.DATE,
+        created_at: DataTypes.DATE,
       },
       {
         hooks: {
           beforeCreate: function (cliente, options, fn) {
-            cliente.createdAt = new Date();
-            cliente.updatedAt = new Date();
+            cliente.created_at = new Date();
+            cliente.updated_at = new Date();
             fn(null, cliente);
           },
           beforeUpdate: function (cliente, options, fn) {
-            cliente.updatedAt = new Date();
+            cliente.updated_at = new Date();
             fn(null, cliente);
           },
         },

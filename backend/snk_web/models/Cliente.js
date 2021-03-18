@@ -22,15 +22,15 @@ Cliente.init(
       type: DataTypes.STRING(16),
       allowNull: false,
     },
-    enderecoRua: {
+    endereco_rua: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    enderecoNumero: {
+    endereco_numero: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
-    enderecoComplemento: {
+    endereco_complemento: {
       type: DataTypes.STRING(30),
     },
     email: {
@@ -42,7 +42,7 @@ Cliente.init(
       type: DataTypes.STRING(20),
       allowNull: false,
     },
-    senhaSalt: {
+    senha_salt: {
       type: DataTypes.STRING,
     },
   },
@@ -51,6 +51,8 @@ Cliente.init(
     modelName: "cliente",
     freezeTableName: true,
     timstamps: true,
+    updatedAt: "updated_at",
+    createdAt: "created_at"
   }
 );
 
