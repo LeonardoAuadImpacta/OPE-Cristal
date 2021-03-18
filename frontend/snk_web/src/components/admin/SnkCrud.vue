@@ -31,7 +31,7 @@
               Novo item
             </v-btn>
           </template>
-          <v-card class="grey lighten-2">
+          <v-card class="grey lighten-2" ref="form">
             <v-card-title class="grey darken-2 white--text">
               <span class="headline" >{{ formTitle }}</span>
             </v-card-title >
@@ -204,6 +204,24 @@
         { text: 'Descrição', value: 'descricaoProduto' },
         { text: 'Categoria', value: 'categoria' },
         { text: 'Actions', value: 'actions', sortable: false },
+      ],
+      urlRules: [ function(url){
+         var r = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
+         if (r.test(url) == false){
+           return "URL inválida"
+         }
+        }
+      ],
+      precoRules: [
+        v => !!v || 'preco é necessário',
+        v => !isNaN(parseFloat(v)) && (v > 0) || 'Numero inválido',
+      ],
+      nomeRules: [
+        v => !!v || 'Nome do produto é necessário',
+      ],
+      qteRules: [
+        v => !!v || 'quantidade é necessário',
+        v => (Number.isInteger(v) == false) && (v > 0) || 'Numero inválido',
       ],
       categoria: ['Corrida', 'Skateboarding', 'Academia','Sportwear','Acessórios'],
       produtos: [],
