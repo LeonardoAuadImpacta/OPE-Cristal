@@ -7,7 +7,8 @@ const create = (req, res, next) => {
     })
     .catch((reason) => {
       // TODO: treat possible reasons and add as "error" on response json
-      res.status(400).json();
+      console.log(reason);
+      res.status(400).json({error: "Invalid payload"});
     });
 };
 
