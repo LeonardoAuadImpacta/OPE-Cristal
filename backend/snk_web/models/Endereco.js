@@ -10,6 +10,7 @@ Endereco.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     idCliente: {
       type: DataTypes.BIGINT,
@@ -28,7 +29,7 @@ Endereco.init(
     },
     bairro: {
       type: DataTypes.STRING(50),
-      allowNUll: false,
+      allowNull: false,
     },
     rua: {
       type: DataTypes.STRING(50),
@@ -48,7 +49,9 @@ Endereco.init(
   },
   {
     sequelize,
-    modelName: "Endereco",
+    modelName: "endereco",
+    freezeTableName: true,
+    timestamps: true,
   }
 );
 

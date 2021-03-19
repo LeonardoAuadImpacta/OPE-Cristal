@@ -11,6 +11,7 @@ Pedido.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     idCliente: {
       type: DataTypes.BIGINT,
@@ -42,7 +43,9 @@ Pedido.init(
   },
   {
     sequelize,
-    modelName: "Pedido",
+    modelName: "pedido",
+    freezeTableName: true,
+    timestamps: true,
   }
 );
 

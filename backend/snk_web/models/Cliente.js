@@ -43,7 +43,7 @@ Cliente.init(
     sequelize,
     modelName: "cliente",
     freezeTableName: true,
-    timstamps: true,
+    timestamps: true,
   }
 );
 

@@ -10,6 +10,7 @@ Carrinho.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     idCliente: {
       type: DataTypes.BIGINT,
@@ -41,7 +42,9 @@ Carrinho.init(
   },
   {
     sequelize,
-    modelName: "Carrinho",
+    modelName: "carrinho",
+    freezeTableName: true,
+    timestamps: true,
   }
 );
 
