@@ -1,6 +1,7 @@
 import SnkViewLogin from '../views/SnkViewLogin.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+import SnkAdmin from '../views/SnkAdmin.vue'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,25 @@ const routes = [
   {
     path:'/admin-area',
     name: 'SnkAdmin',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SnkAdmin.vue')
+    component:SnkAdmin,
+    children:[
+      {
+        path: 'admin-area',
+        component: () => import(/* webpackChunkName: "Overview" */ '../views/admin/SnkOverview.vue')
+      },
+      {
+        path: 'catalogo',
+        component: () => import(/* webpackChunkName: "Messages" */ '../views/admin/SnkCatalogo.vue')
+      },
+      {
+        path: 'estoque',
+        component: () => import(/* webpackChunkName: "Profile" */ '../views/admin/SnkEstoque.vue')
+      },
+      {
+        path: 'settings',
+        component: () => import(/* webpackChunkName: "Settings" */ '../views/admin/SnkSettings.vue')
+      }
+    ]
   },
   {
     path:'/carrinho',

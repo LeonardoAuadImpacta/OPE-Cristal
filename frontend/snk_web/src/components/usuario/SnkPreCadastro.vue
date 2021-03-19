@@ -46,6 +46,7 @@ export default {
             } 
         },
         cadastrar: function(e) {
+            
             e.preventDefault();
         }
     }

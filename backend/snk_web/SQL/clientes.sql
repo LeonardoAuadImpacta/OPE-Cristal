@@ -1,3 +1,5 @@
+use db;
+
 create table Usuario (idUsuario int primary key, email varchar(30),
 	senha varchar(16), senha_salt varchar(16));
     
