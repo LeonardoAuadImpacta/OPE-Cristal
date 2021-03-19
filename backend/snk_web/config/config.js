@@ -5,7 +5,7 @@ module.exports = {
     username: "user",
     password: "password",
     database: "db",
-    host: "127.0.0.1",
+    host: "localhost",
     port: 3306,
     dialect: "mysql",
     dialectOptions: {
@@ -30,11 +30,5 @@ module.exports = {
     host: process.env.PROD_DB_HOSTNAME,
     port: process.env.PROD_DB_PORT,
     dialect: "mysql",
-    dialectOptions: {
-      bigNumberStrings: true,
-      ssl: {
-        ca: fs.readFileSync(__dirname + "/mysql-ca-master.crt"),
-      },
-    },
   },
 };

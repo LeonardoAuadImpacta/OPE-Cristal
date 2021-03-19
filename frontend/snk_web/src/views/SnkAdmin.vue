@@ -1,20 +1,12 @@
 <template>
-  <!--
-    <v-content>
-      <SnkHeader snk_title="Admin"/>
-      <SnkFormAddProduto/>
-      <SnkFootersComp/>
-    </v-content>
-  -->
   <v-main>
       <SnkHeader snk_title="Admin" admin=true />
       <div class="admin-bar">
-      
-      <SnkSidebar/>
-      <div class="content">
-          <router-view/>
+          <SnkSidebar/>
+          <div class="content">
+              <router-view/>
+          </div>
       </div>
-  </div>
   </v-main>
   
 </template>
@@ -28,8 +20,6 @@ export default {
     name: 'SnkAdmin',
     components: {
         SnkHeader,
-        //SnkFootersComp,
-        //SnkFormAddProduto
         SnkSidebar
     },
     beforeMount() {

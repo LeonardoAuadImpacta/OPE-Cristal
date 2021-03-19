@@ -44,4 +44,4 @@ ItemPedido.init(
 // the defined model is the class itself
 console.log(ItemPedido === models.ItemPedido); // true
 
-export default ItemPedido;
+module.exports = ItemPedido;

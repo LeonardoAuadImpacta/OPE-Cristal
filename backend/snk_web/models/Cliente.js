@@ -8,6 +8,7 @@ Cliente.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     nome: {
       type: DataTypes.STRING(30),
@@ -47,11 +48,10 @@ Cliente.init(
   },
   {
     sequelize,
-    modelName: "Cliente",
+    modelName: "cliente",
+    freezeTableName: true,
+    timstamps: true,
   }
 );
 
-// the defined model is the class itself
-console.log(Cliente === models.Cliente); // true
-
-export default Cliente;
+module.exports = Cliente;

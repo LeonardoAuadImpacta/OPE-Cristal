@@ -41,12 +41,42 @@ const createClienteSchema = {
     errorMessage: "Gênero inválido",
     isEmpty: { negated: true },
   },
+  enderecoRua: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
+  enderecoNumero: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
+  enderecoComplemento: {
+    in: ["body"],
+  },
+  telefone: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
 };
 
 router.post(
   "/",
   validate([checkSchema(createClienteSchema)]),
-  clienteController
+  clienteController.create
+);
+
+const getClienteSchema = {
+  id: {
+    in: ["params"],
+    errorMessage: "Id de cliente inválido",
+    isInt: true,
+    toInt: true,
+  },
+};
+
+router.get(
+  "/:id",
+  validate([checkSchema(getClienteSchema)]),
+  clienteController.get
 );
 
 module.exports = router;
