@@ -4,5 +4,6 @@ module.exports = (req, res, next) => {
     token: token,
     username: "Kito",
     profile: "CUSTOMER"
+    // profile: "ADMIN "
   });
 };
