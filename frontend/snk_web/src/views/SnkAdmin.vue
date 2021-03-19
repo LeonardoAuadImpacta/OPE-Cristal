@@ -6,25 +6,28 @@
       <SnkFootersComp/>
     </v-content>
   -->
-  <div class="admin-bar">
+  <v-main>
+      <SnkHeader snk_title="Admin" admin=true />
+      <div class="admin-bar">
+      
       <SnkSidebar/>
       <div class="content">
           <router-view/>
       </div>
   </div>
+  </v-main>
+  
 </template>
 
 <script>
 
-/*import SnkHeader from '../components/SnkHeader.vue'
-import SnkFootersComp from '../components/SnkFootersComp'
-import SnkFormAddProduto from '../components/admin/SnkFormAddProduto.vue'*/
+import SnkHeader from '../components/SnkHeader.vue'
 import SnkSidebar from '../components/admin/SnkSidebar.vue'
 
 export default {
     name: 'SnkAdmin',
     components: {
-        //SnkHeader,
+        SnkHeader,
         //SnkFootersComp,
         //SnkFormAddProduto
         SnkSidebar

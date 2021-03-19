@@ -23,7 +23,9 @@
 
 <script>
 import users from '../assets/mock_service/AuthMockService.json'
-import axios from 'axios';
+import {login as loginController} from '../controller/SnkLoginController'
+import { login } from '../service/AuthService'
+//  import axios from 'axios';
 export default {
     data() {
         return {
@@ -38,64 +40,9 @@ export default {
     },
 
     methods: {
-            logar: function(e) {
-                let response = this.mockLogin(this.email,this.password);
-
-                if(response.status == 200) {
-                    
-                    this.$store.commit("setUserSession", response.body);
-                    if(response.body.profile == "ADMIN") {
-                        this.$router.push({ name: 'SnkAdmin' });
-                    }else {
-                        this.$router.push({ name: 'SnkShop' });
-                    }
-                }
-                else {
-                    this.flagAlert()
-                }
-                
-
-                // TODO consumir API de login 
-                e.preventDefault()
-            },
             logarV2: function(e) {
-                const body = JSON.stringify({
-                        email: this.email,
-                        senha: this.password
-                })
-                const headers = {
-                    "Content-Type": "application/json"
-                };
 
-                axios.post(
-                    "http://localhost:3000/api/v1/login",
-                    body,
-                    {headers}
-                )
-                .then( res => {
-                    if(res.status == 200) {
-                        
-                        let response = res.data;
-                        this.$store.commit("setUserSession", response);
-                        if(response.profile == "ADMIN") {
-                            this.$router.push({ name: 'SnkAdmin' });
-                        }else {
-                            this.$router.push({ name: 'SnkShop' });
-                        }
-                    }
-                    else {
-                        this.flagAlert('iii')
-                    }
-                })
-                .catch(error => {
-                    error.response.data.details.forEach((det,i) =>{
-                        setTimeout(() => {
-                            this.error = true
-                            this.flagAlert(det.msg)
-                        }, i * this.timeAlert * 1.5);
-                    })
-                });
-
+                loginController(this.email,this.password,this)
                 e.preventDefault()
             },
             trocarTela: function() {
