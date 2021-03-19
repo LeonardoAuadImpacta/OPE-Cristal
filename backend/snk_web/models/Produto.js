@@ -12,6 +12,7 @@ Produto.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     nome: {
       type: DataTypes.STRING(30),
@@ -27,11 +28,10 @@ Produto.init(
   },
   {
     sequelize,
-    modelName: "Produto",
+    modelName: "produto",
+    freezeTableName: true,
+    timestamps: true,
   }
 );
-
-// the defined model is the class itself
-console.log(Produto === models.Produto); // true
 
 module.exports = Produto;
