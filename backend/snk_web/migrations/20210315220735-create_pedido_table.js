@@ -7,6 +7,7 @@ module.exports = {
       id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
+        autoIncrement: true,
       },
       idCliente: {
         type: DataTypes.BIGINT,

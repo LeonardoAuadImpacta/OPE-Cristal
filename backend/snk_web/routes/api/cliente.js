@@ -64,6 +64,19 @@ router.post(
   clienteController.create
 );
 
-router.get("/:id", clienteController.get);
+const getClienteSchema = {
+  id: {
+    in: ["params"],
+    errorMessage: "Id de cliente inválido",
+    isInt: true,
+    toInt: true,
+  },
+};
+
+router.get(
+  "/:id",
+  validate([checkSchema(getClienteSchema)]),
+  clienteController.get
+);
 
 module.exports = router;
