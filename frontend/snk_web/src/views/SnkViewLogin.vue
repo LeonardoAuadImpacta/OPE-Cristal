@@ -1,18 +1,16 @@
 <template>
-  <v-app>
-    <SnkHeader snk_title="Sneakers"/>
-    <main>
-      <SnkLogin container @trocarTela="trocarTela" v-if="false == tela_cadastro" class="SnkLogin"/>
-      <img  src="../assets/banner_login_base.jpg" class="img-login">
-      <SnkPreCadastro @trocarTela="trocarTela" v-if="tela_cadastro" class="SnkLogin"/>  
-    </main>
-    <SnkFootersComp/>
-  </v-app>
+  <v-main>
+        <main>
+          <SnkLogin container @trocarTela="trocarTela" v-if="false == tela_cadastro" class="SnkLogin"/>
+          <img  src="../assets/banner_login_base.jpg" class="img-login">
+          <SnkPreCadastro @trocarTela="trocarTela" v-if="tela_cadastro" class="SnkLogin"/>  
+        </main>
+      <SnkFootersComp/>
+  </v-main>
 </template>
 
 <script>
-import SnkFootersComp from '../components/SnkFootersComp.vue'
-  import SnkHeader from '../components/SnkHeader.vue'
+  import SnkFootersComp from '../components/SnkFootersComp.vue'
   import SnkLogin from '../components/SnkLogin.vue'
   import SnkPreCadastro from '../components/usuario/SnkPreCadastro.vue'
 
@@ -20,7 +18,6 @@ import SnkFootersComp from '../components/SnkFootersComp.vue'
   export default {
     name: 'SnkViewLogin',
     components: {
-      SnkHeader,
       SnkLogin,
       SnkPreCadastro,
       SnkFootersComp

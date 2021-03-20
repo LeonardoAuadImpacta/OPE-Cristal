@@ -5,16 +5,11 @@ import Vue from 'vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'ASnkViewLoginpp',
-    component: SnkViewLogin
-  },
+  
   {
     path: '/shop',
     name: 'SnkShop',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue'),
-    alias: '/'
+    component: () => import(/* webpackChunkName: "about" */ '../views/SnkShop.vue')
   },
   {
     path:'/login',
@@ -30,6 +25,11 @@ const routes = [
     path:'/carrinho',
     name: 'SnkCarrinho',
     component: () => import(/* webpackChunkName: "about" */ '../views/SnkCarrinho.vue')
+  },
+  {
+    path:'/confirma',
+    name: 'SnkConfirmView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SnkConfirmView.vue')
   }
 ]
 

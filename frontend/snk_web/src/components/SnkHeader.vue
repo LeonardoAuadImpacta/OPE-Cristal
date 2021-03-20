@@ -1,29 +1,18 @@
 <template>
     <div>
         <v-card class="snk-dk">
-            <div 
-            class="body-top"
-            > 
+            <div class="body-top"> 
 
             </div>
-            <div 
-            v-if="logged" 
-            class="header"
-            >
-                <div  
-                class="snk-flex"
-                >
-                    <img 
-                    class="snk-logo" 
-                    src="../assets/mini_logo.png"/>
+            <div v-if="logged" class="header">
+                <div class="snk-flex">
+                    <img class="snk-logo" src="../assets/mini_logo.png"/>
                     <h1>
                         {{snk_title}}
                     </h1>
                 </div>
 
-                <div 
-                class="snk-filtro"
-                >
+                <div class="snk-filtro">
                     <v-text-field
                         label="Pesquisar"
                         placeholder="Ex: Nike, tamanho 41, azul"
@@ -34,18 +23,18 @@
                     ></v-text-field>
                 </div>
 
-                <router-link to="/carrinho"
-                style="text-decoration: none; color: inherit;"
-                >
+                <router-link to="/carrinho" style="text-decoration: none; color: inherit;">
                     {{addCar}}
                     <v-icon>
                         mdi-cart-outline
                     </v-icon>
                 </router-link>
             
-                <div  class="snk-flex">
+                <div class="snk-flex">
+                    
                     <img :src="urlImg" class="userPhoto"/>
                     <p>{{username}}</p>
+                    
                     <v-icon
                         color="#aa2514"
                         x-large   
