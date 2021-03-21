@@ -4,6 +4,10 @@ import vuetify from './plugins/vuetify';
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import VMask from 'v-mask'
+
+Vue.use(VMask)
+
 
 Vue.config.productionTip = false
 

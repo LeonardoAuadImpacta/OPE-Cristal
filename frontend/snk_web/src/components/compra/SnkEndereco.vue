@@ -40,7 +40,6 @@ export default {
         }
     },
     beforeMount() {
-        console.log(enderecosJson)
         this.enderecos = enderecosJson
     },
     methods: {

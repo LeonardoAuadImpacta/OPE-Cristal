@@ -19,7 +19,6 @@ export default new Vuex.Store({
     adicionarItem(state,item) {
       let isNew = true
       for(var i in state.carrinho) { 
-        console.log(i)
         let id = state.carrinho[i].item.id                   
         if(id == item.id) {
           state.carrinho[i].qtd = state.carrinho[i].qtd + 1 
@@ -45,9 +44,11 @@ export default new Vuex.Store({
       }
 
       removeZero.forEach( rm => {
-        console.log(rm)
         state.carrinho.splice(rm, 1);
       });
+    },
+    fecharPedito(state){
+      state.carrinho = []
     }
   },
   actions: {

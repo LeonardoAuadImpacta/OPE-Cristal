@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <SnkHeader :snk_title="title" />
+    <SnkHeader :snk_title="title" :admin="false"/>
     <SnkCarrossel/>
     <SnkCatalogo @addCar="addCar" class="SnkCatalogo"/>
     <SnkFootersComp/>

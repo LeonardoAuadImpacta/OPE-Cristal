@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <SnkHeader snk_title="Sneakers"/>
+    <SnkHeader snk_title="Sneakers" :admin="false"/>
     <main>
       <SnkLogin container @trocarTela="trocarTela" v-if="false == tela_cadastro" class="SnkLogin"/>
       <img  src="../assets/banner_login_base.jpg" class="img-login">
