@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
   res.json({
     token: token,
     username: "Kito",
-    profile: "CUSTOMER"
+    profile: "CUSTOMER",
     // profile: "ADMIN "
   });
 };

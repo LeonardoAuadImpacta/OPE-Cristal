@@ -1,6 +1,7 @@
 // create table Produto (
 // idProduto int primary key, nome varchar(30),
 // descricao varchar(45), valorAtual decimal(8,2));
+// COMENTAR URL
 
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
@@ -15,6 +16,10 @@ Produto.init(
       autoIncrement: true,
     },
     nome: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    subtitulo: {
       type: DataTypes.STRING(30),
       allowNull: false,
     },

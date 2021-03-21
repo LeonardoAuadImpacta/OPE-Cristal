@@ -15,6 +15,10 @@ module.exports = {
           type: DataTypes.STRING(30),
           allowNull: false,
         },
+        subtitulo: {
+          type: DataTypes.STRING(30),
+          allowNull: false,
+        },
         descricao: {
           type: DataTypes.STRING(255),
         },

@@ -3,48 +3,34 @@ const { DataTypes } = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable(
-      "cliente",
+    queryInterface.createTable(
+      "pedido",
       {
         id: {
           type: DataTypes.BIGINT,
           primaryKey: true,
           autoIncrement: true,
         },
-        nome: {
-          type: DataTypes.STRING(30),
+        idCliente: {
+          type: DataTypes.BIGINT,
           allowNull: false,
         },
-        sobrenome: {
-          type: DataTypes.STRING(30),
+        idCarrinho: {
+          type: DataTypes.BIGINT,
           allowNull: false,
         },
-        telefone: {
-          type: DataTypes.STRING(16),
+        status: {
+          type: DataTypes.ENUM({
+            values: [
+              "COMPLETED",
+              "CANCELED",
+              "AWAITING_PAYMENT",
+              "CONFIRMED",
+              "DISPATCHED",
+              "IN_TRANSIT",
+            ],
+          }),
           allowNull: false,
-        },
-        enderecoRua: {
-          type: DataTypes.STRING(50),
-          allowNull: false,
-        },
-        enderecoNumero: {
-          type: DataTypes.STRING(10),
-          allowNull: false,
-        },
-        enderecoComplemento: {
-          type: DataTypes.STRING(30),
-        },
-        email: {
-          type: DataTypes.STRING(20),
-          allowNull: false,
-          unique: true,
-        },
-        senha: {
-          type: DataTypes.STRING(20),
-          allowNull: false,
-        },
-        senhaSalt: {
-          type: DataTypes.STRING,
         },
         updatedAt: DataTypes.DATE,
         createdAt: DataTypes.DATE,
@@ -66,6 +52,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("cliente");
+    queryInterface.dropTable("pedido");
   },
 };
