@@ -1,9 +1,10 @@
 const express = require("express");
-const router = express.Router();
 const { checkSchema } = require("express-validator");
 
 const validate = require("../../middlewares/validation");
 const produtoController = require("../../controllers/produto");
+
+const router = express.Router();
 
 const listProdutoSchema = {
   pagina: {
