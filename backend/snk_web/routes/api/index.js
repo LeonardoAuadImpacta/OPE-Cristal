@@ -6,6 +6,8 @@ const clienteRoutes = require("./cliente");
 const produtoRoutes = require("./produto");
 const carrinhoRoutes = require("./carrinho");
 const enderecoRoutes = require("./endereco");
+const pedidoRoutes = require("./pedido");
+const ItemCarrinhoRoutes = require("./item_carrinho");
 
 router.get("/", function (req, res, next) {
   res.json({ version: "v1.0.0" });
@@ -19,5 +21,7 @@ router.use("/cliente", clienteRoutes);
 router.use("/produto", produtoRoutes);
 router.use("/carrinho", carrinhoRoutes);
 router.use("/endereco", enderecoRoutes);
+router.use("/pedido", pedidoRoutes);
+router.use("/item_carrinho", ItemCarrinhoRoutes);
 
 module.exports = router;
