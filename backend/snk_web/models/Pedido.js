@@ -49,7 +49,4 @@ Pedido.init(
   }
 );
 
-// the defined model is the class itself
-console.log(Pedido === models.Pedido); // true
-
 module.exports = Pedido;

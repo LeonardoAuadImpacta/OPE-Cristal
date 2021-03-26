@@ -3,6 +3,7 @@ const sequelize = require("../lib/database");
 
 const Pedido = require("./Pedido");
 const Produto = require("./Produto");
+const Carrinho = require("./Carrinho");
 
 class ItemCarrinho extends Model {}
 
@@ -43,8 +44,5 @@ ItemCarrinho.init(
     timestamps: true,
   }
 );
-
-// the defined model is the class itself
-console.log(ItemCarrinho === models.ItemCarrinho); // true
 
 module.exports = ItemCarrinho;
