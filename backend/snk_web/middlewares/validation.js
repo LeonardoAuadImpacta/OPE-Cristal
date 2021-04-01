@@ -1,4 +1,4 @@
-const { validationResult } = require("express-validator");
+const { validationResult, matchedData } = require("express-validator");
 
 module.exports = (validations) => {
   return async (req, res, next) => {
@@ -6,6 +6,7 @@ module.exports = (validations) => {
 
     const errors = validationResult(req);
     if (errors.isEmpty()) {
+      req.params = matchedData(req, { includeOptionals: true });
       return next();
     }
 

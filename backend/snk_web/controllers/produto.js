@@ -1,16 +1,36 @@
 const ProdutoModel = require("../models/Produto");
+const { sanitizeQuery } = require("../lib/database/util");
+
+const create = (req, res, next) => {
+  return ProdutoModel.create(req.body)
+    .then(() => {
+      res.status(201).json();
+    })
+    .catch((reason) => {
+      // TODO: treat possible reasons and add as "error" on response json
+      res.status(400).json();
+    });
+};
 
 const list = async (req, res, next) => {
-  const pagina = req.query.pagina || 1;
-  const items = req.query.items || 10;
+  const pagina = req.params._pagina || 1;
+  const items = req.params._items || 10;
   const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
 
-  const produtos = await ProdutoModel.findAll({
+  return ProdutoModel.findAll({
+    where: {
+      ...sanitizeQuery(req.params),
+    },
     offset: offset,
     limit: items,
-  });
-
-  return res.status(200).json(produtos);
+  })
+    .then((produtos) => {
+      return res.status(200).json(produtos);
+    })
+    .catch((reason) => {
+      console.log(reason);
+      return res.status(400).json({ error: "Falha ao listar produtos" });
+    });
 };
 
 const get = async (req, res, next) => {
@@ -28,6 +48,7 @@ const get = async (req, res, next) => {
 };
 
 module.exports = {
+  create,
   list,
   get,
 };

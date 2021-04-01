@@ -1,8 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
 
-const Pedido = require("./Pedido");
 const Produto = require("./Produto");
+const Carrinho = require("./Carrinho");
 
 class ItemCarrinho extends Model {}
 
@@ -44,7 +44,6 @@ ItemCarrinho.init(
   }
 );
 
-// the defined model is the class itself
-console.log(ItemCarrinho === models.ItemCarrinho); // true
+ItemCarrinho.belongsTo(Produto, { foreignKey: "idProduto" });
 
 module.exports = ItemCarrinho;
