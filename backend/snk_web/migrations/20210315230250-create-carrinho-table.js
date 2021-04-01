@@ -17,7 +17,6 @@ module.exports = {
         },
         idEndereco: {
           type: DataTypes.BIGINT,
-          allowNull: false,
         },
         status: {
           type: DataTypes.ENUM({
