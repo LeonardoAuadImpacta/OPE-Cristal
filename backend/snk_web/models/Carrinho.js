@@ -25,6 +25,7 @@ Carrinho.init(
         model: Endereco,
         key: "id",
       },
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM({

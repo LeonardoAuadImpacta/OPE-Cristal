@@ -6,13 +6,47 @@ const produtoController = require("../../controllers/produto");
 
 const router = express.Router();
 
+const createProdutoSchema = {
+  nome: {
+    in: ["body"],
+    errorMessage: "Nome inválido",
+    isEmpty: { negated: true },
+  },
+  subtitulo: {
+    in: ["body"],
+    errorMessage: "Subtítulo inválido",
+    isEmpty: { negated: true },
+  },
+  descricao: {
+    in: ["body"],
+    errorMessage: "Descrição inválida",
+  },
+  precoAtual: {
+    in: ["body"],
+    errorMessage: "Preço inválido",
+    isEmpty: { negated: true },
+    isDecimal: {
+      errorMessage: "Preço deve ser um valor decimal",
+    },
+  },
+};
+
+router.post(
+  "/",
+  validate([checkSchema(createProdutoSchema)]),
+  produtoController.create
+);
+
 const listProdutoSchema = {
-  pagina: {
+  id: {
+    in: ["query"],
+  },
+  _pagina: {
     in: ["query"],
     errorMessage: "Número da página inválido",
     toInt: true,
   },
-  items: {
+  _items: {
     in: ["query"],
     errorMessage: "Limite de items por página inválido",
     toInt: true,

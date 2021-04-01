@@ -6,7 +6,7 @@ const carrinhoController = require("../../controllers/carrinho");
 
 const router = express.Router();
 
-const createCarrinhoSchema = {
+const findOrCreateCarrinhoSchema = {
   idCliente: {
     in: ["body"],
     errorMessage: "Id do cliente inválido",
@@ -16,21 +16,27 @@ const createCarrinhoSchema = {
   idEndereco: {
     in: ["body"],
     errorMessage: "Id do endereço inválido",
-    isEmpty: { negated: true },
-    isInt: true,
-  },
-  status: {
-    in: ["body"],
-    errorMessage: "Status inválido",
-    isEmpty: { negated: true },
-    isIn: {
-      options: [["OPEN", "SUCCESS", "CANCELED", "EXPIRED"]],
+    isInt: {
+      errorMessage: "Id do endereço precisa ser numérico",
     },
+    optional: { options: { nullable: true } },
   },
+  // valor padrão "OPEN" definido no controller
+  //status: {
+  //in: ["body"],
+  //errorMessage: "Status inválido",
+  //isEmpty: { negated: true },
+  //isIn: {
+  //options: [["OPEN", "SUCCESS", "CANCELED", "EXPIRED"]],
+  //},
+  //},
   desconto: {
     in: ["body"],
     errorMessage: "Desconto inválido",
-    isDecimal: true,
+    isDecimal: {
+      errorMessage: "Desconto deve ser decimal",
+    },
+    optional: { options: { nullable: true } },
   },
   // Cálculado no controller
   //dataExpiracao: {
@@ -42,8 +48,22 @@ const createCarrinhoSchema = {
 
 router.post(
   "/",
-  validate([checkSchema(createCarrinhoSchema)]),
-  carrinhoController.create
+  validate([checkSchema(findOrCreateCarrinhoSchema)]),
+  carrinhoController.findOrCreate
+);
+
+const listCarrinhoSchema = {
+  idCliente: {
+    in: ["query"],
+    errorMessage: "Id do cliente inválido",
+    isInt: true,
+  },
+};
+
+router.get(
+  "/",
+  validate([checkSchema(listCarrinhoSchema)]),
+  carrinhoController.list
 );
 
 const getCarrinhoSchema = {
