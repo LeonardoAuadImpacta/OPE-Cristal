@@ -1,7 +1,6 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
 
-const Pedido = require("./Pedido");
 const Produto = require("./Produto");
 const Carrinho = require("./Carrinho");
 
@@ -44,5 +43,7 @@ ItemCarrinho.init(
     timestamps: true,
   }
 );
+
+ItemCarrinho.belongsTo(Produto, { foreignKey: "idProduto" });
 
 module.exports = ItemCarrinho;
