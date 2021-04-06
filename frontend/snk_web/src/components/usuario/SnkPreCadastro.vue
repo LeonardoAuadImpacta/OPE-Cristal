@@ -4,6 +4,8 @@
             <label class="snk-text-center snk-text-base-color snk-text-title">Cadastro</label>
             <input v-model="nome" type="text" name="nome" placeholder="Nome"/>
             <input v-model="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome"/>
+            <input v-model="pseudonimo" type="text" name="pseudonimo" placeholder="Pseudônimo"/>
+            <input v-model="telefone" type="text" name="telefone" placeholder="Telefone"/>
             <input v-model="email" type="email" name="email" placeholder="E-mail"/>
 
             <input  v-model="password" type="password" name="senha" id="senha" placeholder="Senha" ref="password"/>
@@ -17,21 +19,23 @@
             <div class="snk-flex">
                 <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
             </div>
-        </form>  
+        </form>
     </div>  
 </template>
 
 <script>
-
+import {createCliente} from "../../service/ClienteService";
 
 export default {
     data() {
         return {
-            nome: "Bruno",
-            sobrenome: "Kito",
-            email: "Bruno@kito.com.br",
+            nome: "",
+            sobrenome: "",
+            pseudonimo: "",
+            telefone: "",
+            email: "",
             password: "",
-            conifirm_password: ""
+            confirm_password: ""
         }
     },
     methods: {
@@ -39,15 +43,24 @@ export default {
             this.$emit("trocarTela", false);
         },
         verificaSenha: function(e) {
-            if (this.password != this.conifirm_password){
+            if (this.password != this.confirm_password){
                 alert("Passwords não batem")
                 // desenvolver ação de validade
                 e.preventDefault()
             } 
         },
-        cadastrar: function(e) {
-            
+        cadastrar: async function(e) {
             e.preventDefault();
+
+            await createCliente(
+                this.nome,
+                this.sobrenome,
+                this.pseudonimo,
+                this.telefone,
+                this.email,
+                this.password
+            ).then(response => { console.log(JSON.stringify(response)) })
+            .catch(err => { console.log(JSON.stringify(err)) })
         }
     }
 }

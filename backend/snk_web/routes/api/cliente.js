@@ -17,12 +17,6 @@ const createClienteSchema = {
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
-  dataNascimento: {
-    in: ["body"],
-    errorMessage: "Data de nascimento inválida",
-    isDate: true,
-    toDate: true,
-  },
   pseudonimo: {
     in: ["body"],
     errorMessage: "Pseudônimo inválido",
@@ -41,11 +35,6 @@ const createClienteSchema = {
       errorMessage: "Senha deve possuir no mínimo 8 caracteres",
       options: { min: 8 },
     },
-  },
-  genero: {
-    in: ["body"],
-    errorMessage: "Gênero inválido",
-    isEmpty: { negated: true },
   },
   telefone: {
     in: ["body"],
