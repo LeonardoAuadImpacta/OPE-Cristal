@@ -7,26 +7,26 @@ import Http from '../config/http'; // não precisa de .js
  *
  * @returns {Promise}
  */
- const getEnderecoByIdCliente = async (idCliente) => {
+ const listEnderecoByIdCliente = async (idCliente) => {
     return Http.get(`/endereco?idCliente=${idCliente}`);
   };
 
 /**
  * Cria um endereço
  * 
- * @param {Object} user
- * @param {String} user.uf
- * @param {string} user.cidade
- * @param {string} user.bairro
- * @param {string} user.rua
- * @param {string} user.numero
- * @param {string} user.complemento
- * @param {string} user.cep
+ * 
+ * @param {String} uf
+ * @param {string} cidade
+ * @param {string} bairro
+ * @param {string} rua
+ * @param {string} numero
+ * @param {string} complemento
+ * @param {string} cep
  * 
  * @returns {Promise}
  */
  const createEndereco = function (uf, cidade, bairro, rua, numero, complemento, cep )  {
-    return Http.post('/cliente', { "uf": uf, "cidade": cidade, "bairro": bairro, "rua": rua, "numero": numero, "complemento": complemento, "cep": cep })
+    return Http.post('/endereco', { uf, cidade, bairro, rua, numero, complemento, cep })
 };
 
-export { createEndereco }
+export { createEndereco, listEnderecoByIdCliente }
