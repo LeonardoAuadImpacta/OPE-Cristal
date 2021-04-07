@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import {createCliente} from "../../service/ClienteService";
+//import {createCliente} from "../../service/ClienteService";
+import {createCliente as createClienteController} from "../../controller/SnkPreCadastroController";
 
 export default {
     data() {
@@ -52,15 +53,16 @@ export default {
         cadastrar: async function(e) {
             e.preventDefault();
 
-            await createCliente(
+            await createClienteController(
                 this.nome,
                 this.sobrenome,
-                this.pseudonimo,
                 this.telefone,
+                this.pseudonimo,
                 this.email,
                 this.password
             ).then(response => { console.log(JSON.stringify(response)) })
             .catch(err => { console.log(JSON.stringify(err)) })
+        
         }
     }
 }
