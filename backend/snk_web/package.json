@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "sync-db": "node ./bin/sync_db",
     "dev": "nodemon ./bin/www",
-    "style": "npx prettier --write ."
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "cookie-parser": "^1.4.4",
