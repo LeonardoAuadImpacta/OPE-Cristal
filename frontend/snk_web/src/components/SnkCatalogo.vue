@@ -8,7 +8,8 @@
 
 <script>
 import SnkCard from '../components/SnkCard.vue'
-import cards from '../assets/mock_service/ProdutosMockService.json'
+import { listProdutos } from '../controller/SnkProdutoController.js';
+
 export default {
     name: 'SnkCatalogo',
     components: {
@@ -16,12 +17,19 @@ export default {
     },
     data () {
         return {
-           cards: cards
+          page: 1,
+          limit: 10,
+          cards: []
         }
     },
     methods: {
-        
-    }
+        listarProdutos () {
+          return listProdutos(this.page, this.limit, this);
+        }
+    },
+  created () {
+    this.listarProdutos();
+  }
 }
 </script>
 
