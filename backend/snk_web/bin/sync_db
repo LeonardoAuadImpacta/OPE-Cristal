@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+// Needs this require to work. WTF?
+const app = require("../app");
+
+const db = require("../lib/database");
+
+db.sync({ force: true, alter: true, match: /db/, logging: false})
+  .then(sequelize => {
+    console.info("Database synced successfully 🎉");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error("Failed to sync database", { error: err });
+    process.exit(1);
+  })
+
