@@ -55,6 +55,20 @@ router.post(
   enderecoController.create
 );
 
+const listEnderecoSchema = {
+  idCliente: {
+    in: ["query"],
+    errorMessage: "Id do cliente inválido",
+    isInt: true,
+  },
+};
+
+router.get(
+  "/",
+  validate([checkSchema(listEnderecoSchema)]),
+  enderecoController.list
+);
+
 const getEnderecoSchema = {
   id: {
     in: ["params"],
