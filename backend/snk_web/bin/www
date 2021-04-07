@@ -4,14 +4,9 @@
  * Module dependencies.
  */
 
-var debug = require("debug")("snk-web:server");
-var http = require("http");
-var app = require("../app");
-
-if (process.env.DEBUG) {
-  var dotenv = require("dotenv");
-  dotenv.config();
-}
+const debug = require("debug")("snk-web:server");
+const http = require("http");
+const app = require("../app");
 
 // Forçando import da lib de database para validar conexão
 const db = require("../lib/database");
