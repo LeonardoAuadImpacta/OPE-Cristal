@@ -1,6 +1,6 @@
 import Http from '../config/http'; // não precisa de .js
 /**
- * Create an user
+ * Cria um usuário
  * 
  * @param {Object} user
  * @param {String} user.nome
