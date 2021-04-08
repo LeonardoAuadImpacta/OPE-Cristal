@@ -19,12 +19,20 @@ export const login =  function(email,password,view) {
                     }
                 })
                 .catch(error => {
-                    error.response.data.details.forEach((det,i) =>{
-                        setTimeout(() => {
-                            view.error = true
-                            view.flagAlert(det.msg)
-                        }, i * view.timeAlert * 1.5);
-                    })
+                    let status = error.response.status
+
+                    if (status == 400) {
+                        error.response.data.details.forEach((det,i) =>{
+                            setTimeout(() => {
+                                view.flagAlert(det.msg)
+                            }, i * view.timeAlert * 1.5);
+                        })
+                    }
+                    
+                    if(status == 403 || status == 401) {
+                        view.flagAlert(error.response.data.message)
+                    }
+                    
                 });
 
 }
