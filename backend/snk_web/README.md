@@ -34,6 +34,8 @@ cd snk_web
 Scripts disponíveis:
 - `npm run dev`: inicia servidor web
 - `npm run sync-db`: sincroniza entidades no banco de dados de acordo com as Models
+- `npm run seed-db`: popula banco de dados com informações de **Produto** e **Cliente**
+- `npm run restart-db`: reinicializa o banco de dados com dados (sync-db + seed-db)
 - `npm run prettier`: aplica formatação padrão de estilo no código
 
 ### Servidor web
