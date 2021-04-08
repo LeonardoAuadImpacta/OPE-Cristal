@@ -16,15 +16,15 @@ Produto.init(
       autoIncrement: true,
     },
     nome: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     subtitulo: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     descricao: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
     },
     precoAtual: {
       type: DataTypes.DECIMAL(8, 2),
