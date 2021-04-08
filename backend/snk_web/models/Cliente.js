@@ -27,7 +27,7 @@ Cliente.init(
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },

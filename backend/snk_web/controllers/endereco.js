@@ -1,3 +1,4 @@
+const { sanitizeQuery } = require("../lib/database/util");
 const EnderecoModel = require("../models/Endereco");
 
 const create = (req, res, next) => {
@@ -7,6 +8,23 @@ const create = (req, res, next) => {
     })
     .catch((reason) => {
       res.status(400).json();
+    });
+};
+
+const list = async (req, res, next) => {
+  return EnderecoModel.findAll({
+    where: {
+      ...sanitizeQuery(req.params),
+    },
+  })
+    .then((enderecos) => {
+      return res.status(200).json(enderecos);
+    })
+    .catch((reason) => {
+      console.log(reason);
+      return res
+        .status(400)
+        .json({ error: "Falha ao tentar listar endereços" });
     });
 };
 
@@ -22,5 +40,6 @@ const get = async (req, res, next) => {
 
 module.exports = {
   create,
+  list,
   get,
 };

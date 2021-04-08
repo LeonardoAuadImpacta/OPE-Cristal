@@ -6,8 +6,9 @@ const create = (req, res, next) => {
       res.status(201).json();
     })
     .catch((reason) => {
+      console.log(reason);
       // TODO: treat possible reasons and add as "error" on response json
-      res.status(400).json();
+      res.status(400).json({ error: "Falha ao tentar criar usuário" });
     });
 };
 
