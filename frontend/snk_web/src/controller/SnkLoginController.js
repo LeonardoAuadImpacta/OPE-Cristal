@@ -6,11 +6,12 @@ export const login =  function(email,password,view) {
                 .then( res => {
                     if(res.status == 200) {
                         
-                        let response = res.data;
-                        view.$store.commit("setUserSession", response);
-                        if(response.profile == "ADMIN") {
+                      const cliente = res.data;
+                        view.$store.commit("setUserSession", cliente);
+                        if(cliente.profile == "ADMIN") {
                             view.$router.push({ name: 'SnkAdmin' });
                         }else {
+                            view.$store.dispatch("setCarrinho", {idCliente: cliente.id});
                             view.$router.push({ name: 'SnkShop' });
                         }
                     }
@@ -36,4 +37,3 @@ export const login =  function(email,password,view) {
                 });
 
 }
-                

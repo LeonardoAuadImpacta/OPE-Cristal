@@ -60,9 +60,7 @@ export default {
                 this.pseudonimo,
                 this.email,
                 this.password
-            ).then(response => { console.log(JSON.stringify(response)) })
-            .catch(err => { console.log(JSON.stringify(err)) })
-        
+            );
         }
     }
 }
