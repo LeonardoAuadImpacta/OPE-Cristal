@@ -1,5 +1,4 @@
 import Http from "../config/http";
-import { findOrCreateCarrinhoByIdCliente } from "./CarrinhoService";
 
 /**
  * List todos items do carrinho do cliente.
@@ -8,11 +7,8 @@ import { findOrCreateCarrinhoByIdCliente } from "./CarrinhoService";
  *
  * @returns {Promise}
  */
-const listItemCarrinhos = async (idCliente) => {
-  const carrinho = await findOrCreateCarrinhoByIdCliente(idCliente)
-        .then(response => response.data)
-        .catch(error => console.log(error));
-  return Http.get(`/item_carrinho?idCarrinho=${carrinho.id}`);
+const listItemCarrinhos = async (idCarrinho) => {
+  return Http.get(`/item_carrinho?idCarrinho=${idCarrinho}`);
 };
 
 /**
@@ -24,10 +20,7 @@ const listItemCarrinhos = async (idCliente) => {
  *
  * @returns {Promise}
  */
-const addItemCarrinho = async ({ idCliente, idProduto }) => {
-  const response = await findOrCreateCarrinhoByIdCliente(idCliente);
-  const idCarrinho = response.data.id;
-
+const addItemCarrinho = async ({ idCarrinho, idProduto }) => {
   return Http.post(`/item_carrinho/carrinho/${idCarrinho}`, {
     idProduto,
     quantidade: 1,

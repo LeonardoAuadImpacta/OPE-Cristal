@@ -73,7 +73,7 @@
 export default {
   data() {
     return {
-      itens: this.$store.state.carrinho,
+      itens: this.$store.state.carrinho.itens,
       snack: false,
       snackColor: "",
       snackText: "",

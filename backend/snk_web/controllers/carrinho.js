@@ -1,6 +1,7 @@
 const moment = require("moment");
 const { sanitizeQuery } = require("../lib/database/util");
 const CarrinhoModel = require("../models/Carrinho");
+const ItemCarrinhoModel = require("../models/ItemCarrinho");
 
 function calcularDataExpiracao() {
   const agora = moment();
@@ -23,6 +24,7 @@ const findOrCreate = async (req, res, next) => {
       dataExpiracao,
       idEndereco,
     },
+    include: [{ model: ItemCarrinhoModel, as: "itens"}],
   })
     .then(([carrinho, created]) => {
       if (created) {
@@ -38,13 +40,11 @@ const findOrCreate = async (req, res, next) => {
 };
 
 const list = async (req, res, next) => {
-  const OPEN_STATUS = "OPEN";
-
   return CarrinhoModel.findAll({
     where: {
-      status: OPEN_STATUS,
       ...sanitizeQuery(req.params),
     },
+    include: [{ model: ItemCarrinhoModel, as: "itens" }],
   })
     .then((carrinho) => {
       return res.status(200).json(carrinho);
