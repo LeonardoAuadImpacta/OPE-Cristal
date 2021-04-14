@@ -27,11 +27,13 @@ nvm use
 ### Scripts
 
 Os scripts devem ser executados da raiz do projeto Node.JS:
+
 ```bash
 cd snk_web
 ```
 
 Scripts disponíveis:
+
 - `npm run dev`: inicia servidor web
 - `npm run sync-db`: sincroniza entidades no banco de dados de acordo com as Models
 - `npm run seed-db`: popula banco de dados com informações de **Produto** e **Cliente**
@@ -41,16 +43,19 @@ Scripts disponíveis:
 ### Servidor web
 
 Entre na pasta raiz:
+
 ```bash
 cd snk_web
 ```
 
 [Opcional] Instale as dependências:
+
 ```bash
 npm install
 ```
 
 Para subir o servidor local:
+
 ```bash
 npm run dev
 ```
