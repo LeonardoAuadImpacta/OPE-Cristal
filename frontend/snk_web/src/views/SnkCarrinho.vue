@@ -34,6 +34,7 @@
 
       <v-stepper-content step="2">
         <SnkEndereco @selecionarEndereco="selecionarEndereco" />
+        <SnkCriacaoEndereco />
         <v-btn color="#aa2514" @click="confimarEndereco" class="white--text">
           Próximo
         </v-btn>
@@ -123,6 +124,7 @@ import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
 import SnkEndereco from "../components/compra/SnkEndereco.vue";
 import SnkCartao from "../components/compra/SnkCartao.vue";
 import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
+import SnkCriacaoEndereco from '../components/endereco/SnkCriacaoEndereco';
 import { createPedido as createPedidoController } from "../controller/SnkPedidoController";
 export default {
   components: {
@@ -131,7 +133,8 @@ export default {
     SnkTableCarrinho,
     SnkEndereco,
     SnkCartao,
-    SnkConfirmaCompraSnk
+    SnkConfirmaCompraSnk,
+    SnkCriacaoEndereco,
   },
   name: "SnkCarrinho",
   data() {
