@@ -38,19 +38,6 @@
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title>
-             <label>
-                Pagameto : {{buildPagamento(info.pagamento)}} 
-            </label>
-        </v-list-item-title>
-        <v-list-item-subtitle>
-            {{info.pagamento.desc}}
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
   </v-card>
 </template>
 
@@ -89,12 +76,6 @@ export default {
         buildEndereco(end) {
             return end.endereco + ' ' + end.numero
         },
-        buildPagamento(pagamento) {
-            if(pagamento.tipo == 'CARTAO') {
-                return 'Cartão ' + pagamento.meta.serial_number + ' em ' + pagamento.meta.parcelamento + 'x'
-            }
-            return 'Boleto'
-        },
         buildSubEndereco(end) {
             return end.bairro + ', ' + end.uf
         },
@@ -116,5 +97,6 @@ export default {
         display: flex;
         flex-direction: column;    
     }
+  
 
 </style>

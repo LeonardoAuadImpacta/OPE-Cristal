@@ -34,24 +34,12 @@
         </v-btn>
       </v-stepper-content>
 
-      <v-stepper-step :complete="e6 > 3" step="3" color="#aa2514">
-        Selecionar Forma de Pagamento
-      </v-stepper-step>
+   
 
-      <v-stepper-content step="3">
-        <SnkCartao @selecionarCartao="selecionarCartao" />
-        <v-btn color="#aa2514" class="white--text" @click="confirmarDados">
-          Continue
-        </v-btn>
-        <v-btn text>
-          Cancel
-        </v-btn>
-      </v-stepper-content>
-
-      <v-stepper-step color="#aa2514" step="4">
+      <v-stepper-step color="#aa2514" step="3">
         Confirmar Compra
       </v-stepper-step>
-      <v-stepper-content step="4">
+      <v-stepper-content step="3">
         <SnkConfirmaCompraSnk :info="info" />
 
         <div>
@@ -69,7 +57,7 @@
 
             <v-card>
               <v-card-title class="headline grey lighten-2">
-                Compra Comfirmada !
+                Fluxo de Compra Iniciado
               </v-card-title>
 
               <v-spacer></v-spacer>
@@ -77,6 +65,7 @@
               <v-card-text>
                 Seu pedido será processado e código de rastreio enviado.
                 Acompanhe seus pedidos na aba "Minhas Compras"
+                Todo processo de compra é realizado via mercado pago
               </v-card-text>
 
               <v-divider></v-divider>
@@ -95,25 +84,28 @@
         </v-btn>
       </v-stepper-content>
     </v-stepper>
-
+    <div id="mercado"></div>
     <SnkFootersComp />
   </v-main>
 </template>
+
+
 
 <script>
 import SnkHeader from "../components/SnkHeader.vue";
 import SnkFootersComp from "../components/SnkFootersComp";
 import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
 import SnkEndereco from "../components/compra/SnkEndereco.vue";
-import SnkCartao from "../components/compra/SnkCartao.vue";
 import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
+import {preferencia as preferenciaController}  from '../controller/SnkMercadoPagoController'
+
+
 export default {
   components: {
     SnkHeader,
     SnkFootersComp,
     SnkTableCarrinho,
     SnkEndereco,
-    SnkCartao,
     SnkConfirmaCompraSnk
   },
   name: "SnkCarrinho",
@@ -158,6 +150,7 @@ export default {
       }
     };
   },
+
   methods: {
     selecionarEndereco(val) {
       this.endereco = val;
@@ -201,15 +194,19 @@ export default {
     },
     fecharPedido() {
       // TODO enviar pedido pro back
-      this.$store.commit("fecharPedito");
-      this.$router.push({ name: "SnkShop" });
+      preferenciaController({},this)
+      //this.$store.commit("fecharPedito");
+      //this.$router.push({ name: "SnkShop" });
     }
   }
 };
 </script>
 
-<style>
-.snk-confirm {
-  color: white;
-}
+<style scoped>
+  .snk-confirm {
+    color: white;
+  }
+  #mercado {
+      display: none;
+    }
 </style>
