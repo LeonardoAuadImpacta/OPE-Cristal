@@ -1,4 +1,3 @@
-
 <template>
   <v-card
     class="mx-auto noselect"
@@ -9,7 +8,7 @@
       <v-list-item-content>
         <v-list-item-title>
             <label>
-                Quantidade de itens : {{carrinho.quantidadeItems + ''}}
+                Quantidade de itens : {{order.qtd + ''}}
             </label>
         </v-list-item-title>
       </v-list-item-content>
@@ -19,7 +18,7 @@
       <v-list-item-content>
         <v-list-item-title>
              <label>
-                Valor total : {{valorTotal.toFixed(2)}}
+                Valor total : {{valorTotal}}
             </label>
         </v-list-item-title>
         <v-list-item-subtitle>Valor considerenco todos itens,frete e descontos</v-list-item-subtitle>
@@ -38,40 +37,24 @@
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title>
-             <label>
-                Pagameto : {{buildPagamento(pagamento)}}
-            </label>
-        </v-list-item-title>
-        <v-list-item-subtitle>
-            {{pagamento.desc}}
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
   </v-card>
 </template>
 
 <script>
 export default {
-     props: {
-         valorTotal: Number,
-         carrinho: {
-             quantidadeItems: Number,
-         },
-         endereco: {
-             rua: String,
-             numero: String,
-             bairro: String,
-             uf: String,
-         },
-         pagamento: {
-                tipo: String,
-                desc: String,
-                meta: {}
-            }
+    data() {
+      return {
+        endereco : {
+          endereco: "",
+          numero: "",
+          bairro:"",
+          uf:""
+        },
+        valorTotal : 0,
+        order: {
+          qtd: 0
+        }
+      }
     },
     methods: {
         buildEndereco(end) {

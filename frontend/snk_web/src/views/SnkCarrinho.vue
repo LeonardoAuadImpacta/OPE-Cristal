@@ -146,7 +146,10 @@ export default {
           tipo: String,
           desc: String,
           meta: {}
-        }
+        },
+        carrinho: {
+             quantidadeItens: Number,
+         },
       }
     };
   },
@@ -164,33 +167,6 @@ export default {
     },
     selecionarCartao(val) {
       this.pay = val;
-    },
-    confirmarDados() {
-      this.e6 = 4;
-      let itens = this.$store.state.carrinho;
-      let valor = 0;
-      itens.forEach(element => {
-        valor += element.qtd * element.item.preco;
-        console.log(element);
-      });
-
-      console.log(valor);
-      this.info = {
-        order: {
-          qtd: itens.length,
-          itens: itens,
-          valorTotal: valor
-        },
-        endereco: this.endereco,
-        pagamento: {
-          tipo: this.pay.tipo,
-          desc: "cartao snk",
-          meta: {
-            serial_number: this.pay.info.card.serial_number,
-            parcelamento: this.pay.info.parcela
-          }
-        }
-      };
     },
     fecharPedido() {
       // TODO enviar pedido pro back
