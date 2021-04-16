@@ -14,19 +14,19 @@ import Http from '../config/http'; // não precisa de .js
 /**
  * Cria um endereço
  * 
- * 
- * @param {String} uf
- * @param {string} cidade
- * @param {string} bairro
- * @param {string} rua
- * @param {string} numero
- * @param {string} complemento
- * @param {string} cep
+ * @param {Object} endereco
+ * @param {string} endereco.uf
+ * @param {string} endereco.cidade
+ * @param {string} endereco.bairro
+ * @param {string} endereco.rua
+ * @param {string} endereco.numero
+ * @param {string} endereco.complemento
+ * @param {string} endereco.cep
  * 
  * @returns {Promise}
  */
- const createEndereco = function (uf, cidade, bairro, rua, numero, complemento, cep )  {
-    return Http.post('/endereco', { uf, cidade, bairro, rua, numero, complemento, cep })
+ const createEndereco = function (idCliente, { uf, cidade, bairro, rua, numero, complemento, cep })  {
+    return Http.post('/endereco', { idCliente, uf, cidade, bairro, rua, numero, complemento, cep })
 };
 
 export { createEndereco, listEnderecoByIdCliente }

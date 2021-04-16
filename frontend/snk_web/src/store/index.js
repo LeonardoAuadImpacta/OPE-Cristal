@@ -9,7 +9,10 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     session: null,
-    carrinho: [],
+    carrinho: {
+      id: null,
+      itens: [],
+    },
   },
   mutations,
   actions,

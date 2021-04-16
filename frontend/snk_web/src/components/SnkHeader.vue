@@ -147,7 +147,7 @@ export default {
     },
     computed: {
         addCar() {
-            return this.$store.state.carrinho.length
+            return this.$store.state.carrinho.itens.length
         },
 
         logged() {

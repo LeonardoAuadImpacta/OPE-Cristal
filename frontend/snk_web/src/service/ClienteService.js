@@ -13,7 +13,7 @@ import Http from '../config/http'; // não precisa de .js
  * @returns {Promise}
  */
  const createCliente = function (nome, sobrenome, telefone, pseudonimo, email, senha )  {
-    return Http.post('/cliente', { nome, sobrenome, telefone, pseudonimo, email, senha })
+    return Http.post('/cliente', { nome, sobrenome, telefone, pseudonimo, email, senha, profile: "CUSTOMER" })
 };
 
 export { createCliente }

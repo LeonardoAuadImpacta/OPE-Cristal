@@ -2,6 +2,7 @@ const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
 const Cliente = require("./Cliente");
 const Endereco = require("./Endereco");
+const ItemCarrinho = require("./ItemCarrinho");
 
 class Carrinho extends Model {}
 
@@ -48,5 +49,7 @@ Carrinho.init(
     timestamps: true,
   }
 );
+
+Carrinho.hasMany(ItemCarrinho, {foreignKey: "idCarrinho", as: "itens"});
 
 module.exports = Carrinho;

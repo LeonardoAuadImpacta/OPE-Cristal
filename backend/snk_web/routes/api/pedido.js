@@ -19,29 +19,55 @@ const createPedidoSchema = {
     isEmpty: { negated: true },
     isInt: true,
   },
-  status: {
-    in: ["body"],
-    errorMessage: "Status inválido",
-    isEmpty: { negated: true },
-    isIn: {
-      options: [
-        [
-          "COMPLETED",
-          "CANCELED",
-          "AWAITING_PAYMENT",
-          "CONFIRMED",
-          "DISPATCHED",
-          "IN_TRANSIT",
-        ],
-      ],
-    },
-  },
+  // Status padrão é utilizado no controller
+  //status: {
+    //in: ["body"],
+    //errorMessage: "Status inválido",
+    //isEmpty: { negated: true },
+    //isIn: {
+      //options: [
+        //[
+          //"COMPLETED",
+          //"CANCELED",
+          //"AWAITING_PAYMENT",
+          //"CONFIRMED",
+          //"DISPATCHED",
+          //"IN_TRANSIT",
+        //],
+      //],
+    //},
+  //},
 };
 
 router.post(
   "/",
   validate([checkSchema(createPedidoSchema)]),
   pedidoController.create
+);
+
+const listPedidoSchema = {
+  id: {
+    in: ["query"],
+  },
+  idCliente: {
+    in: ["query"],
+  },
+  _pagina: {
+    in: ["query"],
+    errorMessage: "Número da página inválido",
+    toInt: true,
+  },
+  _items: {
+    in: ["query"],
+    errorMessage: "Limite de items por página inválido",
+    toInt: true,
+  },
+};
+
+router.get(
+  "/",
+  validate([checkSchema(listPedidoSchema)]),
+  pedidoController.list
 );
 
 const getPedidoSchema = {

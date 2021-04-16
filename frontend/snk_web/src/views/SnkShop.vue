@@ -31,9 +31,6 @@ export default {
         this.upCar += 1
       }
     },
-  beforeCreate() {
-    this.$store.dispatch("setRemoteCarrinhoItems");
-  },
 }
 </script>
 

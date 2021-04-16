@@ -29,6 +29,7 @@ export default {
     },
   created () {
     this.listarProdutos();
+    this.$store.dispatch("setCarrinho", { idCliente: this.$store.state.session.id });
   }
 }
 </script>

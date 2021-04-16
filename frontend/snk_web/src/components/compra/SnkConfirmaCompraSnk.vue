@@ -2,14 +2,14 @@
 <template>
   <v-card
     class="mx-auto noselect"
-    
+
     tile
   >
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title>
             <label>
-                Quantidade de itens : {{info.order.qtd + ''}}
+                Quantidade de itens : {{carrinho.quantidadeItems + ''}}
             </label>
         </v-list-item-title>
       </v-list-item-content>
@@ -19,7 +19,7 @@
       <v-list-item-content>
         <v-list-item-title>
              <label>
-                Valor total : {{info.order.valorTotal}}
+                Valor total : {{valorTotal.toFixed(2)}}
             </label>
         </v-list-item-title>
         <v-list-item-subtitle>Valor considerenco todos itens,frete e descontos</v-list-item-subtitle>
@@ -30,11 +30,24 @@
       <v-list-item-content>
         <v-list-item-title>
              <label>
-                Endereço: {{buildEndereco(info.endereco)}}
+                Endereço: {{buildEndereco(endereco)}}
             </label>
         </v-list-item-title>
         <v-list-item-subtitle>
-            {{buildSubEndereco(info.endereco)}}
+            {{buildSubEndereco(endereco)}}
+        </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-list-item three-line>
+      <v-list-item-content>
+        <v-list-item-title>
+             <label>
+                Pagameto : {{buildPagamento(pagamento)}}
+            </label>
+        </v-list-item-title>
+        <v-list-item-subtitle>
+            {{pagamento.desc}}
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -44,33 +57,21 @@
 <script>
 export default {
      props: {
-        info: {
-            order: {
-                qtd: Number,
-                itens: [
-                    {
-                        titulo: String,
-                        preco: Number,
-                        quantidade: Number
-                    }
-                ],
-                valorTotal: Number
-            },
-            endereco: {
-                id : Number,
-                cep: String,
-                endereco: String,
-                bairro: String,
-                cidade: String,
-                uf: String,
-                numero: Number
-            },
-            pagamento: {
+         valorTotal: Number,
+         carrinho: {
+             quantidadeItems: Number,
+         },
+         endereco: {
+             rua: String,
+             numero: String,
+             bairro: String,
+             uf: String,
+         },
+         pagamento: {
                 tipo: String,
                 desc: String,
                 meta: {}
             }
-        }
     },
     methods: {
         buildEndereco(end) {
@@ -95,7 +96,7 @@ export default {
         padding: 2%;
         text-align: center;
         display: flex;
-        flex-direction: column;    
+        flex-direction: column;
     }
   
 
