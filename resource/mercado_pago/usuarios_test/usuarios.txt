@@ -1,0 +1,7 @@
+{
+    id 743089468,
+    nickname TETE8774010,
+    password qatest2687,
+    site_status active,
+    email test_user_34547256@testuser.com
+}
