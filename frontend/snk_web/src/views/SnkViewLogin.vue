@@ -16,7 +16,6 @@ import SnkFootersComp from '../components/SnkFootersComp.vue'
   import SnkLogin from '../components/SnkLogin.vue'
   import SnkPreCadastro from '../components/usuario/SnkPreCadastro.vue'
 
-
   export default {
     name: 'SnkViewLogin',
     components: {

@@ -1,8 +1,8 @@
 import { createCliente as serviceCadastroCliente } from "../service/ClienteService";
 
 
-export const createCliente =  function(nome, sobrenome, telefone, pseudonimo, email, senha, view) {
-    return serviceCadastroCliente(nome, sobrenome, telefone, pseudonimo, email, senha)
+export const createCliente =  function(user, view) {
+    return serviceCadastroCliente(user.nome, user.sobrenome, user.telefone, user.pseudonimo, user.email, user.password)
                 .then( res => {
                     if(res.status == 200) {
                         let response = res.data;
@@ -17,12 +17,7 @@ export const createCliente =  function(nome, sobrenome, telefone, pseudonimo, em
                     }
                 })
                 .catch(error => {
-                    error.response.data.details.forEach((det,i) =>{
-                        setTimeout(() => {
-                            view.error = true
-                            view.flagAlert(det.msg)
-                        }, i * view.timeAlert * 1.5);
-                    })
-                });
+                    console.log(error)
+                })
 
 }
