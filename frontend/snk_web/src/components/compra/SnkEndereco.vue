@@ -8,7 +8,7 @@
             <v-card >
                 <v-card-title>
                     <label>
-                        {{endereco.endereco}} nº {{endereco.numero}}
+                        {{endereco.rua}} nº {{endereco.numero}}
                     </label>
                     
                             <v-radio
@@ -31,7 +31,8 @@
 </template>
 
 <script>
-import enderecosJson from '../../assets/mock_service/EnderecoMockService.json'
+//import enderecosJson from '../../assets/mock_service/EnderecoMockService.json'
+import { listEnderecoByIdCliente } from '../../controller/SnkEnderecoController.js';
 export default {
     data() {
         return {
@@ -40,7 +41,8 @@ export default {
         }
     },
     beforeMount() {
-        this.enderecos = enderecosJson
+        const idCliente = this.$store.state.session.id;
+        listEnderecoByIdCliente(idCliente, this)
     },
     methods: {
         selecionarEndereco(endereco){
