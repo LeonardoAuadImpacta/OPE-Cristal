@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex-col">
         <div class="snk-snep">
             <v-radio-group
                 v-model="selecionado"
@@ -35,6 +35,7 @@
 
 <script>
 import { listEnderecoByIdCliente } from '../../controller/SnkEnderecoController.js';
+import SnkCriacaoEndereco from '../../components/endereco/SnkCriacaoEndereco'
 export default {
     data() {
         return {
