@@ -91,14 +91,14 @@
             text
             @click="dialog = false"
           >
-            Close
+            Fechar
           </v-btn>
           <v-btn
             color="blue darken-1"
             text
             @click="createEndereco"
           >
-            Save
+            Salvar
           </v-btn>
         </v-card-actions>
       </v-card>
