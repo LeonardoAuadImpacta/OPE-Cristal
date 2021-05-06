@@ -11,13 +11,15 @@ export const createCliente =  function(user, view) {
                             view.$router.push({ name: 'SnkShop' });
                         }
                     }
-                    
                     else {
                         view.flagAlert('iii')
                     }
                 })
                 .catch(error => {
-                    console.log(error)
+                    //var regex = /\d+/g;
+                    var string = String(error);
+                    localStorage.setItem('response', string.substring(0, 5).toLowerCase())
                 })
+                
 
 }

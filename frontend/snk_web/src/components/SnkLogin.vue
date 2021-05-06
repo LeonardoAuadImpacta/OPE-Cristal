@@ -7,7 +7,7 @@
             <input class="snk-background-base-color snk-text-title snk-cursor-pointer rounded-lg" type="submit" value="entrar">
             <div class="snk-flex">
                 <p  @click="trocarTela()"   class="snk-cursor-pointer ">criar conta</p>
-                <p class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
+                <p  @click="trocarTelaForgot()" class="snk-text-rigth snk-text-base-color snk-cursor-pointer">esqueceu a senha ? </p>
             </div>
             <div class="snk-alert">
                 <v-alert 
@@ -45,6 +45,9 @@ export default {
             },
             trocarTela: function() {
                 this.$emit("trocarTela",true);
+            },
+            trocarTelaForgot: function() {
+                this.$emit("trocarTelaForgot",true);
             },
             mockLogin(email,password) {
                 let userLogin

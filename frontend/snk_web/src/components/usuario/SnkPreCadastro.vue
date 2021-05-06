@@ -29,9 +29,10 @@
             </div>
                
             <input 
-                class="snk-background-base-color snk-text-title snk-cursor-pointer rounded-lg" 
                 type="submit" 
-                value="Cadastrar">
+                value="Cadastrar"
+                class="snk-background-base-color snk-text-title snk-cursor-pointer rounded-lg"
+                >
 
             <div class="snk-flex">
                 <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
@@ -72,20 +73,29 @@ export default {
         }
     },
         methods: {
-        async handleSubmit() {
-            
+            trocarTela: function() {
+                this.$emit("trocarTela", false);
+            },
+            async handleSubmit() {
 
-            this.submitted = true;
-            // stop here if form is invalid
-            this.$v.$touch();
-            if (this.$v.$invalid) {
-                return;
-            }
-            await createClienteController(
-                this.user
-            );
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
-        },
+                this.submitted = true;
+                // stop here if form is invalid
+                this.$v.$touch();
+                if (this.$v.$invalid) {
+                    return;
+                }
+                await createClienteController(
+                    this.user  
+                );
+                if (!(localStorage.getItem('response') == 'error')){
+                    alert("Usuário criado com sucesso!! :-) ");
+                    this.$emit("trocarTela", false);
+                }
+                else{
+                     alert("Usuário ou Email já utilizados");
+                }
+
+            },
     }
 };
                 
