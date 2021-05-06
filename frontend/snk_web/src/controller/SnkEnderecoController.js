@@ -1,4 +1,5 @@
 import { createEndereco as _createEndereco } from "../service/EnderecoService";
+import { listEnderecoByIdCliente as _listEnderecoByIdCliente } from "../service/EnderecoService"
 
 const createEndereco = (idCliente, endereco, view) => {
   return _createEndereco(idCliente, endereco)
@@ -16,4 +17,19 @@ const createEndereco = (idCliente, endereco, view) => {
     })
 }
 
-export { createEndereco };
+const listEnderecoByIdCliente = (idCliente, view) => {
+  return _listEnderecoByIdCliente(idCliente)
+    .then(res => {
+      if (res.status === 200) {
+        view.enderecos = res.data  
+      } else {
+        view.flagAlert("Falha ao listar endereços");
+      }
+    })
+    .catch(error => {
+      console.log(JSON.stringify(error));
+      view.flagAlert("Falha ao listar endereços")
+    })
+}
+
+export { createEndereco, listEnderecoByIdCliente };
