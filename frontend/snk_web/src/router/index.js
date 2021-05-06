@@ -21,7 +21,7 @@ const routes = [
     path:'/login',
     name:'SnkViewLogin',
     component: SnkViewLogin
-  }, 
+  },
   {
     path:'/admin-area',
     name: 'SnkAdmin',
