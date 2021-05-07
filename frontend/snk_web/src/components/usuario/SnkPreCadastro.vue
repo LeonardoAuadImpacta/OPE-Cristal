@@ -14,7 +14,12 @@
             <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
                 <span v-if="!$v.user.email.required">Email é necessário</span>
                 <span v-if="!$v.user.email.email">Email é inválido</span>
-            </div> 
+            </div>
+
+            <input v-model="user.imgProfile" type="text" required id="imgProfile" name="imgProfile" placeholder="Link imagem perfil" class="form-control" :class="{ 'is-invalid': submitted && $v.user.imgProfile.$error }" />
+            <div v-if="submitted && $v.user.imgProfile.$error" class="invalid-feedback">
+                <span v-if="!$v.user.imgProfile.required">Imagem é necessário</span>
+            </div>
 
             <input v-model="user.password" type="password" required id="password" name="senha" placeholder="Senha" ref="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
             <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
@@ -59,7 +64,8 @@ export default {
                 telefone: "",
                 email: "",
                 password: "",
-                confirmPassword: ""
+                confirmPassword: "",
+                imgProfile:"",
             },
             submitted: false
         };

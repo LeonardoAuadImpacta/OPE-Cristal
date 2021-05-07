@@ -2,12 +2,12 @@ import { createCliente as serviceCadastroCliente } from "../service/ClienteServi
 
 
 export const createCliente =  function(user, view) {
-    return serviceCadastroCliente(user.nome, user.sobrenome, user.telefone, user.pseudonimo, user.email, user.password)
+    return serviceCadastroCliente(user.nome, user.sobrenome, user.telefone, user.pseudonimo, user.email, user.password, user.imgProfile)
                 .then( res => {
-                    if(res.status == 200) {
+                    if(res.status === 200) {
                         let response = res.data;
                         view.$store.commit("setUserSession", response);
-                        if(response.profile != "ADMIN") {
+                        if(response.profile !== "ADMIN") {
                             view.$router.push({ name: 'SnkShop' });
                         }
                     }
