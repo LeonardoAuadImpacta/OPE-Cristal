@@ -12,7 +12,7 @@ const listProdutos = function (page, limit, view) {
                 view.cards = res.data.map(produto => {
                     // TODO: adicionar campo URL no BD
                     return {
-                        url: "https://http2.mlstatic.com/D_NQ_NP_819180-MLB44334481897_122020-O.webp",
+                        url: produto.urlImage,
                         ...produto
                     };
                 });

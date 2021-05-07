@@ -89,7 +89,7 @@
                                     >
                                         <v-text-field
                                                 color="black"
-                                                v-model="editedItem.qteProduto"
+                                                v-model="editedItem.quantidade"
                                                 :rules="qteRules"
                                                 label="Quantidade"
                                                 outlined clearable
@@ -103,7 +103,7 @@
                                     >
                                         <v-text-field
                                                 color="black"
-                                                v-model="editedItem.urlProduto"
+                                                v-model="editedItem.urlImage"
                                                 :rules="urlRules"
                                                 label="URL da Imagem"
                                                 outlined clearable
@@ -228,8 +228,8 @@
                 },
                 {text: 'Sub-Titulo', value: 'subtitulo'},
                 {text: 'Preço', value: 'precoAtual'},
-                // { text: 'Qantidade', value: 'qteProduto' },
-                // { text: 'URL', value: 'urlProduto' },
+                { text: 'Qantidade', value: 'quantidade' },
+                { text: 'URL', value: 'urlImage' },
                 {text: 'Descrição', value: 'descricao'},
 
                 // { text: 'Categoria', value: 'categoria' },
@@ -262,16 +262,16 @@
                 nome: '',
                 subtitulo: '',
                 precoAtual: 0,
-                qteProduto: 0,
-                urlProduto: '',
+                quantidade: 0,
+                urlImage: '',
                 descricao: '',
                 categoria: ''
             },
             defaultItem: {
                 nameProduto: '',
                 precoProduto: 0,
-                qteProduto: 0,
-                urlProduto: '',
+                quantidade: 0,
+                urlImage: '',
                 descricaoProduto: '',
             },
         }),

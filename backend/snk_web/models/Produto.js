@@ -3,40 +3,55 @@
 // descricao varchar(45), valorAtual decimal(8,2));
 // COMENTAR URL
 
-const { DataTypes, Model } = require("sequelize");
+const {DataTypes, Model} = require("sequelize");
 const sequelize = require("../lib/database");
 
-class Produto extends Model {}
+class Produto extends Model {
+}
 
 Produto.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true,
+    {
+        id: {
+            type: DataTypes.BIGINT,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        nome: {
+            type: DataTypes.STRING(1024),
+            allowNull: false,
+        },
+        subtitulo: {
+            type: DataTypes.STRING(500),
+            allowNull: false,
+        },
+        descricao: {
+            type: DataTypes.TEXT,
+        },
+        precoAtual: {
+            type: DataTypes.DECIMAL(8, 2),
+            allowNull: false,
+        },
+        urlImage: {
+            type: DataTypes.STRING(2048),
+            allowNull: false
+        },
+        categoria: {
+            type: DataTypes.ENUM({
+                values: ['Corrida', 'Skateboarding', 'Academia', 'Sportwear', 'Acessórios'],
+            }),
+            allowNull: false,
+        },
+        quantidade: {
+            type: DataTypes.BIGINT,
+            defaultValue: 0
+        }
     },
-    nome: {
-      type: DataTypes.STRING(1024),
-      allowNull: false,
-    },
-    subtitulo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    descricao: {
-      type: DataTypes.TEXT,
-    },
-    precoAtual: {
-      type: DataTypes.DECIMAL(8, 2),
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: "produto",
-    freezeTableName: true,
-    timestamps: true,
-  }
+    {
+        sequelize,
+        modelName: "produto",
+        freezeTableName: true,
+        timestamps: true,
+    }
 );
 
 module.exports = Produto;
