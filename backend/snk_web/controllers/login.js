@@ -26,5 +26,6 @@ module.exports = async (req, res, next) => {
     token: token,
     username: cliente.nome,
     profile: cliente.profile,
+    urlProfile: cliente.imgProfile
   });
 };
