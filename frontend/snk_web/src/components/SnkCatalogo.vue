@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import SnkCard from '../components/SnkCard.vue'
-import { listProdutos } from '../controller/SnkProdutoController.js';
+import SnkCard from '../components/SnkCard'
+import { listProdutos } from '../controller/SnkProdutoController';
 
 export default {
     name: 'SnkCatalogo',

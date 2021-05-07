@@ -31,10 +31,25 @@ const createProdutoSchema = {
   },
 };
 
+const getProdutoSchema = {
+  id: {
+    in: ["params"],
+    errorMessage: "Id de produto inválido",
+    isInt: true,
+    toInt: true,
+  },
+};
+
 router.post(
   "/",
   validate([checkSchema(createProdutoSchema)]),
   produtoController.create
+);
+
+router.put(
+  "/:id",
+  validate([checkSchema(createProdutoSchema),checkSchema(getProdutoSchema)]),
+  produtoController.update
 );
 
 const listProdutoSchema = {
@@ -59,19 +74,15 @@ router.get(
   produtoController.list
 );
 
-const getProdutoSchema = {
-  id: {
-    in: ["params"],
-    errorMessage: "Id de produto inválido",
-    isInt: true,
-    toInt: true,
-  },
-};
-
 router.get(
   "/:id",
   validate([checkSchema(getProdutoSchema)]),
   produtoController.get
+);
+router.delete(
+  "/:id",
+  validate([checkSchema(getProdutoSchema)]),
+  produtoController.deleteProduto
 );
 
 module.exports = router;
