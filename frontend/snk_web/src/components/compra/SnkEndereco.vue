@@ -29,7 +29,7 @@
             </div>
             </v-radio-group>    
         </div>   
-        <SnkCriacaoEndereco />  
+        <SnkCriacaoEndereco @SucessoCadastroEndereco="SucessoCadastroEndereco" />
     </div>   
 </template>
 
@@ -44,12 +44,15 @@ export default {
         }
     },
     beforeMount() {
-        const idCliente = this.$store.state.session.id;
-        listEnderecoByIdCliente(idCliente, this)
+        this.SucessoCadastroEndereco()
     },
     methods: {
         selecionarEndereco(endereco){
             this.$emit("selecionarEndereco",endereco);
+        },
+        SucessoCadastroEndereco() {
+            const idCliente = this.$store.state.session.id;
+            listEnderecoByIdCliente(idCliente, this)
         }
     },
     components: {
@@ -65,6 +68,10 @@ export default {
     }
     .card {
         margin: 2%;
+        width: 30%;
+    }
+    .card .v-card  {
+        width: 100%;
     }
     .snk-radio{
         right: 0;
@@ -73,6 +80,15 @@ export default {
         display: flex;
         flex-direction: column;
         margin: 5%;
+    }
+    .v-card__title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .v-card__title label {
+        width: 70%;
+        word-break: break-word;
     }
 
 </style>

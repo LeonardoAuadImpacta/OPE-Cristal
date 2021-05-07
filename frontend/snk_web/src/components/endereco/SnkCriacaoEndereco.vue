@@ -82,7 +82,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
+          <small>*campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -125,9 +125,10 @@ export default {
         }
     },
     methods: {
-        createEndereco() {
+        async createEndereco() {
             const idCliente = this.$store.state.session.id;
-            createEnderecoController(idCliente, this.endereco, this);
+            await createEnderecoController(idCliente, this.endereco, this);
+            this.$emit("SucessoCadastroEndereco");
         }
     }
 }
