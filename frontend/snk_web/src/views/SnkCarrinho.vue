@@ -1,6 +1,5 @@
 <template>
   <v-main>
-<!--    <SnkHeader snk_title="Carrinho" :admin="false" />-->
     <router-link to="/shop">
       voltar
     </router-link>
@@ -92,7 +91,6 @@
 
 
 <script>
-// import SnkHeader from "../components/SnkHeader.vue";
 import SnkFootersComp from "../components/SnkFootersComp";
 import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
 import SnkEndereco from "../components/compra/SnkEndereco.vue";
@@ -102,7 +100,6 @@ import {preferencia as preferenciaController}  from '../controller/SnkMercadoPag
 
 export default {
   components: {
-    // SnkHeader,
     SnkFootersComp,
     SnkTableCarrinho,
     SnkEndereco,

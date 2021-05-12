@@ -33,7 +33,7 @@
                     <v-spacer></v-spacer>
                     <div class="snk-flex">
                         <img :src="urlImg" class="userPhoto"/>
-                        <p>{{username}}</p>
+                        <p class="snk-username">{{username}}</p>
                     </div>
                     <v-spacer></v-spacer>
                     <v-btn icon>
@@ -48,10 +48,18 @@
                 </div>
             </v-app-bar>
             <v-navigation-drawer v-model="drawer" app temporary>
+                <div class="container-in">
+                    <v-img class="snk-logo-in" src="../assets/mini_logo.png"/>
+                    <v-toolbar-title>
+                        <h1>
+                            {{snk_title}}
+                        </h1>
+                    </v-toolbar-title>
+                </div>
                 <v-list nav dense>
                     <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
                         <v-list-item>
-                            <router-link to="/">
+                            <router-link to="/" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
                                         mdi-home
@@ -63,7 +71,7 @@
                             </router-link>
                         </v-list-item>
                         <v-list-item>
-                            <router-link to="/shop">
+                            <router-link to="/shop" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
                                         mdi-account
@@ -73,7 +81,7 @@
                             </router-link>
                         </v-list-item>
                         <v-list-item>
-                            <router-link to="/confirma">
+                            <router-link to="/confirma" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
                                         mdi-plus
@@ -87,7 +95,7 @@
             </v-navigation-drawer>
         </v-card>
         <div v-if="false===logged"
-                class="body-top"
+             class="body-top"
         >
 
         </div>
@@ -135,6 +143,18 @@
 
     .v-toolbar .snk-logo {
         max-width: 8vh;
+
+    }
+
+    .snk-logo-in {
+        max-width: 8vh;
+    }
+    .container-in {
+        /*margin: 0 auto;*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 50%;
     }
 
     .pesquisa {
@@ -156,6 +176,7 @@
     .SNK-topBar a {
         text-decoration: none;
     }
+
     .body-top, .header {
         height: 10vh;
         width: 100%;
@@ -191,5 +212,11 @@
         max-width: 8vh;
         margin-right: 10%;
         border-radius: 50%;
+        max-height: 8vh;
+    }
+
+    .snk-username {
+        top: 4vh;
+        position: relative;
     }
 </style>
