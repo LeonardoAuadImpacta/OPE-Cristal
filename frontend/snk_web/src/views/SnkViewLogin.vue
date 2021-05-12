@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <SnkHeader snk_title="Sneakers" :admin="false"/>
+<!--    <SnkHeader snk_title="Sneakers" :admin="false"/>-->
     <main>
       <SnkLogin 
         container 
@@ -19,7 +19,7 @@
 
 <script>
 import SnkFootersComp from '../components/SnkFootersComp.vue'
-  import SnkHeader from '../components/SnkHeader.vue'
+  // import SnkHeader from '../components/SnkHeader.vue'
   import SnkLogin from '../components/SnkLogin.vue'
   import SnkPreCadastro from '../components/usuario/SnkPreCadastro.vue'
   import SnkForgotPassword from '../components/usuario/SnkForgotPassword.vue'
@@ -27,7 +27,7 @@ import SnkFootersComp from '../components/SnkFootersComp.vue'
   export default {
     name: 'SnkViewLogin',
     components: {
-      SnkHeader,
+      // SnkHeader,
       SnkLogin,
       SnkPreCadastro,
       SnkForgotPassword,

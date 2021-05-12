@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <SnkHeader :snk_title="title" :admin="false"/>
+<!--    <SnkHeader :snk_title="title" :admin="false"/>-->
     <SnkCarrossel/>
     <SnkCatalogo @addCar="addCar" class="SnkCatalogo"/>
     <SnkFootersComp/>
@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import SnkHeader from '../components/SnkHeader.vue'
+// import SnkHeader from '../components/SnkHeader.vue'
 import SnkCarrossel from '../components/SnkCarrossel.vue'
 import SnkCatalogo from '../components/SnkCatalogo.vue'
 import SnkFootersComp from '../components/SnkFootersComp'
 export default {
     name: 'SnkShop',
     components : {
-      SnkHeader,
+      // SnkHeader,
       SnkCarrossel,
       SnkCatalogo,
       SnkFootersComp

@@ -1,7 +1,7 @@
 <template>
     <v-app>
+        <SnkAppBar />
         <v-main>
-            <SnkAppBar />
             <router-view/>
         </v-main>
     </v-app>
