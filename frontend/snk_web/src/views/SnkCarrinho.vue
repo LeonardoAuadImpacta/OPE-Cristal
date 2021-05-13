@@ -93,9 +93,10 @@
 <script>
 import SnkFootersComp from "../components/SnkFootersComp";
 import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
-import SnkEndereco from "../components/compra/SnkEndereco.vue";
+import SnkEndereco from "../components/endereco/SnkEndereco.vue";
 import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
 import {preferencia as preferenciaController}  from '../controller/SnkMercadoPagoController'
+import {selecionarEndereco as selecionarEnderecoController} from "../controller/SnkEnderecoController";
 
 
 export default {
@@ -157,6 +158,7 @@ export default {
     },
     confimarEndereco() {
       if (this.endereco != null) {
+        selecionarEnderecoController(this.endereco.id, this.$store.state.carrinho.id)
         this.e6 = 3;
       } else {
         // TODO dialog select agree

@@ -23,4 +23,8 @@ const findOrCreateCarrinhoByIdCliente = async (idCliente) => {
   return Http.post("/carrinho", { idCliente });
 };
 
-export { getCarrinhoByIdCliente, findOrCreateCarrinhoByIdCliente };
+const selecionarEndereco = async (idCarrinho,idEndereco) => {
+  return Http.post("/carrinho/endereco", { idCarrinho, idEndereco });
+};
+
+export { getCarrinhoByIdCliente, findOrCreateCarrinhoByIdCliente, selecionarEndereco };

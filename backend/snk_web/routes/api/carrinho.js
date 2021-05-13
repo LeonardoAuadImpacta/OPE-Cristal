@@ -46,10 +46,31 @@ const findOrCreateCarrinhoSchema = {
   //},
 };
 
+const selecionarEnderecoSchema = {
+  idCarrinho: {
+    in: ["body"],
+    errorMessage: "Id do carrinho inválido",
+    isEmpty: { negated: true },
+    isInt: true,
+  },
+  idEndereco: {
+    in: ["body"],
+    errorMessage: "Id do endereço inválido",
+    isInt: {
+      errorMessage: "Id do endereço precisa ser numérico",
+    },
+    isEmpty: { negated: true },
+  },
+};
 router.post(
   "/",
   validate([checkSchema(findOrCreateCarrinhoSchema)]),
   carrinhoController.findOrCreate
+);
+router.post(
+  "/endereco",
+  validate([checkSchema(selecionarEnderecoSchema)]),
+  carrinhoController.selecionarEndereco
 );
 
 const listCarrinhoSchema = {

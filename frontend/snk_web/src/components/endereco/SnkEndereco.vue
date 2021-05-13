@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import { listEnderecoByIdCliente } from '../../controller/SnkEnderecoController.js';
-import SnkCriacaoEndereco from '../../components/endereco/SnkCriacaoEndereco'
+import { listEnderecoByIdCliente} from '../../controller/SnkEnderecoController.js';
+import SnkCriacaoEndereco from './SnkCriacaoEndereco'
 export default {
     data() {
         return {
@@ -49,6 +49,7 @@ export default {
     methods: {
         selecionarEndereco(endereco){
             this.$emit("selecionarEndereco",endereco);
+
         },
         SucessoCadastroEndereco() {
             const idCliente = this.$store.state.session.id;

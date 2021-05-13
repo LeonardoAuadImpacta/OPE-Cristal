@@ -59,35 +59,48 @@
                 <v-list nav dense>
                     <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
                         <v-list-item>
-                            <router-link to="/" class="snk-flex">
+                            <router-link to="/shop" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
-                                        mdi-home
+                                        mdi-store
                                     </v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-title>
-                                    Home
+                                    Catálogo
                                 </v-list-item-title>
                             </router-link>
                         </v-list-item>
                         <v-list-item>
-                            <router-link to="/shop" class="snk-flex">
+                            <router-link to="/account" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
                                         mdi-account
                                     </v-icon>
                                 </v-list-item-icon>
-                                <v-list-item-title>Catalogo</v-list-item-title>
+                                <v-list-item-title>Perfil</v-list-item-title>
                             </router-link>
                         </v-list-item>
                         <v-list-item>
-                            <router-link to="/confirma" class="snk-flex">
+                            <router-link to="/acquisitions" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
-                                        mdi-plus
+                                        mdi-table-multiple
                                     </v-icon>
                                 </v-list-item-icon>
-                                <v-list-item-title>Confirma</v-list-item-title>
+                                <v-list-item-title>Compras</v-list-item-title>
+                            </router-link>
+                        </v-list-item>
+                        <v-list-item>
+                            <router-link to="/carrinho"
+                                         class="snk-flex"
+                            >
+                                <v-list-item-icon>
+                                    <v-icon>
+                                        mdi-cart-outline
+                                    </v-icon>
+
+                                </v-list-item-icon>
+                                <v-list-item-title>Carrinho : {{addCar}} {{strItens}}</v-list-item-title>
                             </router-link>
                         </v-list-item>
                     </v-list-item-group>
@@ -125,6 +138,9 @@
             addCar() {
                 return this.$store.state.carrinho.itens.length
             },
+            strItens() {
+                return this.addCar > 1 ? "Itens" : "Item"
+            },
 
             logged() {
                 return this.$store.state.session != null
@@ -149,6 +165,7 @@
     .snk-logo-in {
         max-width: 8vh;
     }
+
     .container-in {
         /*margin: 0 auto;*/
         display: flex;
