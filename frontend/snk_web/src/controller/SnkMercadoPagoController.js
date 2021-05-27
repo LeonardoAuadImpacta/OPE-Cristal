@@ -1,8 +1,8 @@
 import { criarPreferencia as serviceCriarPreferencia } from "../service/MercadoPagoService";
 
 
-export const preferencia =  function(order) {
-    return serviceCriarPreferencia(order)
+export const preferencia =  function(idCarrinho) {
+    return serviceCriarPreferencia(idCarrinho)
                 .then(function(response) {
                     return response.data;
                 })

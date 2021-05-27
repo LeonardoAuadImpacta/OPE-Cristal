@@ -81,6 +81,16 @@
                             </router-link>
                         </v-list-item>
                         <v-list-item>
+                            <router-link to="/address" class="snk-flex">
+                                <v-list-item-icon>
+                                    <v-icon>
+                                        mdi-map-marker-multiple
+                                    </v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-title>Endereços</v-list-item-title>
+                            </router-link>
+                        </v-list-item>
+                        <v-list-item>
                             <router-link to="/acquisitions" class="snk-flex">
                                 <v-list-item-icon>
                                     <v-icon>
@@ -139,7 +149,7 @@
                 return this.$store.state.carrinho.itens.length
             },
             strItens() {
-                return this.addCar > 1 ? "Itens" : "Item"
+                return this.addCar  > 1 ? "Itens" : "Item"
             },
 
             logged() {

@@ -40,6 +40,9 @@ Pedido.init(
       }),
       allowNull: false,
     },
+    preference_id: {
+        type: DataTypes.STRING
+    }
   },
   {
     sequelize,

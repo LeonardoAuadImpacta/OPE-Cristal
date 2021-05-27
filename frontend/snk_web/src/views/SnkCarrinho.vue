@@ -1,8 +1,5 @@
 <template>
   <v-main>
-    <router-link to="/shop">
-      voltar
-    </router-link>
     <v-stepper v-model="e6" vertical dark>
       <v-stepper-step :complete="e6 > 1" step="1" color="#aa2514">
         Carrinho
@@ -39,7 +36,7 @@
         Confirmar Compra
       </v-stepper-step>
       <v-stepper-content step="3">
-        <SnkConfirmaCompraSnk :info="info" />
+<!--        <SnkConfirmaCompraSnk :info="info" />-->
 
         <div>
           <v-dialog v-model="dialog" width="500">
@@ -94,7 +91,7 @@
 import SnkFootersComp from "../components/SnkFootersComp";
 import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
 import SnkEndereco from "../components/endereco/SnkEndereco.vue";
-import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
+// import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
 import {preferencia as preferenciaController}  from '../controller/SnkMercadoPagoController'
 import {selecionarEndereco as selecionarEnderecoController} from "../controller/SnkEnderecoController";
 
@@ -104,7 +101,7 @@ export default {
     SnkFootersComp,
     SnkTableCarrinho,
     SnkEndereco,
-    SnkConfirmaCompraSnk
+    // SnkConfirmaCompraSnk
   },
   name: "SnkCarrinho",
   data() {
@@ -169,7 +166,7 @@ export default {
     },
     fecharPedido() {
       // TODO enviar pedido pro back
-      preferenciaController({},this)
+      preferenciaController(this.$store.state.carrinho.id,this)
       //this.$store.commit("fecharPedito");
       //this.$router.push({ name: "SnkShop" });
     }
