@@ -6,11 +6,12 @@ export const login =  function(email,password,view) {
                 .then( res => {
                     if(res.status == 200) {
                         
-                        let response = res.data;
-                        view.$store.commit("setUserSession", response);
-                        if(response.profile == "ADMIN") {
+                      const cliente = res.data;
+                        view.$store.commit("setUserSession", cliente);
+                        if(cliente.profile == "ADMIN") {
                             view.$router.push({ name: 'SnkAdmin' });
                         }else {
+                            view.$store.dispatch("setCarrinho", {idCliente: cliente.id});
                             view.$router.push({ name: 'SnkShop' });
                         }
                     }
@@ -19,13 +20,20 @@ export const login =  function(email,password,view) {
                     }
                 })
                 .catch(error => {
-                    error.response.data.details.forEach((det,i) =>{
-                        setTimeout(() => {
-                            view.error = true
-                            view.flagAlert(det.msg)
-                        }, i * view.timeAlert * 1.5);
-                    })
+                    let status = error.response.status
+
+                    if (status == 400) {
+                        error.response.data.details.forEach((det,i) =>{
+                            setTimeout(() => {
+                                view.flagAlert(det.msg)
+                            }, i * view.timeAlert * 1.5);
+                        })
+                    }
+                    
+                    if(status == 403 || status == 401) {
+                        view.flagAlert(error.response.data.message)
+                    }
+                    
                 });
 
 }
-                

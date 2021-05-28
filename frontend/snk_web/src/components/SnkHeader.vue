@@ -1,106 +1,107 @@
 <template>
     <div>
         <v-card class="snk-dk">
-            <div 
-            class="body-top"
-            > 
+            <div
+                    class="body-top"
+            >
 
             </div>
-            <div 
-            v-if="logged" 
-            class="header"
+            <div
+                    v-if="logged"
+                    class="header"
             >
-                <div  
-                class="snk-flex"
+                <div
+                        class="snk-flex"
                 >
-                    <img 
-                    class="snk-logo" 
-                    src="../assets/mini_logo.png"/>
+                    <img
+                            class="snk-logo"
+                            src="../assets/mini_logo.png"/>
                     <h1>
                         {{snk_title}}
                     </h1>
                 </div>
 
-                <div 
-                class="snk-filtro"
+                <div
+                        class="snk-filtro"
                 >
                     <v-text-field
-                        label="Pesquisar"
-                        placeholder="Ex: Nike, tamanho 41, azul"
-                        outlined
-                        dense
-                        color=#aa2514
-                        append-icon='mdi-magnify'
+                            label="Pesquisar"
+                            placeholder="Ex: Nike, tamanho 41, azul"
+                            outlined
+                            dense
+                            color=#aa2514
+                            append-icon='mdi-magnify'
                     ></v-text-field>
                 </div>
 
                 <router-link to="/carrinho"
-                style="text-decoration: none; color: inherit;"
-                v-if="!admin"
+                             style="text-decoration: none; color: inherit;"
+                             v-if="!admin"
                 >
                     {{addCar}}
                     <v-icon>
                         mdi-cart-outline
                     </v-icon>
                 </router-link>
-            
-                <div  class="snk-flex">
+
+                <div class="snk-flex">
                     <img :src="urlImg" class="userPhoto"/>
                     <p>{{username}}</p>
                     <v-icon
-                        color="#aa2514"
-                        x-large   
-                        @click="logout()" 
-                        class="snk-logout snk-cursor-pointer" >
-                    mdi-logout</v-icon>
+                            color="#aa2514"
+                            x-large
+                            @click="logout()"
+                            class="snk-logout snk-cursor-pointer">
+                        mdi-logout
+                    </v-icon>
                 </div>
             </div>
 
             <div v-if="false==logged" class="header off">
                 <img class="snk-logo" src="../assets/mini_logo.png"/>
                 <h1>{{snk_title}}</h1>
-                <router-link  to="/login"><label>ENTRAR</label></router-link>
+                <router-link to="/login"><label>ENTRAR</label></router-link>
             </div>
         </v-card>
 
         <v-card class="snk-mb">
-            <div 
-            class="body-top"
-            > 
+            <div
+                    class="body-top"
+            >
 
             </div>
-            <div 
-            v-if="logged" 
-            class="header"
+            <div
+                    v-if="logged"
+                    class="header"
             >
-                <div  class="snk-flex">
+                <div class="snk-flex">
                     <img :src="urlImg" class="userPhoto"/>
                     <p>{{username}}</p>
                 </div>
-                <div  
-                class="snk-flex"
+                <div
+                        class="snk-flex"
                 >
-                    <img 
-                    class="snk-logo" 
-                    src="../assets/mini_logo.png"/>
+                    <img
+                            class="snk-logo"
+                            src="../assets/mini_logo.png"/>
                     <h1>
                         {{snk_title}}
                     </h1>
                 </div>
-                 <router-link to="/carrinho"
-                    style="text-decoration: none; color: inherit;"
-                    >
-                        {{addCar}}
-                        <v-icon>
-                            mdi-cart-outline
-                        </v-icon>
+                <router-link to="/carrinho"
+                             style="text-decoration: none; color: inherit;"
+                >
+                    {{addCar}}
+                    <v-icon>
+                        mdi-cart-outline
+                    </v-icon>
                 </router-link>
 
                 <v-icon
-                    color="#aa2514"
-                    x-large   
-                    @click="logout()" 
-                    class="snk-logout snk-cursor-pointer">
+                        color="#aa2514"
+                        x-large
+                        @click="logout()"
+                        class="snk-logout snk-cursor-pointer">
                     mdi-logout
                 </v-icon>
             </div>
@@ -108,71 +109,65 @@
             <div v-if="false==logged" class="header off">
                 <img class="snk-logo" src="../assets/mini_logo.png"/>
                 <h1>{{snk_title}}</h1>
-                <router-link  to="/login"><label>ENTRAR</label></router-link>
+                <router-link to="/login"><label>ENTRAR</label></router-link>
             </div>
         </v-card>
-    </div>   
+    </div>
 </template>
 
 <script>
-export default {
-    components: {
-        
-    },
-    name:'SnkHeader',
-    props: {
-        snk_title: String,
-        admin: false
-    },
-    data() {
-        return {
-            urlImg: "https://scontent.fcgh24-1.fna.fbcdn.net/v/t1.0-9/109539824_1988370634628013_858700618360225499_o.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGoLQv_-crNGasn5UNDWmkD4eUaCUcKhYnh5RoJRwqFiYyLCFpQY7F7w1Buvscm6IQ6ZvISsFvO6aJHtB799hCU&_nc_ohc=5wUEjOgNOlQAX-YVCmy&_nc_ht=scontent.fcgh24-1.fna&oh=c159353b950ee4e673a5b73daed8126c&oe=606B1234",
-            username: 'Kito' ,
-            admin: false 
-        
-        }
-    },
-    methods : {
-        logout: function() {
-           
-            this.$store.commit("logout");
-            this.$router.push({ name: 'SnkViewLogin' });
-        }
-    },
-    mounted(){
-        let session = this.$store.state.session
-        if (session) {
-            this.logado = true
-        }else {
-            this.logado = false
-        }        
-    },
-    computed: {
-        addCar() {
-            return this.$store.state.carrinho.length
+    export default {
+        components: {},
+        name: 'SnkHeader',
+        props: {
+            snk_title: String
         },
+        data() {
+            return {
+                admin: false
+            }
+        },
+        methods: {
+            logout: function () {
 
-        logged() {
-            return this.$store.state.session != null
-        } 
+                this.$store.commit("logout");
+                this.$router.push({name: 'SnkViewLogin'});
+            }
+        },
+        computed: {
+            addCar() {
+                return this.$store.state.carrinho.itens.length
+            },
+
+            logged() {
+                return this.$store.state.session != null
+            },
+            username() {
+                return this.$store.state.session.username
+            },
+            urlImg() {
+                return this.$store.state.session.urlProfile
+            }
+        }
+
     }
-
-}
 </script>
 
 <style scoped>
 
-    .body-top, .header{
+    .body-top, .header {
         height: 10vh;
         width: 100%;
     }
-    .body-top{
+
+    .body-top {
         position: relative;
     }
+
     .header {
         z-index: 2;
-        max-height:10vh ;
-        background-color:rgba(240, 240, 240) ;
+        max-height: 10vh;
+        background-color: rgba(240, 240, 240);
         position: fixed;
         top: 0;
         display: inline-flex;
@@ -190,10 +185,12 @@ export default {
         margin-block-start: 0;
         margin-block-end: 0;
     }
+
     .header .snk-logo {
         max-height: 8vh;
     }
-    .snk-flex{
+
+    .snk-flex {
         background-color: rgba(0, 0, 0, 0);
         justify-content: flex-start;
         align-items: center;
@@ -205,22 +202,27 @@ export default {
         margin-right: 10%;
         border-radius: 50%;
     }
-    .snk-logout{
+
+    .snk-logout {
         max-width: 8vh;
         margin-right: 2%;
         margin-left: 30%;
     }
+
     .off {
         justify-content: center;
     }
+
     .snk-filtro {
         width: 10%;
         transition: 1s;
     }
-    .snk-filtro:focus-within  {
+
+    .snk-filtro:focus-within {
         width: 50%;
     }
-    .v-text-field{
+
+    .v-text-field {
         top: 2vh;
         width: 100%;
         padding-right: 100%;
@@ -230,7 +232,7 @@ export default {
         display: none;
     }
 
-    @media (max-width:800px) {
+    @media (max-width: 800px) {
         .snk-mb {
             display: block;
         }
@@ -238,13 +240,15 @@ export default {
         .snk-dk {
             display: none;
         }
-        .snk-flex h1{
+
+        .snk-flex h1 {
             font-size: 20pt;
         }
+
         .snk-logout {
             margin-right: 2%;
             margin-left: 0%;
         }
-        
+
     }
 </style>>

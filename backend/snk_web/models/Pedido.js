@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../lib/database");
+const Carrinho = require("./Carrinho");
 
 const Cliente = require("./Cliente");
 
@@ -10,6 +11,7 @@ Pedido.init(
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
+      autoIncrement: true,
     },
     idCliente: {
       type: DataTypes.BIGINT,
@@ -18,21 +20,36 @@ Pedido.init(
         key: "id",
       },
     },
-    desconto: {
-      type: DataTypes.DECIMAL(8, 2),
+    idCarrinho: {
+      type: DataTypes.BIGINT,
+      references: {
+        model: Carrinho,
+        key: "id",
+      },
     },
     status: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.ENUM({
+        values: [
+          "COMPLETED",
+          "CANCELED",
+          "AWAITING_PAYMENT",
+          "CONFIRMED",
+          "DISPATCHED",
+          "IN_TRANSIT",
+        ],
+      }),
       allowNull: false,
     },
+    preference_id: {
+        type: DataTypes.STRING
+    }
   },
   {
     sequelize,
-    modelName: "Pedido",
+    modelName: "pedido",
+    freezeTableName: true,
+    timestamps: true,
   }
 );
-
-// the defined model is the class itself
-console.log(Pedido === models.Pedido); // true
 
 module.exports = Pedido;

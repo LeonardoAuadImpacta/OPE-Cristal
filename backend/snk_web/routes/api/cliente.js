@@ -1,9 +1,10 @@
 const express = require("express");
-const router = express.Router();
 const { checkSchema } = require("express-validator");
 
 const validate = require("../../middlewares/validation");
 const clienteController = require("../../controllers/cliente");
+
+const router = express.Router();
 
 const createClienteSchema = {
   nome: {
@@ -16,11 +17,10 @@ const createClienteSchema = {
     errorMessage: "Sobrenome inválido",
     isEmpty: { negated: true },
   },
-  dataNascimento: {
+  pseudonimo: {
     in: ["body"],
-    errorMessage: "Data de nascimento inválida",
-    isDate: true,
-    toDate: true,
+    errorMessage: "Pseudônimo inválido",
+    isEmpty: { negated: true },
   },
   email: {
     in: ["body"],
@@ -35,22 +35,6 @@ const createClienteSchema = {
       errorMessage: "Senha deve possuir no mínimo 8 caracteres",
       options: { min: 8 },
     },
-  },
-  genero: {
-    in: ["body"],
-    errorMessage: "Gênero inválido",
-    isEmpty: { negated: true },
-  },
-  enderecoRua: {
-    in: ["body"],
-    isEmpty: { negated: true },
-  },
-  enderecoNumero: {
-    in: ["body"],
-    isEmpty: { negated: true },
-  },
-  enderecoComplemento: {
-    in: ["body"],
   },
   telefone: {
     in: ["body"],

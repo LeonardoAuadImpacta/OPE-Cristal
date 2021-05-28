@@ -7,8 +7,9 @@
 </template>
 
 <script>
-import SnkCard from '../components/SnkCard.vue'
-import cards from '../assets/mock_service/ProdutosMockService.json'
+import SnkCard from '../components/SnkCard'
+import { listProdutos } from '../controller/SnkProdutoController';
+
 export default {
     name: 'SnkCatalogo',
     components: {
@@ -16,12 +17,20 @@ export default {
     },
     data () {
         return {
-           cards: cards
+          page: 1,
+          limit: 10,
+          cards: []
         }
     },
     methods: {
-        
-    }
+        listarProdutos () {
+          return listProdutos(this.page, this.limit, this);
+        }
+    },
+  created () {
+    this.listarProdutos();
+    this.$store.dispatch("setCarrinho", { idCliente: this.$store.state.session.id });
+  }
 }
 </script>
 

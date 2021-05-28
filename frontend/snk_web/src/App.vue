@@ -1,21 +1,25 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+    <v-app>
+        <SnkAppBar />
+        <v-main>
+            <router-view/>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-export default {
+    import SnkAppBar from "./components/SnkAppBar";
 
-  name: 'App',
+    export default {
 
-  components: {
-  },
+        name: 'App',
 
-  data: () => ({
-    //
-  }),
-};
+        components: {
+            SnkAppBar
+        },
+
+        data: () => ({
+            //
+        }),
+    };
 </script>

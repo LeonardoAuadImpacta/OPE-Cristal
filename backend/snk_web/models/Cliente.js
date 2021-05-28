@@ -1,57 +1,61 @@
-const { DataTypes, Model } = require("sequelize");
+const {DataTypes, Model} = require("sequelize");
 const sequelize = require("../lib/database");
 
-class Cliente extends Model {}
+class Cliente extends Model {
+}
 
 Cliente.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true,
+    {
+        id: {
+            type: DataTypes.BIGINT,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        sobrenome: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        pseudonimo: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        telefone: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING(1024),
+            allowNull: false,
+            unique: true
+        },
+        senha: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        senhaSalt: {
+            type: DataTypes.STRING,
+        },
+        profile: {
+            type: DataTypes.ENUM({
+                values: ["ADMIN", "CUSTOMER"],
+            }),
+            allowNull: false,
+        },
+        imgProfile: {
+            type: DataTypes.STRING(1000),
+            allowNull: false
+        },
     },
-    nome: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-    },
-    sobrenome: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-    },
-    telefone: {
-      type: DataTypes.STRING(16),
-      allowNull: false,
-    },
-    enderecoRua: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    enderecoNumero: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
-    },
-    enderecoComplemento: {
-      type: DataTypes.STRING(30),
-    },
-    email: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      unique: true,
-    },
-    senha: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-    },
-    senhaSalt: {
-      type: DataTypes.STRING,
-    },
-  },
-  {
-    sequelize,
-    modelName: "cliente",
-    freezeTableName: true,
-    timstamps: true,
-  }
+    {
+        sequelize,
+        modelName: "cliente",
+        freezeTableName: true,
+        timestamps: true,
+    }
 );
 
 module.exports = Cliente;

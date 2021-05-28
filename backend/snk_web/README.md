@@ -24,11 +24,41 @@ nvm use
 
 ## Desenvolvimento
 
+### Scripts
+
+Os scripts devem ser executados da raiz do projeto Node.JS:
+
+```bash
+cd snk_web
+```
+
+Scripts disponíveis:
+
+- `npm run dev`: inicia servidor web
+- `npm run sync-db`: sincroniza entidades no banco de dados de acordo com as Models
+- `npm run seed-db`: popula banco de dados com informações de **Produto** e **Cliente**
+- `npm run restart-db`: reinicializa o banco de dados com dados (sync-db + seed-db)
+- `npm run prettier`: aplica formatação padrão de estilo no código
+
 ### Servidor web
 
-Execute o comando `npm install` na raiz do projeto para instalar as dependências.
+Entre na pasta raiz:
 
-Para subir o servidor local execute `npm run dev`.
+```bash
+cd snk_web
+```
+
+[Opcional] Instale as dependências:
+
+```bash
+npm install
+```
+
+Para subir o servidor local:
+
+```bash
+npm run dev
+```
 
 O servidor será inicializado na porta padrão `:3000`, e estará disponível em `localhost:3000`.
 
@@ -40,7 +70,7 @@ Entre na raiz do projeto `cd snk_web` e execute o comando `docker-compose up`.\
 
 A sua instância do MySQL deverá subir e os logs aparecerão na sua sessão do terminal.\
 
-Caso queira deixar a instância rodando em background, adicione "&" ao final do comando: `docker-compose up &`.
+Caso queira deixar a instância rodando em background, adicione "&" ao final do comando: `docker-compose up -d`.
 
 Para conferir se a instância subiu, execute `docker ps`, uma instância com nome `backend_db_1` deverá aparecer.
 
