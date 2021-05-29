@@ -11,7 +11,8 @@ module.exports = {
         email: "customer@email.com",
         senha: "1234abcd",
         profile: "CUSTOMER",
-        imgProfile: "https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png",
+        imgProfile:
+          "https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -23,7 +24,8 @@ module.exports = {
         email: "admin@email.com",
         senha: "1234abcd",
         profile: "ADMIN",
-        imgProfile: "https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png",
+        imgProfile:
+          "https://ryanacademy.ie/wp-content/uploads/2017/04/user-placeholder.png",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

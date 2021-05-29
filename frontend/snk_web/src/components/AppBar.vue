@@ -1,26 +1,13 @@
 <template>
-  <v-card
-    class="mx-auto overflow-hidden"
-    height="400"
-  >
-    <v-app-bar
-      color="#aa2514"
-      dark
-    >
+  <v-card class="mx-auto overflow-hidden" height="400">
+    <v-app-bar color="#aa2514" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>{{title}}</v-toolbar-title>
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-app-bar>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list nav dense>
         <v-list-item-group
           v-model="group"
           active-class="deep-purple--text text--accent-4"
@@ -44,19 +31,16 @@
   </v-card>
 </template>
 
-
 <script>
-  export default {
-    props: {
-        title: String    
-    },
-    data: () => ({
-      drawer: false,
-      group: null,
-    }),
-  }
+export default {
+  props: {
+    title: String,
+  },
+  data: () => ({
+    drawer: false,
+    group: null,
+  }),
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -21,21 +21,21 @@ const createPedidoSchema = {
   },
   // Status padrão é utilizado no controller
   //status: {
-    //in: ["body"],
-    //errorMessage: "Status inválido",
-    //isEmpty: { negated: true },
-    //isIn: {
-      //options: [
-        //[
-          //"COMPLETED",
-          //"CANCELED",
-          //"AWAITING_PAYMENT",
-          //"CONFIRMED",
-          //"DISPATCHED",
-          //"IN_TRANSIT",
-        //],
-      //],
-    //},
+  //in: ["body"],
+  //errorMessage: "Status inválido",
+  //isEmpty: { negated: true },
+  //isIn: {
+  //options: [
+  //[
+  //"COMPLETED",
+  //"CANCELED",
+  //"AWAITING_PAYMENT",
+  //"CONFIRMED",
+  //"DISPATCHED",
+  //"IN_TRANSIT",
+  //],
+  //],
+  //},
   //},
 };
 

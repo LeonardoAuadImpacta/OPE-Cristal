@@ -39,11 +39,11 @@ module.exports = {
     return [
       queryInterface.removeConstraint(
         "item_carrinho",
-        "fk_item_carrinho_produto",
+        "fk_item_carrinho_produto"
       ),
       queryInterface.removeConstraint(
         "item_carrinho",
-        "fk_item_carrinho_carrinho",
+        "fk_item_carrinho_carrinho"
       ),
     ];
   },

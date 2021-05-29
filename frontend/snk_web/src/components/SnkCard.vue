@@ -52,7 +52,6 @@
 </template>
 
 <script>
-
 export default {
   name: "SnkCard",
   props: {
@@ -80,7 +79,7 @@ export default {
       setTimeout(() => (this.carPlus = false), 500);
       this.$store.dispatch("adicionarItem", {
         idCarrinho: this.$store.state.carrinho.id,
-        idProduto: card.id
+        idProduto: card.id,
       });
     },
   },
