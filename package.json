@@ -20,6 +20,6 @@
   },
   "lint-staged": {
     "backend/snk_web/**/*.{js,css,md}": "prettier --write",
-    "frontend/snk_web/**/*.{js,css,md}": "prettier --write"
+    "frontend/snk_web/**/*.{js,css,md,vue}": "prettier --write"
   }
 }
