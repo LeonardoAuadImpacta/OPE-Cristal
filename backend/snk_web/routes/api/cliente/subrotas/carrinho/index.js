@@ -33,7 +33,10 @@ router.post(
   "/",
   validate([checkSchema(findOrCreateCarrinhoSchema)]),
   checkRelation((req) => {
-    return req.cliente.enderecos.some((c) => c.id === req.params.idEndereco);
+    return (
+      !req.params.idEndereco ||
+      req.cliente.enderecos.some((c) => c.id === req.params.idEndereco)
+    );
   }),
   carrinhoController.findOrCreate
 );

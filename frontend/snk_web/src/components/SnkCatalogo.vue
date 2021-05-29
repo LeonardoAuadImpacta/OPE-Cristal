@@ -27,7 +27,7 @@ export default {
       return listProdutos(this.page, this.limit, this);
     },
   },
-  created() {
+  mounted() {
     this.listarProdutos();
     this.$store.dispatch("setCarrinho", {
       idCliente: this.$store.state.session.id,

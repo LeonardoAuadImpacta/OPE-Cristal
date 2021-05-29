@@ -1,4 +1,4 @@
-import axios from "../config/http"; // não precisa de .js
+import axios from "axios";
 
 /**
  * Busca endereço a partir do id do cliente.
@@ -29,8 +29,7 @@ const createEndereco = function (
   idCliente,
   { uf, cidade, bairro, rua, numero, complemento, cep }
 ) {
-  return axios.post("/endereco", {
-    idCliente,
+  return axios.post(`cliente/${idCliente}/endereco`, {
     uf,
     cidade,
     bairro,

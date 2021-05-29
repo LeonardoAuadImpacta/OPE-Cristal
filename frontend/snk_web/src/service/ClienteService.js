@@ -1,4 +1,5 @@
-import axios from "../config/http"; // não precisa de .js
+import axios from "axios";
+
 /**
  * Cria um usuário
  *

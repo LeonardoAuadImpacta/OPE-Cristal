@@ -13,7 +13,7 @@ import axios from "../config/http";
  * @returns {Promise}
  */
 const createPedido = async ({ idCliente, idCarrinho }) => {
-  return await axios.post("/pedido", { idCliente, idCarrinho });
+  return await axios.post(`/cliente/${idCliente}/pedido`, { idCarrinho });
 };
 
 export { createPedido };

@@ -9,6 +9,7 @@ export const login = function (email, password, view) {
         if (cliente.profile == "ADMIN") {
           view.$router.push({ name: "SnkAdmin" });
         } else {
+          view.$store.commit("setToken", cliente.token);
           view.$store.dispatch("setCarrinho", { idCliente: cliente.id });
           view.$router.push({ name: "SnkShop" });
         }

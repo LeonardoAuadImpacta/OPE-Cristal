@@ -43,7 +43,12 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Max-Age", "86400");
   app.use(cors());
-  next();
+
+  if (req.method === "OPTIONS") {
+    res.send(200);
+  } else {
+    next();
+  }
 });
 
 app.use(logger("dev"));

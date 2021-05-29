@@ -36,8 +36,8 @@ const listEnderecoByIdCliente = (idCliente, view) => {
     });
 };
 
-const selecionarEndereco = (idCarrinho, idEndereco) => {
-  return _selecionarEndereco(idCarrinho, idEndereco);
+const selecionarEndereco = (idCliente, idCarrinho, idEndereco) => {
+  return _selecionarEndereco(idCliente, idCarrinho, idEndereco);
 };
 
 export { createEndereco, listEnderecoByIdCliente, selecionarEndereco };
