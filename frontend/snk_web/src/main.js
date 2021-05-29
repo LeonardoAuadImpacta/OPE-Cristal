@@ -6,16 +6,12 @@ import store from './store'
 import axios from 'axios'
 import VMask from 'v-mask'
 
-    
-
-
 Vue.use(VMask)
-
 
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios
-axios.defaults.baseURL = "https://ope-cristal-backend.herokuapp.com/api/v1/"
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API_URL || "http://localhost:3000/api/v1/"
 
 new Vue({
   vuetify,
