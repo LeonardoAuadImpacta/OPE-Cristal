@@ -5,11 +5,15 @@
         <div class="snk-bar snk-flex">
           <v-app-bar-nav-icon @click="drawer = true" />
 
-          <v-img class="snk-logo" src="../assets/mini_logo.png" />
+          <router-link to="/">
+            <v-img class="snk-logo" src="../assets/mini_logo.png" />
+          </router-link>
           <v-toolbar-title>
-            <h1>
-              {{ snk_title }}
-            </h1>
+            <router-link to="/">
+              <h1>
+                {{ snk_title }}
+              </h1>
+            </router-link>
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
