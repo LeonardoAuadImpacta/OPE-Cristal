@@ -6,7 +6,7 @@ const PedidoModel = require("../models/Pedido");
 const CarrinhoModel = require("../models/Carrinho");
 
 const criarPreferencia = async (req, res, next) => {
-  const idCarrinho = req.params.idCarrinho;
+  const idCarrinho = req.body.idCarrinho;
   const carrinho = await CarrinhoModel.findOne({
     where: {
       id: idCarrinho,
