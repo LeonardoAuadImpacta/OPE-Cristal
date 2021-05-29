@@ -34,4 +34,28 @@ const createCliente = function (
   });
 };
 
-export { createCliente };
+const createAdmin = function ({
+  nome,
+  sobrenome,
+  telefone,
+  pseudonimo,
+  email,
+  senha,
+  imgProfile,
+}) {
+  return axios.post("/cliente/admin", {
+    nome,
+    sobrenome,
+    telefone,
+    pseudonimo,
+    email,
+    senha,
+    imgProfile,
+  });
+};
+
+const listAdmin = () => {
+  return axios.get("/cliente");
+};
+
+export { createCliente, createAdmin, listAdmin };
