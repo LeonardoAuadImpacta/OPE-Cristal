@@ -8,8 +8,9 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "ASnkViewLoginpp",
-    component: SnkViewLogin,
+    name: "Home",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/SnkShop.vue"),
   },
   {
     path: "/shop",
