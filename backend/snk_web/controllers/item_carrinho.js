@@ -103,7 +103,7 @@ const decrementOrDelete = async (req, res, next) => {
 const list = async (req, res, next) => {
   const item_carrinhos = await ItemCarrinhoModel.findAll({
     where: {
-      idCarrinho: req.query.idCarrinho,
+      idCarrinho: req.params.idCarrinho,
     },
     include: ProdutoModel,
   });

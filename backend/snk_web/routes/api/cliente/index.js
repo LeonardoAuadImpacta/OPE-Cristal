@@ -1,8 +1,16 @@
 const express = require("express");
 const { checkSchema } = require("express-validator");
 
-const validate = require("../../middlewares/validation");
-const clienteController = require("../../controllers/cliente");
+const auth = require("../../../middlewares/auth");
+const validate = require("../../../middlewares/validation");
+
+const subRoutes = require("./subrotas");
+
+const ClienteModel = require("../../../models/Cliente");
+const PedidoModel = require("../../../models/Pedido");
+const CarrinhoModel = require("../../../models/Carrinho");
+const EnderecoModel = require("../../../models/Endereco");
+const clienteController = require("../../../controllers/cliente");
 
 const router = express.Router();
 
@@ -40,6 +48,10 @@ const createClienteSchema = {
     in: ["body"],
     isEmpty: { negated: true },
   },
+  imgProfile: {
+    in: ["body"],
+    isEmpty: { negated: true },
+  },
 };
 
 router.post(
@@ -59,8 +71,40 @@ const getClienteSchema = {
 
 router.get(
   "/:id",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
   validate([checkSchema(getClienteSchema)]),
   clienteController.get
+);
+
+// Sub-rotas
+const subRotaSchema = {
+  idCliente: {
+    in: ["params"],
+    errorMessage: "Id de cliente inválido",
+    isInt: true,
+    toInt: true,
+  },
+};
+
+router.param("idCliente", async (req, res, next, id) => {
+  const cliente = await ClienteModel.findOne({
+    where: { id },
+    include: [
+      { model: PedidoModel, as: "pedidos" },
+      { model: CarrinhoModel, as: "carrinhos" },
+      { model: EnderecoModel, as: "enderecos" },
+    ],
+  });
+  req.cliente = cliente;
+  next();
+});
+router.use(
+  "/:idCliente",
+  auth.verifyJWT,
+  validate([checkSchema(subRotaSchema)]),
+  auth.authorized("CUSTOMER/<idCliente>"),
+  subRoutes
 );
 
 module.exports = router;
