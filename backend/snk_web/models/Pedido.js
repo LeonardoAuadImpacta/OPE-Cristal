@@ -41,8 +41,8 @@ Pedido.init(
       allowNull: false,
     },
     preference_id: {
-        type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   },
   {
     sequelize,
