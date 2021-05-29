@@ -11,9 +11,7 @@
         <v-btn color="#aa2514" class="white--text" @click="e6 = 2">
           Continue
         </v-btn>
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <v-btn text> Cancel </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 2" step="2" color="#aa2514">
@@ -25,18 +23,14 @@
         <v-btn color="#aa2514" @click="confimarEndereco" class="white--text">
           Continue
         </v-btn>
-        <v-btn text @click="e6 = 1">
-          Cancel
-        </v-btn>
+        <v-btn text @click="e6 = 1"> Cancel </v-btn>
       </v-stepper-content>
-
-   
 
       <v-stepper-step color="#aa2514" step="3">
         Confirmar Compra
       </v-stepper-step>
       <v-stepper-content step="3">
-<!--        <SnkConfirmaCompraSnk :info="info" />-->
+        <!--        <SnkConfirmaCompraSnk :info="info" />-->
 
         <div>
           <v-dialog v-model="dialog" width="500">
@@ -60,24 +54,20 @@
 
               <v-card-text>
                 Seu pedido será processado e código de rastreio enviado.
-                Acompanhe seus pedidos na aba "Minhas Compras"
-                Todo processo de compra é realizado via mercado pago
+                Acompanhe seus pedidos na aba "Minhas Compras" Todo processo de
+                compra é realizado via mercado pago
               </v-card-text>
 
               <v-divider></v-divider>
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="fecharPedido">
-                  OK
-                </v-btn>
+                <v-btn color="primary" text @click="fecharPedido"> OK </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
         </div>
-        <v-btn text>
-          Cancel
-        </v-btn>
+        <v-btn text> Cancel </v-btn>
       </v-stepper-content>
     </v-stepper>
     <div id="mercado"></div>
@@ -85,16 +75,13 @@
   </v-main>
 </template>
 
-
-
 <script>
 import SnkFootersComp from "../components/SnkFootersComp";
 import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
 import SnkEndereco from "../components/endereco/SnkEndereco.vue";
 // import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
-import {preferencia as preferenciaController}  from '../controller/SnkMercadoPagoController'
-import {selecionarEndereco as selecionarEnderecoController} from "../controller/SnkEnderecoController";
-
+import { preferencia as preferenciaController } from "../controller/SnkMercadoPagoController";
+import { selecionarEndereco as selecionarEnderecoController } from "../controller/SnkEnderecoController";
 
 export default {
   components: {
@@ -115,18 +102,18 @@ export default {
         bairro: String,
         cidade: String,
         uf: String,
-        numero: Number
+        numero: Number,
       },
       pay: {
         tipo: String,
         info: {
           parcela: Number,
-          card: {}
-        }
+          card: {},
+        },
       },
       info: {
         order: {
-          qdt: Number
+          qdt: Number,
         },
         endereco: {
           id: Number,
@@ -135,17 +122,17 @@ export default {
           bairro: String,
           cidade: String,
           uf: String,
-          numero: Number
+          numero: Number,
         },
         pagamento: {
           tipo: String,
           desc: String,
-          meta: {}
+          meta: {},
         },
         carrinho: {
-             quantidadeItens: Number,
-         },
-      }
+          quantidadeItens: Number,
+        },
+      },
     };
   },
 
@@ -155,7 +142,10 @@ export default {
     },
     confimarEndereco() {
       if (this.endereco != null) {
-        selecionarEnderecoController(this.endereco.id, this.$store.state.carrinho.id)
+        selecionarEnderecoController(
+          this.endereco.id,
+          this.$store.state.carrinho.id
+        );
         this.e6 = 3;
       } else {
         // TODO dialog select agree
@@ -166,19 +156,19 @@ export default {
     },
     fecharPedido() {
       // TODO enviar pedido pro back
-      preferenciaController(this.$store.state.carrinho.id,this)
+      preferenciaController(this.$store.state.carrinho.id, this);
       //this.$store.commit("fecharPedito");
       //this.$router.push({ name: "SnkShop" });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-  .snk-confirm {
-    color: white;
-  }
-  #mercado {
-      display: none;
-    }
+.snk-confirm {
+  color: white;
+}
+#mercado {
+  display: none;
+}
 </style>

@@ -1,6 +1,9 @@
 const mutations = {
   initialiseStore(state) {
-    const localStorageStore = (localStorage.getItem("store") && JSON.parse(localStorage.getItem("store"))) || {};
+    const localStorageStore =
+      (localStorage.getItem("store") &&
+        JSON.parse(localStorage.getItem("store"))) ||
+      {};
     this.replaceState(Object.assign(state, localStorageStore));
   },
   setState(state, newState) {
@@ -12,7 +15,7 @@ const mutations = {
   logout(state) {
     state.carrinho = {
       id: null,
-      itens: []
+      itens: [],
     };
     state.session = null;
   },
@@ -24,13 +27,13 @@ const mutations = {
         removeZero.push(i);
       }
     }
-    removeZero.forEach(rm => {
+    removeZero.forEach((rm) => {
       state.carrinho.itens.splice(rm, 1);
     });
   },
   fecharPedito(state) {
     state.carrinho.itens = [];
-  }
-}
+  },
+};
 
 export default mutations;

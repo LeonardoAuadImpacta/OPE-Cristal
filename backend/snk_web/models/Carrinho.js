@@ -50,6 +50,6 @@ Carrinho.init(
   }
 );
 
-Carrinho.hasMany(ItemCarrinho, {foreignKey: "idCarrinho", as: "itens"});
+Carrinho.hasMany(ItemCarrinho, { foreignKey: "idCarrinho", as: "itens" });
 
 module.exports = Carrinho;

@@ -39,9 +39,7 @@
           >
             <div>{{ props.item.qtd }}</div>
             <template v-slot:input>
-              <div class="mt-4 title">
-                Quantidade
-              </div>
+              <div class="mt-4 title">Quantidade</div>
               <v-text-field
                 v-model="props.item.quantidade"
                 :rules="[max25chars]"
@@ -60,9 +58,7 @@
         {{ snackText }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn v-bind="attrs" text @click="snack = false">
-            Close
-          </v-btn>
+          <v-btn v-bind="attrs" text @click="snack = false"> Close </v-btn>
         </template>
       </v-snackbar>
     </div>
@@ -77,14 +73,14 @@ export default {
       snack: false,
       snackColor: "",
       snackText: "",
-      max25chars: v => v.length <= 25 || "Somente numeros!",
+      max25chars: (v) => v.length <= 25 || "Somente numeros!",
       pagination: {},
       headers: [
         { text: "Codigo", value: "idProduto" },
         { text: "Produto", value: "produto.nome" },
         { text: "Preço", value: "precoVenda" },
-        { text: "Quantidade", value: "quantidade" }
-      ]
+        { text: "Quantidade", value: "quantidade" },
+      ],
     };
   },
   methods: {
@@ -108,8 +104,8 @@ export default {
     },
     close() {
       console.log("Dialog closed");
-    }
-  }
+    },
+  },
 };
 </script>
 
