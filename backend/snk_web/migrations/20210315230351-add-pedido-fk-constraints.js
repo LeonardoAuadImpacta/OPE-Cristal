@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.sequelize.transaction((t) => {
+    return queryInterface.sequelize.transaction((t) => {
       queryInterface.addConstraint(
         "pedido",
         {
@@ -36,13 +36,9 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    queryInterface.sequelize.transaction((t) => {
-      queryInterface.removeConstraint("pedido", "fk_pedido_cliente", {
-        transaction: t,
-      });
-      queryInterface.removeConstraint("pedido", "fk_pedido_carrinho", {
-        transaction: t,
-      });
-    });
+    return [
+      queryInterface.removeConstraint("pedido", "fk_pedido_cliente"),
+      queryInterface.removeConstraint("pedido", "fk_pedido_carrinho"),
+    ];
   },
 };

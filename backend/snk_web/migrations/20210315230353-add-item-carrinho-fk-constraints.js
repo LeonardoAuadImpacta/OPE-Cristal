@@ -36,21 +36,15 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.sequelize.transaction((t) => {
+    return [
       queryInterface.removeConstraint(
         "item_carrinho",
         "fk_item_carrinho_produto",
-        {
-          transaction: t,
-        }
-      );
+      ),
       queryInterface.removeConstraint(
         "item_carrinho",
         "fk_item_carrinho_carrinho",
-        {
-          transaction: t,
-        }
-      );
-    });
+      ),
+    ];
   },
 };

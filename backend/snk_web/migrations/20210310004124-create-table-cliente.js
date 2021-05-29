@@ -12,41 +12,45 @@ module.exports = {
           autoIncrement: true,
         },
         nome: {
-          type: DataTypes.STRING(30),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         sobrenome: {
-          type: DataTypes.STRING(30),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         telefone: {
-          type: DataTypes.STRING(16),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         pseudonimo: {
-          type: DataTypes.STRING(30),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         email: {
-          type: DataTypes.STRING(20),
+          type: DataTypes.STRING,
           allowNull: false,
           unique: true,
         },
         senha: {
-          type: DataTypes.STRING(20),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         senhaSalt: {
           type: DataTypes.STRING,
         },
-        updatedAt: DataTypes.DATE,
-        createdAt: DataTypes.DATE,
         profile: {
           type: DataTypes.ENUM({
             values: ["ADMIN", "CUSTOMER"],
           }),
           allowNull: false,
         },
+        imgProfile: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+        },
+        updatedAt: DataTypes.DATE,
+        createdAt: DataTypes.DATE,
       },
       {
         hooks: {

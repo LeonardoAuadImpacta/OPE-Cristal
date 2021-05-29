@@ -21,10 +21,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.sequelize.transaction((t) => {
-      queryInterface.removeConstraint("endereco", "fk_endereco_cliente", {
-        transaction: t,
-      });
-    });
+    return queryInterface.removeConstraint("endereco", "fk_endereco_cliente");
   },
 };
