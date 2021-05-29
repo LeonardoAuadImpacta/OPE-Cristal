@@ -110,8 +110,14 @@
     </v-card>
     <div v-if="false === logged" class="body-top"></div>
     <div v-if="false === logged" class="header off">
-      <img class="snk-logo" src="../assets/mini_logo.png" />
-      <h1>{{ snk_title }}</h1>
+      <router-link to="/" class="snk-flex">
+        <img class="snk-logo" src="../assets/mini_logo.png" />
+      </router-link>
+
+      <router-link to="/" class="snk-flex">
+        <h1>{{ snk_title }}</h1>
+      </router-link>
+
       <router-link to="/login"><label>ENTRAR</label></router-link>
     </div>
   </div>
@@ -220,6 +226,7 @@ export default {
 }
 
 .snk-flex img.userPhoto {
+  overflow: auto;
   max-width: 8vh;
   margin-right: 10%;
   border-radius: 50%;

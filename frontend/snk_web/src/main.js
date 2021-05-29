@@ -11,9 +11,20 @@ Vue.use(VMask);
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
+
 axios.defaults.baseURL =
   process.env.VUE_APP_BASE_API_URL || "http://localhost:3000/api/v1/";
 axios.defaults.headers.post["Content-Type"] = "application/json";
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      router.push({ name: "SnkViewLogin" });
+    }
+    return Promise.reject(error);
+  }
+);
 
 new Vue({
   vuetify,

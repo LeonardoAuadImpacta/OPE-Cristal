@@ -42,7 +42,7 @@ export default {
   grid-template-columns: auto auto auto;
   grid-template-rows: auto;
   column-gap: auto;
-  row-gap: 5%;
+  row-gap: 40px;
   padding: 5%;
 }
 

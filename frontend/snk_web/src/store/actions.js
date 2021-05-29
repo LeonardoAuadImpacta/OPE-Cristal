@@ -6,7 +6,6 @@ import { findOrCreateCarrinhoByIdCliente } from "../service/./CarrinhoService";
 
 const actions = {
   async setCarrinho(context, { idCliente }) {
-    console.log(idCliente);
     const carrinho = await findOrCreateCarrinhoByIdCliente(idCliente)
       .then((response) => response.data)
       .catch((error) => console.log(error));
