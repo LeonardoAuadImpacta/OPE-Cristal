@@ -19,6 +19,7 @@
     "prettier": "^2.3.0"
   },
   "lint-staged": {
-    "backend/snk_web/**/*.{js,css,md}": "prettier --write"
+    "backend/snk_web/**/*.{js,css,md}": "prettier --write",
+    "frontend/snk_web/**/*.{js,css,md}": "prettier --write"
   }
 }
