@@ -1,7 +1,7 @@
-import Http from '../config/http'; // não precisa de .js
+import axios from "../config/http"; // não precisa de .js
 /**
  * Cria um usuário
- * 
+ *
  * @param {Object} user
  * @param {String} user.nome
  * @param {string} user.sobrenome
@@ -9,11 +9,28 @@ import Http from '../config/http'; // não precisa de .js
  * @param {string} user.pseudonimo
  * @param {string} user.email
  * @param {string} user.senha
- * 
+ *
  * @returns {Promise}
  */
- const createCliente = function (nome, sobrenome, telefone, pseudonimo, email, senha,imgProfile )  {
-    return Http.post('/cliente', { nome, sobrenome, telefone, pseudonimo, email, senha, profile: "CUSTOMER",imgProfile})
+const createCliente = function (
+  nome,
+  sobrenome,
+  telefone,
+  pseudonimo,
+  email,
+  senha,
+  imgProfile
+) {
+  return axios.post("/cliente", {
+    nome,
+    sobrenome,
+    telefone,
+    pseudonimo,
+    email,
+    senha,
+    profile: "CUSTOMER",
+    imgProfile,
+  });
 };
 
-export { createCliente }
+export { createCliente };

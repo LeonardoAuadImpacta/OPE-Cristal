@@ -1,4 +1,4 @@
-import Http from '../config/http'; // não precisa de .js
+import axios from "../config/http"; // não precisa de .js
 
 /**
  * Busca endereço a partir do id do cliente.
@@ -7,13 +7,13 @@ import Http from '../config/http'; // não precisa de .js
  *
  * @returns {Promise}
  */
- const listEnderecoByIdCliente = async (idCliente) => {
-    return Http.get(`/endereco?idCliente=${idCliente}`);
-  };
+const listEnderecoByIdCliente = async (idCliente) => {
+  return axios.get(`/endereco?idCliente=${idCliente}`);
+};
 
 /**
  * Cria um endereço
- * 
+ *
  * @param {Object} endereco
  * @param {string} endereco.uf
  * @param {string} endereco.cidade
@@ -22,11 +22,23 @@ import Http from '../config/http'; // não precisa de .js
  * @param {string} endereco.numero
  * @param {string} endereco.complemento
  * @param {string} endereco.cep
- * 
+ *
  * @returns {Promise}
  */
- const createEndereco = function (idCliente, { uf, cidade, bairro, rua, numero, complemento, cep })  {
-    return Http.post('/endereco', { idCliente, uf, cidade, bairro, rua, numero, complemento, cep })
+const createEndereco = function (
+  idCliente,
+  { uf, cidade, bairro, rua, numero, complemento, cep }
+) {
+  return axios.post("/endereco", {
+    idCliente,
+    uf,
+    cidade,
+    bairro,
+    rua,
+    numero,
+    complemento,
+    cep,
+  });
 };
 
-export { createEndereco, listEnderecoByIdCliente }
+export { createEndereco, listEnderecoByIdCliente };

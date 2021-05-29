@@ -1,32 +1,19 @@
-import Http from '../config/http';
+import axios from "axios";
 
 const listProdutos = function (page = 1, limit = 10) {
-    return Http.get(`/produto?_page=${page}&_limit=${limit}`);
-}
+  return axios.get(`/produto?_page=${page}&_limit=${limit}`);
+};
 
 const criarProduto = function (produto) {
-    return Http.post(
-        `/produto`,
-        JSON.stringify(produto)
-    );
-}
+  return axios.post(`/produto`, JSON.stringify(produto));
+};
 
 const editarProduto = function (produto, id) {
-    return Http.put(
-        `/produto/${id}`,
-        JSON.stringify(produto)
-    );
-}
+  return axios.put(`/produto/${id}`, JSON.stringify(produto));
+};
 
 const deletarProduto = function (id) {
-    return Http.delete(
-        `/produto/${id}`
-    );
-}
-
-export {
-    listProdutos,
-    criarProduto,
-    editarProduto,
-    deletarProduto
+  return axios.delete(`/produto/${id}`);
 };
+
+export { listProdutos, criarProduto, editarProduto, deletarProduto };
