@@ -1,6 +1,7 @@
 const express = require("express");
 const { checkSchema } = require("express-validator");
 
+const auth = require("../../middlewares/auth");
 const validate = require("../../middlewares/validation");
 const produtoController = require("../../controllers/produto");
 
@@ -42,13 +43,17 @@ const getProdutoSchema = {
 
 router.post(
   "/",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
   validate([checkSchema(createProdutoSchema)]),
   produtoController.create
 );
 
 router.put(
   "/:id",
-  validate([checkSchema(createProdutoSchema),checkSchema(getProdutoSchema)]),
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
+  validate([checkSchema(createProdutoSchema), checkSchema(getProdutoSchema)]),
   produtoController.update
 );
 
@@ -81,6 +86,8 @@ router.get(
 );
 router.delete(
   "/:id",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
   validate([checkSchema(getProdutoSchema)]),
   produtoController.deleteProduto
 );

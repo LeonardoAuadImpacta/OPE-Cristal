@@ -2,7 +2,7 @@ const { sanitizeQuery } = require("../lib/database/util");
 const EnderecoModel = require("../models/Endereco");
 
 const create = (req, res, next) => {
-  return EnderecoModel.create(req.body)
+  return EnderecoModel.create(req.params)
     .then(() => {
       res.status(201).json();
     })

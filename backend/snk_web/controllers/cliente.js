@@ -1,7 +1,10 @@
 const ClienteModel = require("../models/Cliente");
 
 const create = (req, res, next) => {
-  return ClienteModel.create(req.body)
+  return ClienteModel.create({
+    profile: "CUSTOMER",
+    ...req.params,
+  })
     .then(() => {
       res.status(201).json();
     })

@@ -1,6 +1,7 @@
 const express = require("express");
 const { checkSchema } = require("express-validator");
 
+const auth = require("../../middlewares/auth");
 const validate = require("../../middlewares/validation");
 const carrinhoController = require("../../controllers/carrinho");
 
@@ -46,6 +47,12 @@ const findOrCreateCarrinhoSchema = {
   //},
 };
 
+router.post(
+  "/",
+  validate([checkSchema(findOrCreateCarrinhoSchema)]),
+  carrinhoController.findOrCreate
+);
+
 const selecionarEnderecoSchema = {
   idCarrinho: {
     in: ["body"],
@@ -62,11 +69,7 @@ const selecionarEnderecoSchema = {
     isEmpty: { negated: true },
   },
 };
-router.post(
-  "/",
-  validate([checkSchema(findOrCreateCarrinhoSchema)]),
-  carrinhoController.findOrCreate
-);
+
 router.post(
   "/endereco",
   validate([checkSchema(selecionarEnderecoSchema)]),
@@ -84,6 +87,7 @@ const listCarrinhoSchema = {
 router.get(
   "/",
   validate([checkSchema(listCarrinhoSchema)]),
+  auth.authorized("CUSTOMER/<idCliente>"),
   carrinhoController.list
 );
 

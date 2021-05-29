@@ -6,7 +6,11 @@ module.exports = (validations) => {
 
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-      req.params = matchedData(req, { includeOptionals: true });
+      req.params = Object.assign(
+        {},
+        req.params,
+        matchedData(req, { includeOptionals: true })
+      );
       return next();
     }
 

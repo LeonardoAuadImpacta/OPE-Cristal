@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
+var pjson = require("../../package.json");
+
+const auth = require("../../middlewares/auth");
 const loginRoutes = require("./login");
 const clienteRoutes = require("./cliente");
 const produtoRoutes = require("./produto");
@@ -11,19 +14,22 @@ const itemCarrinhoRoutes = require("./item_carrinho");
 const mercadoPagoRoutes = require("./mercado_pago");
 
 router.get("/", function (req, res, next) {
-  res.json({ version: "v1.0.0" });
+  res.json({ version: pjson.version });
 });
 
 // Unauthenticated endpoints
 router.use("/login", loginRoutes);
 
-// Authenticated endpoints
-router.use("/cliente", clienteRoutes);
+// Partially authenticated endpoints
 router.use("/produto", produtoRoutes);
+router.use("/cliente", clienteRoutes);
+
+// Authenticated endpoints
+// DEPRECATED: usar subrotas de /cliente/:id
 router.use("/carrinho", carrinhoRoutes);
 router.use("/endereco", enderecoRoutes);
 router.use("/pedido", pedidoRoutes);
 router.use("/item_carrinho", itemCarrinhoRoutes);
-router.use("/transacao", mercadoPagoRoutes)
+router.use("/transacao", mercadoPagoRoutes);
 
 module.exports = router;
