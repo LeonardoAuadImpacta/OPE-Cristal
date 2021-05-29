@@ -13,6 +13,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 axios.defaults.baseURL =
   process.env.VUE_APP_BASE_API_URL || "http://localhost:3000/api/v1/";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 new Vue({
   vuetify,
