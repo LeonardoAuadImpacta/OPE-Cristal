@@ -36,7 +36,7 @@
         exact
         class="side-btn"
       >
-        <div class="link-container">Configurações</div>
+        <div class="link-container">Controle de acesso</div>
       </router-link>
     </div>
   </div>

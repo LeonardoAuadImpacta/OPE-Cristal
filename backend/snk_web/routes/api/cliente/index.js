@@ -59,6 +59,13 @@ router.post(
   validate([checkSchema(createClienteSchema)]),
   clienteController.create
 );
+router.post(
+  "/admin",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
+  validate([checkSchema(createClienteSchema)]),
+  clienteController.createAdmin
+);
 
 const getClienteSchema = {
   id: {
@@ -75,6 +82,27 @@ router.get(
   auth.authorized("ADMIN"),
   validate([checkSchema(getClienteSchema)]),
   clienteController.get
+);
+
+const listClienteSchema = {
+  _pagina: {
+    in: ["query"],
+    errorMessage: "Número da página inválido",
+    toInt: true,
+  },
+  _items: {
+    in: ["query"],
+    errorMessage: "Limite de items por página inválido",
+    toInt: true,
+  },
+};
+
+router.get(
+  "/",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
+  validate([checkSchema(listClienteSchema)]),
+  clienteController.list
 );
 
 // Sub-rotas
