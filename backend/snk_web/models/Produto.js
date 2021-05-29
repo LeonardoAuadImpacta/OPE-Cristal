@@ -17,11 +17,11 @@ Produto.init(
             autoIncrement: true,
         },
         nome: {
-            type: DataTypes.STRING(1024),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         subtitulo: {
-            type: DataTypes.STRING(500),
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         descricao: {
@@ -32,7 +32,7 @@ Produto.init(
             allowNull: false,
         },
         urlImage: {
-            type: DataTypes.STRING(2048),
+            type: DataTypes.TEXT,
             allowNull: false
         },
         categoria: {
@@ -42,7 +42,7 @@ Produto.init(
             allowNull: false,
         },
         quantidade: {
-            type: DataTypes.BIGINT,
+            type: DataTypes.INTEGER,
             defaultValue: 0
         }
     },

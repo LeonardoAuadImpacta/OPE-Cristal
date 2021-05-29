@@ -24,15 +24,15 @@ Endereco.init(
       allowNull: false,
     },
     cidade: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     bairro: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rua: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     numero: {
@@ -40,7 +40,7 @@ Endereco.init(
       allowNull: false,
     },
     complemento: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
     },
     cep: {
       type: DataTypes.STRING(10),

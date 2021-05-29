@@ -22,7 +22,7 @@ module.exports = {
         {
           fields: ["idEndereco"],
           type: "foreign key",
-          name: "fk_cliente_endereco",
+          name: "fk_carrinho_endereco",
           references: {
             table: "endereco",
             field: "id",
@@ -35,13 +35,9 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.sequelize.transaction((t) => {
-      queryInterface.removeConstraint("carrinho", "fk_carrinho_cliente", {
-        transaction: t,
-      });
-      queryInterface.removeConstraint("carrinho", "fk_carrinho_endereco", {
-        transaction: t,
-      });
-    });
+    return [
+      queryInterface.removeConstraint("carrinho", "fk_carrinho_cliente"),
+      queryInterface.removeConstraint("carrinho", "fk_carrinho_endereco"),
+    ];
   },
 };

@@ -12,19 +12,39 @@ module.exports = {
           autoIncrement: true,
         },
         nome: {
-          type: DataTypes.STRING(30),
+          type: DataTypes.STRING,
           allowNull: false,
         },
         subtitulo: {
-          type: DataTypes.STRING(30),
+          type: DataTypes.TEXT,
           allowNull: false,
         },
         descricao: {
-          type: DataTypes.STRING(255),
+          type: DataTypes.TEXT,
         },
         precoAtual: {
           type: DataTypes.DECIMAL(8, 2),
           allowNull: false,
+        },
+        urlImage: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+        },
+        categoria: {
+          type: DataTypes.ENUM({
+            values: [
+              "Corrida",
+              "Skateboarding",
+              "Academia",
+              "Sportwear",
+              "Acessórios",
+            ],
+          }),
+          allowNull: false,
+        },
+        quantidade: {
+          type: DataTypes.INTEGER,
+          defaultValue: 0,
         },
         updatedAt: DataTypes.DATE,
         createdAt: DataTypes.DATE,

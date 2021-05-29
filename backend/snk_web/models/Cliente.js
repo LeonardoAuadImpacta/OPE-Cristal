@@ -28,7 +28,7 @@ Cliente.init(
             allowNull: false,
         },
         email: {
-            type: DataTypes.STRING(1024),
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
@@ -46,7 +46,7 @@ Cliente.init(
             allowNull: false,
         },
         imgProfile: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.TEXT,
             allowNull: false
         },
     },
