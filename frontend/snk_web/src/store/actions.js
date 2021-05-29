@@ -16,9 +16,8 @@ const actions = {
       },
     });
   },
-  async setRemoteCarrinhoItems(context) {
-    const idCarrinho = context.state.carrinho.id;
-    const itemCarrinhos = await listItemCarrinhos(idCarrinho)
+  async setRemoteCarrinhoItems(context, { idCliente, idCarrinho }) {
+    const itemCarrinhos = await listItemCarrinhos({ idCliente, idCarrinho })
       .then((response) => response.data)
       .catch((error) => console.log(error));
     context.commit("setState", {
@@ -28,9 +27,9 @@ const actions = {
       },
     });
   },
-  async adicionarItem(context, { idCarrinho, idProduto }) {
-    addItemCarrinho({ idCarrinho, idProduto }).then(() => {
-      context.dispatch("setRemoteCarrinhoItems");
+  async adicionarItem(context, { idCliente, idCarrinho, idProduto }) {
+    addItemCarrinho({ idCliente, idCarrinho, idProduto }).then(() => {
+      context.dispatch("setRemoteCarrinhoItems", { idCliente, idCarrinho });
     });
   },
 };

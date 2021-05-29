@@ -77,6 +77,7 @@ export default {
       this.carPlus = true;
       setTimeout(() => (this.carPlus = false), 500);
       this.$store.dispatch("adicionarItem", {
+        idCliente: this.$store.state.session.id,
         idCarrinho: this.$store.state.carrinho.id,
         idProduto: card.id,
       });

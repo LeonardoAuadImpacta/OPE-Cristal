@@ -1,4 +1,4 @@
-import axios from "../config/http";
+import axios from "axios";
 
 /**
  * List todos items do carrinho do cliente.
@@ -7,8 +7,10 @@ import axios from "../config/http";
  *
  * @returns {Promise}
  */
-const listItemCarrinhos = async (idCarrinho) => {
-  return axios.get(`/item_carrinho?idCarrinho=${idCarrinho}`);
+const listItemCarrinhos = async ({ idCliente, idCarrinho }) => {
+  return axios.get(
+    `/cliente/${idCliente}/carrinho/${idCarrinho}/item_carrinho`
+  );
 };
 
 /**
@@ -20,11 +22,14 @@ const listItemCarrinhos = async (idCarrinho) => {
  *
  * @returns {Promise}
  */
-const addItemCarrinho = async ({ idCarrinho, idProduto }) => {
-  return axios.post(`/item_carrinho/carrinho/${idCarrinho}`, {
-    idProduto,
-    quantidade: 1,
-  });
+const addItemCarrinho = async ({ idCliente, idCarrinho, idProduto }) => {
+  return axios.post(
+    `/cliente/${idCliente}/carrinho/${idCarrinho}/item_carrinho`,
+    {
+      idProduto,
+      quantidade: 1,
+    }
+  );
 };
 
 export { addItemCarrinho, listItemCarrinhos };

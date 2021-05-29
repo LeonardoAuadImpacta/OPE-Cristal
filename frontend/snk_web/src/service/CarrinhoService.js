@@ -8,7 +8,7 @@ import axios from "axios";
  * @returns {Promise}
  */
 const getCarrinhoByIdCliente = async (idCliente) => {
-  return axios.get(`/carrinho?idCliente=${idCliente}`);
+  return axios.get(`/cliente/${idCliente}/carrinho`);
 };
 
 /**
@@ -20,11 +20,13 @@ const getCarrinhoByIdCliente = async (idCliente) => {
  * @returns {Promise}
  */
 const findOrCreateCarrinhoByIdCliente = async (idCliente) => {
-  return axios.post("/carrinho", { idCliente });
+  return axios.post(`/cliente/${idCliente}/carrinho`);
 };
 
-const selecionarEndereco = async (idCarrinho, idEndereco) => {
-  return axios.post("/carrinho/endereco", { idCarrinho, idEndereco });
+const selecionarEndereco = async (idCliente, idCarrinho, idEndereco) => {
+  return axios.post(`/cliente/${idCliente}/carrinho/${idCarrinho}/endereco`, {
+    idEndereco,
+  });
 };
 
 export {

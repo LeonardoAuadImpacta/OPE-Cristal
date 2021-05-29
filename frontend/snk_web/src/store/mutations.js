@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const mutations = {
   initialiseStore(state) {
     const localStorageStore =
@@ -33,6 +35,11 @@ const mutations = {
   },
   fecharPedito(state) {
     state.carrinho.itens = [];
+  },
+  setToken(_, token) {
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
   },
 };
 
