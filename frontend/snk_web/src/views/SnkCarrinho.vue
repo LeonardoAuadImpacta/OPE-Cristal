@@ -143,7 +143,6 @@ export default {
     confimarEndereco() {
       if (this.endereco != null) {
         selecionarEnderecoController(
-          this.$store.state.session.id,
           this.$store.state.carrinho.id,
           this.endereco.id
         );
@@ -155,9 +154,11 @@ export default {
     selecionarCartao(val) {
       this.pay = val;
     },
-    fecharPedido() {
+    async fecharPedido() {
       // TODO enviar pedido pro back
-      preferenciaController(this.$store.state.carrinho.id, this);
+      await preferenciaController(this.$store.state.carrinho.id, this);
+      this.$router.push("/acquisitions");
+
       //this.$store.commit("fecharPedito");
       //this.$router.push({ name: "SnkShop" });
     },
@@ -169,6 +170,7 @@ export default {
 .snk-confirm {
   color: white;
 }
+
 #mercado {
   display: none;
 }

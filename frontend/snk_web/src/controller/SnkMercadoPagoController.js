@@ -15,6 +15,7 @@ export const preferencia = function (idCarrinho) {
       document.getElementById("mercado").appendChild(script);
       setTimeout(() => {
         document.getElementsByClassName("mercadopago-button")[0].click();
+        document.getElementsByClassName("ui-button__text")[0].click();
       }, 500);
     })
     .catch((error) => {
