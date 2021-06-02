@@ -16,4 +16,8 @@ const createPedido = async ({ idCliente, idCarrinho }) => {
   return await Http.post('/pedido', {  idCliente, idCarrinho });
 };
 
-export { createPedido };
+const listarPedidos = async ({ idCliente }) => {
+  return await Http.get('/pedido', {  idCliente });
+};
+
+export { createPedido, listarPedidos };
