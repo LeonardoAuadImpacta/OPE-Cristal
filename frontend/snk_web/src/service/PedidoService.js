@@ -16,4 +16,8 @@ const createPedido = async ({ idCliente, idCarrinho }) => {
   return await axios.post(`/cliente/${idCliente}/pedido`, { idCarrinho });
 };
 
-export { createPedido };
+const listarPedidos = async ({ idCliente }) => {
+  return await axios.get("/pedido", { idCliente });
+};
+
+export { createPedido, listarPedidos };
