@@ -143,6 +143,7 @@ export default {
     confimarEndereco() {
       if (this.endereco != null) {
         selecionarEnderecoController(
+          this.$store.state.session.id,
           this.$store.state.carrinho.id,
           this.endereco.id
         );
