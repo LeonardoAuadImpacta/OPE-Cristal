@@ -42,11 +42,22 @@ const criarPreferencia = async (req, res, next) => {
 
   const preferenceResponse = await mercadopago.preferences.create(preference);
 
-  const pedido = await PedidoModel.create({
+  await PedidoModel.create({
     idCliente: carrinho.idCliente,
     idCarrinho: carrinho.id,
     status: "AWAITING_PAYMENT",
     preference_id: preferenceResponse.body.id,
+  }).then(() => {
+    CarrinhoModel.update(
+      {
+        status: "SUCCESS",
+      },
+      {
+        where: {
+          id: idCarrinho,
+        },
+      }
+    );
   });
 
   return res.status(200).json({ id: preferenceResponse.body.id });

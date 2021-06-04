@@ -143,6 +143,7 @@ export default {
     confimarEndereco() {
       if (this.endereco != null) {
         selecionarEnderecoController(
+          this.$store.state.session.id,
           this.$store.state.carrinho.id,
           this.endereco.id
         );
@@ -157,10 +158,8 @@ export default {
     async fecharPedido() {
       // TODO enviar pedido pro back
       await preferenciaController(this.$store.state.carrinho.id, this);
+      this.$store.commit("fecharPedido");
       this.$router.push("/acquisitions");
-
-      //this.$store.commit("fecharPedito");
-      //this.$router.push({ name: "SnkShop" });
     },
   },
 };

@@ -1,5 +1,4 @@
 const moment = require("moment");
-const { sanitizeQuery } = require("../lib/database/util");
 const CarrinhoModel = require("../models/Carrinho");
 const ItemCarrinhoModel = require("../models/ItemCarrinho");
 

@@ -12,9 +12,10 @@ const create = (req, res, next) => {
 };
 
 const list = async (req, res, next) => {
+  const fields = Object.keys(EnderecoModel.rawAttributes);
   return EnderecoModel.findAll({
     where: {
-      ...sanitizeQuery(req.params),
+      ...sanitizeQuery(fields, req.params),
     },
   })
     .then((enderecos) => {
