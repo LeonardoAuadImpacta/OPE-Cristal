@@ -158,7 +158,7 @@ export default {
     async fecharPedido() {
       // TODO enviar pedido pro back
       await preferenciaController(this.$store.state.carrinho.id, this);
-      this.$store.commit("fecharPedito");
+      this.$store.commit("fecharPedido");
       this.$router.push("/acquisitions");
     },
   },
