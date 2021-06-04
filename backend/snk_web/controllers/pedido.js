@@ -43,16 +43,19 @@ const create = (req, res, next) => {
     });
 };
 
-const list = async (req, res, next) => {
+const listPedidoCliente = async (req, res, next) => {
   const pagina = req.params._pagina || 1;
   const items = req.params._items || 10;
   const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
 
+  delete req.params.idCliente;
+  const idCliente = req.cliente.id;
   const fields = Object.keys(PedidoModel.rawAttributes);
   try {
     const pedidos = await Promise.all(
       await PedidoModel.findAll({
         where: {
+          idCliente,
           ...sanitizeQuery(fields, req.params),
         },
         offset: offset,
@@ -67,7 +70,6 @@ const list = async (req, res, next) => {
         endereco: await getEndereco(pedido.idCarrinho),
       }))
     );
-    console.log(response);
     return res.status(200).json(response);
   } catch (e) {
     console.log(e);
@@ -85,10 +87,36 @@ const get = async (req, res, next) => {
   return res.status(200).json(pedido);
 };
 
+const listAll = async (req, res, next) => {
+  const pagina = req.params._pagina || 1;
+  const items = req.params._items || 10;
+  const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
+
+  const pedidos = await PedidoModel.findAll({
+    offset: offset,
+    limit: items,
+  });
+
+  return res.status(200).json(pedidos);
+};
+
+const updateStatus = async (req, res, next) => {
+  const pedido = await PedidoModel.findOne({ where: { id: req.params.id } });
+
+  if (!pedido) return res.status(404).json({ error: "Pedido não encontrado" });
+
+  Object.assign(pedido, { status: req.params.status });
+  pedido.save();
+
+  return res.status(200).json(pedido);
+};
+
 module.exports = {
   create,
-  list,
+  listPedidoCliente,
+  listAll,
   get,
+  updateStatus,
 };
 
 async function getProdutos(idCarrinho) {

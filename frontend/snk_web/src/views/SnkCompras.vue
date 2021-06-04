@@ -10,7 +10,7 @@
 
 <script>
 import SnkCardCompra from "../components/compra/SnkCardCompra";
-import { listarPedidos as _listarPedidos } from "../service/PedidoService";
+import { listarPedidos } from "../controller/SnkPedidoController";
 
 export default {
   name: "SnkCompras",
@@ -23,12 +23,12 @@ export default {
     };
   },
   methods: {
-    listarPedidos() {
-      return _listarPedidos(this.$store.state.session.id);
+    getPedidos() {
+      return listarPedidos({ id: this.$store.state.session.id });
     },
   },
   async created() {
-    let reponse = await this.listarPedidos();
+    let reponse = await this.getPedidos();
     this.list = reponse.data;
     console.log(this.list);
   },

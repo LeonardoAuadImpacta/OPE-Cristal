@@ -1,4 +1,9 @@
-import { createPedido as _createPedido } from "../service/PedidoService";
+import {
+  listarTodosPedidos as _listarTodosPedidos,
+  listarPedidos as _listarPedidos,
+  createPedido as _createPedido,
+  updateStatus as _updateStatus,
+} from "../service/PedidoService";
 
 const createPedido = async ({ idCliente, idCarrinho }, view) => {
   return _createPedido({ idCliente, idCarrinho })
@@ -17,4 +22,8 @@ const createPedido = async ({ idCliente, idCarrinho }, view) => {
     });
 };
 
-export { createPedido };
+const listarPedidos = _listarPedidos;
+const listarTodosPedidos = _listarTodosPedidos;
+const updateStatus = _updateStatus;
+
+export { createPedido, listarPedidos, listarTodosPedidos, updateStatus };

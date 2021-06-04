@@ -64,6 +64,10 @@ const routes = [
             /* webpackChunkName: "Settings" */ "../views/admin/SnkControleAcesso.vue"
           ),
       },
+      {
+        path: "controle-pedido",
+        component: () => import("../views/admin/SnkControlePedido.vue"),
+      },
     ],
   },
   {
