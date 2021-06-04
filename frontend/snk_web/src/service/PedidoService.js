@@ -12,12 +12,18 @@ import axios from "../config/http";
  *
  * @returns {Promise}
  */
-const createPedido = async ({ idCliente, idCarrinho }) => {
-  return await axios.post(`/cliente/${idCliente}/pedido`, { idCarrinho });
+const createPedido = async ({idCliente, idCarrinho}) => {
+    return await axios.post(`/cliente/${idCliente}/pedido`, {idCarrinho});
 };
 
-const listarPedidos = async ({ idCliente }) => {
-  return await axios.get("/pedido", { idCliente });
+const listarPedidos = async ({idCliente}) => {
+    return await axios.get("/pedido", {idCliente});
 };
 
-export { createPedido, listarPedidos };
+const buscaPedidos = async (acquisitionsId) => {
+    console.log('verificar param ')
+    console.log(acquisitionsId)
+    return await axios.get(`/pedido/${acquisitionsId}`);
+};
+
+export {createPedido, listarPedidos, buscaPedidos};
