@@ -1,8 +1,7 @@
-const sanitizeQuery = (filters) => {
+const sanitizeQuery = (fields, filters) => {
   return Object.entries(filters).reduce((acc, [key, value]) => {
-    if (value) {
-      const parsedValue = JSON.parse(value);
-      return Object.assign(acc, { [key]: parsedValue });
+    if (fields.includes(key) && value !== null && value !== undefined) {
+      return Object.assign(acc, { [key]: value });
     } else {
       return acc;
     }

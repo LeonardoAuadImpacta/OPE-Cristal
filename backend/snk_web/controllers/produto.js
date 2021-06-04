@@ -29,15 +29,12 @@ const update = (req, res, next) => {
 
 const list = async (req, res, next) => {
   const pagina = req.params._pagina || 1;
-  const items = req.params._items || 10;
-  const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
+  const itens = req.params._itens || 10;
+  const offset = pagina * itens <= itens ? 0 : (pagina - 1) * itens;
 
   return ProdutoModel.findAll({
-    where: {
-      ...sanitizeQuery(req.params),
-    },
     offset: offset,
-    limit: items,
+    limit: itens,
   })
     .then((produtos) => {
       return res.status(200).json(produtos);

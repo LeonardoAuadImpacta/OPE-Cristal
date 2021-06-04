@@ -30,7 +30,7 @@
         <div class="link-container">Controle de Estoque</div>
       </router-link>
       <router-link
-        to="/admin-area/settings"
+        to="/admin-area/controle-acesso"
         active-class="active"
         tag="button"
         exact
