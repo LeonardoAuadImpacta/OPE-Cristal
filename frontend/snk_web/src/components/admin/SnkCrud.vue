@@ -159,6 +159,14 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:item.urlImage="{ item }">
+      <v-img
+        :src="item.urlImage"
+        contain
+        max-height="150"
+        max-width="150"
+      ></v-img>
+    </template>
     <template v-slot:item.descricao="{ item }">
       {{ truncate(item.descricao) }}
     </template>
@@ -193,6 +201,7 @@ export default {
         sortable: false,
         value: "id",
       },
+      { text: "", value: "urlImage" },
       {
         text: "Produto",
         align: "start",
@@ -201,8 +210,6 @@ export default {
       },
       { text: "Sub-Titulo", value: "subtitulo" },
       { text: "Preço", value: "precoAtual" },
-      { text: "Qantidade", value: "quantidade" },
-      { text: "URL", value: "urlImage" },
       { text: "Descrição", value: "descricao" },
 
       // { text: 'Categoria', value: 'categoria' },
@@ -237,19 +244,17 @@ export default {
     deleteProdutoId: -1,
     editedItem: {
       id: 0,
+      urlImage: "",
       nome: "",
       subtitulo: "",
       precoAtual: 0,
-      quantidade: 0,
-      urlImage: "",
       descricao: "",
       categoria: "",
     },
     defaultItem: {
+      urlImage: "",
       nameProduto: "",
       precoProduto: 0,
-      quantidade: 0,
-      urlImage: "",
       descricaoProduto: "",
     },
   }),
@@ -315,6 +320,8 @@ export default {
       this.close();
     },
     truncate(text) {
+      if (!text) return "Sem descrição";
+
       const limit = 100;
       return text.length <= limit ? text : text.slice(0, 100) + "...";
     },

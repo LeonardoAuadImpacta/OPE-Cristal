@@ -36,7 +36,7 @@ new Vue({
   beforeCreate() {
     this.$store.commit("initialiseStore");
   },
-  mounted() {
+  created() {
     const session = this.$store.state.session;
     if (session && session.token) {
       axios.defaults.headers.common[
