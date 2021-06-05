@@ -144,7 +144,9 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon v-if="item.id !== idAtual" small @click="deleteItem(item)">
+          mdi-delete
+        </v-icon>
       </template>
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -216,6 +218,9 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "Novo acesso" : "Editar acesso";
+    },
+    idAtual() {
+      return this.$store.state.session.id;
     },
   },
 
