@@ -30,14 +30,19 @@ const createProdutoSchema = {
       errorMessage: "Preço deve ser um valor decimal",
     },
   },
-};
-
-const getProdutoSchema = {
-  id: {
-    in: ["params"],
-    errorMessage: "Id de produto inválido",
-    isInt: true,
-    toInt: true,
+  urlImage: {
+    in: ["body"],
+    errorMessage: "URL da imagem inválida",
+    isEmpty: { negated: true },
+  },
+  categoria: {
+    in: ["body"],
+    errorMessage: "Categoria inválida",
+    isIn: {
+      options: [
+        ["Corrida", "Skateboarding", "Academia", "Sportwear", "Acessórios"],
+      ],
+    },
   },
 };
 
@@ -48,6 +53,15 @@ router.post(
   validate([checkSchema(createProdutoSchema)]),
   produtoController.create
 );
+
+const getProdutoSchema = {
+  id: {
+    in: ["params"],
+    errorMessage: "Id de produto inválido",
+    isInt: true,
+    toInt: true,
+  },
+};
 
 router.put(
   "/:id",

@@ -182,18 +182,6 @@ export default {
     },
   },
 };
-
-/*             
-                alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
-            },
-            verificaSenha(){
-                alert(JSON.stringify(this.user))
-            }
-
-        }
-    };
-
-*/
 </script>
 
 <style scoped>
