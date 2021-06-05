@@ -1,57 +1,13 @@
 const express = require("express");
 const { checkSchema } = require("express-validator");
 
+const auth = require("../../middlewares/auth");
 const validate = require("../../middlewares/validation");
 const pedidoController = require("../../controllers/pedido");
 
 const router = express.Router();
 
-const createPedidoSchema = {
-  idCliente: {
-    in: ["body"],
-    errorMessage: "Id do cliente inválido",
-    isEmpty: { negated: true },
-    isInt: true,
-  },
-  idCarrinho: {
-    in: ["body"],
-    errorMessage: "Id do carrinho inválido",
-    isEmpty: { negated: true },
-    isInt: true,
-  },
-  // Status padrão é utilizado no controller
-  //status: {
-  //in: ["body"],
-  //errorMessage: "Status inválido",
-  //isEmpty: { negated: true },
-  //isIn: {
-  //options: [
-  //[
-  //"COMPLETED",
-  //"CANCELED",
-  //"AWAITING_PAYMENT",
-  //"CONFIRMED",
-  //"DISPATCHED",
-  //"IN_TRANSIT",
-  //],
-  //],
-  //},
-  //},
-};
-
-router.post(
-  "/",
-  validate([checkSchema(createPedidoSchema)]),
-  pedidoController.create
-);
-
 const listPedidoSchema = {
-  id: {
-    in: ["query"],
-  },
-  idCliente: {
-    in: ["query"],
-  },
   _pagina: {
     in: ["query"],
     errorMessage: "Número da página inválido",
@@ -66,8 +22,10 @@ const listPedidoSchema = {
 
 router.get(
   "/",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
   validate([checkSchema(listPedidoSchema)]),
-  pedidoController.list
+  pedidoController.listAll
 );
 
 const getPedidoSchema = {
@@ -81,8 +39,44 @@ const getPedidoSchema = {
 
 router.get(
   "/:id",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
   validate([checkSchema(getPedidoSchema)]),
   pedidoController.get
+);
+
+const updateStatusSchema = {
+  id: {
+    in: ["params"],
+    errorMessage: "Id do pedido inválido",
+    isInt: true,
+    toInt: true,
+  },
+  status: {
+    in: ["body"],
+    errorMessage: "Status inválido",
+    isEmpty: { negated: true },
+    isIn: {
+      options: [
+        [
+          "COMPLETED",
+          "CANCELED",
+          "AWAITING_PAYMENT",
+          "CONFIRMED",
+          "DISPATCHED",
+          "IN_TRANSIT",
+        ],
+      ],
+    },
+  },
+};
+
+router.put(
+  "/:id/status",
+  auth.verifyJWT,
+  auth.authorized("ADMIN"),
+  validate([checkSchema(updateStatusSchema)]),
+  pedidoController.updateStatus
 );
 
 module.exports = router;

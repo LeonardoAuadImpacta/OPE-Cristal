@@ -41,7 +41,7 @@ const listPedidoSchema = {
 router.get(
   "/",
   validate([checkSchema(listPedidoSchema)]),
-  pedidoController.list
+  pedidoController.listPedidoCliente
 );
 
 const getPedidoSchema = {

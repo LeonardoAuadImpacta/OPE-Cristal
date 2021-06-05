@@ -1,4 +1,4 @@
-import axios from "../config/http";
+import axios from "axios";
 
 /*
  * Cria pedido com base no cliente logado
@@ -16,8 +16,17 @@ const createPedido = async ({ idCliente, idCarrinho }) => {
   return await axios.post(`/cliente/${idCliente}/pedido`, { idCarrinho });
 };
 
-const listarPedidos = async ({ idCliente }) => {
-  return await axios.get("/pedido", { idCliente });
+const listarPedidos = async ({ id }) => {
+  return await axios.get(`/cliente/${id}/pedido`);
 };
 
-export { createPedido, listarPedidos };
+// Admin
+const listarTodosPedidos = async () => {
+  return await axios.get("/pedido");
+};
+
+const updateStatus = async ({ id, status }) => {
+  return await axios.put(`/pedido/${id}/status`, { status });
+};
+
+export { createPedido, listarPedidos, listarTodosPedidos, updateStatus };
