@@ -29,7 +29,7 @@ const routes = [
     alias: "/",
   },
   {
-    path: "/acquisitions-details",
+    path: "/acquisitions-details/:acquisitionsId",
     name: "SnkDetalhesCompras",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/SnkDetalhesCompras.vue"),

@@ -31,7 +31,6 @@ export default {
   async created() {
     let reponse = await this.getPedidos();
     this.list = reponse.data;
-    console.log(this.list);
   },
 };
 </script>
