@@ -38,6 +38,15 @@
       >
         <div class="link-container">Controle de acesso</div>
       </router-link>
+      <router-link
+        to="/admin-area/controle-pedido"
+        active-class="active"
+        tag="button"
+        exact
+        class="side-btn"
+      >
+        <div class="link-container">Controle de pedidos</div>
+      </router-link>
     </div>
   </div>
 </template>

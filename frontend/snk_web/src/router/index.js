@@ -1,6 +1,8 @@
-import SnkViewLogin from "../views/SnkViewLogin.vue";
-import VueRouter from "vue-router";
 import Vue from "vue";
+import VueRouter from "vue-router";
+import jwt_decode from "jwt-decode";
+
+import SnkViewLogin from "../views/SnkViewLogin.vue";
 import SnkAdmin from "../views/SnkAdmin.vue";
 
 Vue.use(VueRouter);
@@ -41,10 +43,12 @@ const routes = [
   {
     path: "/admin-area",
     name: "SnkAdmin",
+    meta: { authorize: ["ADMIN"] },
     component: SnkAdmin,
     children: [
       {
         path: "admin-area",
+        meta: { authorize: ["ADMIN"] },
         component: () =>
           import(
             /* webpackChunkName: "Overview" */ "../views/admin/SnkOverview.vue"
@@ -52,6 +56,7 @@ const routes = [
       },
       {
         path: "catalogo",
+        meta: { authorize: ["ADMIN"] },
         component: () =>
           import(
             /* webpackChunkName: "Messages" */ "../views/admin/SnkCatalogo.vue"
@@ -59,6 +64,7 @@ const routes = [
       },
       {
         path: "estoque",
+        meta: { authorize: ["ADMIN"] },
         component: () =>
           import(
             /* webpackChunkName: "Profile" */ "../views/admin/SnkEstoque.vue"
@@ -66,25 +72,59 @@ const routes = [
       },
       {
         path: "controle-acesso",
+        meta: { authorize: ["ADMIN"] },
         component: () =>
           import(
             /* webpackChunkName: "Settings" */ "../views/admin/SnkControleAcesso.vue"
           ),
+      },
+      {
+        path: "controle-pedido",
+        component: () => import("../views/admin/SnkControlePedido.vue"),
       },
     ],
   },
   {
     path: "/carrinho",
     name: "SnkCarrinho",
+    meta: { authorize: ["ADMIN", "CUSTOMER"] },
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/SnkCarrinho.vue"),
   },
+  { path: "*", redirect: "/" },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const { authorize } = to.meta;
+
+  // Acessando direto o localStorage para dar bypass no lifecycle do Vuex
+  const rawStore = localStorage.getItem("store");
+  const store = rawStore && JSON.parse(rawStore);
+  const currentUser = store.session;
+
+  if (authorize) {
+    if (!currentUser) {
+      return next({ path: "/login" });
+    }
+
+    const decodedToken = currentUser.token && jwt_decode(currentUser.token);
+    const authorized =
+      decodedToken &&
+      decodedToken.claims.some((claim) =>
+        authorize.includes(claim.split("/")[0])
+      );
+    if (authorize.length && !authorized) {
+      return next({ path: "/" });
+    }
+  }
+
+  next();
 });
 
 export default router;

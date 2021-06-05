@@ -1,4 +1,4 @@
-import axios from "../config/http";
+import axios from "axios";
 
 export const criarPreferencia = function (idCarrinho) {
   return axios.post(
