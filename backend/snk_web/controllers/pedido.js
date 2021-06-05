@@ -48,16 +48,17 @@ const list = async (req, res, next) => {
     const items = req.params._items || 10;
     const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
 
-    try {
-        const pedidos = await Promise.all(
-            await PedidoModel.findAll({
-                where: {
-                    ...sanitizeQuery(req.params),
-                },
-                offset: offset,
-                limit: items,
-            })
-        );
+  const fields = Object.keys(PedidoModel.rawAttributes);
+  try {
+    const pedidos = await Promise.all(
+      await PedidoModel.findAll({
+        where: {
+          ...sanitizeQuery(fields, req.params),
+        },
+        offset: offset,
+        limit: items,
+      })
+    );
 
         const response = await Promise.all(
             await pedidos.map(async (pedido) => ({

@@ -12,6 +12,7 @@ const enderecoRoutes = require("./endereco");
 const pedidoRoutes = require("./pedido");
 const itemCarrinhoRoutes = require("./item_carrinho");
 const mercadoPagoRoutes = require("./mercado_pago");
+const adminRoutes = require("./admin");
 
 router.get("/", function (req, res, next) {
   res.json({ version: pjson.version });
@@ -25,6 +26,7 @@ router.use("/produto", produtoRoutes);
 router.use("/cliente", clienteRoutes);
 
 // Authenticated endpoints
+router.use("/admin", adminRoutes);
 // DEPRECATED: usar subrotas de /cliente/:id
 router.use("/carrinho", carrinhoRoutes);
 router.use("/endereco", enderecoRoutes);

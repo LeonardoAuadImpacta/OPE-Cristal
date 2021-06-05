@@ -65,10 +65,10 @@ const routes = [
           ),
       },
       {
-        path: "settings",
+        path: "controle-acesso",
         component: () =>
           import(
-            /* webpackChunkName: "Settings" */ "../views/admin/SnkSettings.vue"
+            /* webpackChunkName: "Settings" */ "../views/admin/SnkControleAcesso.vue"
           ),
       },
     ],

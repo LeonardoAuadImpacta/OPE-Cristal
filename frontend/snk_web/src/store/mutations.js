@@ -33,7 +33,7 @@ const mutations = {
       state.carrinho.itens.splice(rm, 1);
     });
   },
-  fecharPedito(state) {
+  fecharPedido(state) {
     state.carrinho.itens = [];
   },
   setToken(_, token) {

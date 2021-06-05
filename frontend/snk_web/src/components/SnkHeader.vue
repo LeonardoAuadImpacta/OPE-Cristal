@@ -24,7 +24,6 @@
         <router-link
           to="/carrinho"
           style="text-decoration: none; color: inherit"
-          v-if="!admin"
         >
           {{ addCar }}
           <v-icon> mdi-cart-outline </v-icon>

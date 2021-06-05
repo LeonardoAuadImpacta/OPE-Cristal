@@ -21,7 +21,10 @@
                 </v-btn>
             </div>
             <div>
-                <v-btn> comprar novamente</v-btn>
+                <v-btn
+                        @click="addCar"
+                > comprar novamente
+                </v-btn>
             </div>
         </div>
     </v-card>
@@ -42,10 +45,19 @@
         methods: {
             detalharCompra() {
                 this.$router.push({
-                    name : 'SnkDetalhesCompras',
+                    name: 'SnkDetalhesCompras',
                     params: {
                         acquisitionsId: this.compra.pedido.id
                     }
+                })
+            },
+            addCar() {
+                this.compra.produtos.map(prod => {
+                    this.$store.dispatch("adicionarItem", {
+                        idCliente: this.$store.state.session.id,
+                        idCarrinho: this.$store.state.carrinho.id,
+                        idProduto: prod.id,
+                    });
                 })
             }
         },

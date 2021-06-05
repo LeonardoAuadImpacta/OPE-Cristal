@@ -66,6 +66,7 @@ export default {
 .card {
   margin: 2%;
   width: 30%;
+  min-width: 300px;
 }
 .card .v-card {
   width: 100%;
@@ -77,6 +78,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 5%;
+  min-width: 300px;
 }
 .v-card__title {
   display: flex;

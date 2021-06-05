@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const listProdutos = function (page = 1, limit = 10) {
-  return axios.get(`/produto?_page=${page}&_limit=${limit}`);
+  return axios.get(`/produto?_pagina=${page}&_itens=${limit}`);
 };
 
 const criarProduto = function (produto) {
