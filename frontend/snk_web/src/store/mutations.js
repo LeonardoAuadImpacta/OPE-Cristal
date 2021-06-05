@@ -42,6 +42,9 @@ const mutations = {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
   },
+  setEndereco(state, id) {
+    state.carrinho.idEndereco = id;
+  },
 };
 
 export default mutations;

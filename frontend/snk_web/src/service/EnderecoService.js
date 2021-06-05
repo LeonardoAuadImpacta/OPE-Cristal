@@ -8,7 +8,7 @@ import axios from "axios";
  * @returns {Promise}
  */
 const listEnderecoByIdCliente = async (idCliente) => {
-  return axios.get(`/endereco?idCliente=${idCliente}`);
+  return axios.get(`/cliente/${idCliente}/endereco`);
 };
 
 /**
