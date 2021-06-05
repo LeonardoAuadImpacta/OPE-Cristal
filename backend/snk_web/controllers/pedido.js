@@ -88,13 +88,13 @@ const get = async (req, res, next) => {
 };
 
 const listAll = async (req, res, next) => {
-  const pagina = req.params._pagina || 1;
-  const items = req.params._items || 10;
-  const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
+  const pagina = (req.params._pagina > 0 && req.params._pagina) || 1;
+  const itens = (req.params._itens > 0 && req.params._itens) || 10;
+  const offset = pagina * itens <= itens ? 0 : (pagina - 1) * itens;
 
   const pedidos = await PedidoModel.findAll({
     offset: offset,
-    limit: items,
+    limit: itens,
   });
 
   return res.status(200).json(pedidos);
