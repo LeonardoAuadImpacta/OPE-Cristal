@@ -12,12 +12,15 @@ import axios from "axios";
  *
  * @returns {Promise}
  */
-const createPedido = async ({idCliente, idCarrinho}) => {
-    return await axios.post(`/cliente/${idCliente}/pedido`, {idCarrinho});
+const createPedido = async ({ idCliente, idCarrinho }) => {
+  return await axios.post(`/cliente/${idCliente}/pedido`, { idCarrinho });
 };
 
 const listarPedidos = async ({ id }) => {
   return await axios.get(`/cliente/${id}/pedido`);
+};
+const buscaPedidos = async ({ id }) => {
+  return await axios.get(`/pedido/${id}/context`);
 };
 
 // Admin
@@ -31,4 +34,10 @@ const updateStatus = async ({ id, status }) => {
   return await axios.put(`/pedido/${id}/status`, { status });
 };
 
-export { createPedido, listarPedidos, listarTodosPedidos, updateStatus };
+export {
+  createPedido,
+  listarPedidos,
+  listarTodosPedidos,
+  updateStatus,
+  buscaPedidos,
+};

@@ -45,6 +45,13 @@ router.get(
   pedidoController.get
 );
 
+router.get(
+  "/:id/context",
+  auth.verifyJWT,
+  validate([checkSchema(getPedidoSchema)]),
+  pedidoController.getContext
+);
+
 const updateStatusSchema = {
   id: {
     in: ["params"],
