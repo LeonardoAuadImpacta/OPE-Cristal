@@ -5,11 +5,11 @@ const listProdutos = function (page = 1, limit = 10) {
 };
 
 const criarProduto = function (produto) {
-  return axios.post(`/produto`, JSON.stringify(produto));
+  return axios.post(`/produto`, produto);
 };
 
 const editarProduto = function (produto, id) {
-  return axios.put(`/produto/${id}`, JSON.stringify(produto));
+  return axios.put(`/produto/${id}`, produto);
 };
 
 const deletarProduto = function (id) {
