@@ -2,6 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="produtos"
+    :loading="loading"
     sort-by="precoProduto"
     class="elevation-1"
     :footer-props="{
@@ -194,6 +195,7 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    loading: true,
     headers: [
       {
         text: "Código",
@@ -276,7 +278,13 @@ export default {
   },
   methods: {
     async initialize() {
-      this.produtos = await listProdutosJson(0, 100, this);
+      return listProdutosJson(0, 100, this)
+        .then((data) => {
+          this.produtos = data;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     editItem(item) {
       this.editedIndex = this.produtos.indexOf(item);
