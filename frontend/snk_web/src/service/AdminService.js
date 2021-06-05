@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const listAdmin = () => {
-  return axios.get("/admin");
+const listAdmin = (options = { page: 1, items: 10 }) => {
+  const pagina = options.page || 1;
+  const itens = options.items || 10;
+  return axios.get(`/admin?_pagina=${pagina}&_itens=${itens}`);
 };
 
 const createAdmin = function ({

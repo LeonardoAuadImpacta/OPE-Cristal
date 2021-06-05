@@ -1,6 +1,5 @@
 <template>
   <div class="sidebar">
-    <div class="title">Admin</div>
     <div class="menu-items">
       <router-link
         to="/admin-area"

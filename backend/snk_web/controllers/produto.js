@@ -2,28 +2,38 @@ const ProdutoModel = require("../models/Produto");
 const { sanitizeQuery } = require("../lib/database/util");
 
 const create = (req, res, next) => {
-  return ProdutoModel.create(req.body)
-    .then(() => {
-      res.status(201).json();
+  return ProdutoModel.create(req.params)
+    .then((produto) => {
+      res.status(201).json(produto);
     })
     .catch((reason) => {
-      // TODO: treat possible reasons and add as "error" on response json
-      res.status(400).json();
+      console.log(reason);
+      res
+        .status(400)
+        .json({
+          error: "Falha ao criar produto.",
+          details: [{ exception: reason }],
+        });
     });
 };
 
 const update = (req, res, next) => {
-  return ProdutoModel.update(req.body, {
+  return ProdutoModel.update(req.params, {
     where: {
       id: req.params.id,
     },
   })
-    .then(() => {
-      res.status(201).json();
+    .then((produto) => {
+      res.status(201).json(produto);
     })
     .catch((reason) => {
-      // TODO: treat possible reasons and add as "error" on response json
-      res.status(400).json();
+      console.log(reason);
+      res
+        .status(400)
+        .json({
+          error: "Falha ao atualizar produto.",
+          details: [{ exception: reason }],
+        });
     });
 };
 

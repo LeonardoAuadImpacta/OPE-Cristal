@@ -13,7 +13,7 @@ const listPedidoSchema = {
     errorMessage: "Número da página inválido",
     toInt: true,
   },
-  _items: {
+  _itens: {
     in: ["query"],
     errorMessage: "Limite de items por página inválido",
     toInt: true,

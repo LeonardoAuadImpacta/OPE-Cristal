@@ -3,12 +3,19 @@
     <v-data-table
       :headers="headers"
       :items="pedidos"
-      sort-by="updatedAt"
-      sort-desc="true"
-      class="elevation-1 ma-5"
+      :loading="loading"
       :page="page"
       :items-per-page="itemsPerPage"
-      :loading="loading"
+      v-on:update:page="onPageChange"
+      v-on:update:items-per-page="onItemsPerPageChange"
+      :footer-props="{
+        itemsPerPageOptions: [5, 10, 15],
+        itemsPerPageText: 'Itens por página:',
+        pageText: '{0}-{1} de {2}',
+      }"
+      class="elevation-1 ma-5"
+      sort-by="updatedAt"
+      sort-desc
     >
       <template v-slot:top>
         <v-toolbar flat>
@@ -163,6 +170,16 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    },
+
+    async onPageChange(page) {
+      this.page = page;
+      return listarTodosPedidos({ page: this.page, items: this.itemsPerPage });
+    },
+
+    async onItemsPerPageChange(items) {
+      this.itemsPerPage = items;
+      return listarTodosPedidos({ page: this.page, items: this.itemsPerPage });
     },
 
     formatDate(dateToFormat) {

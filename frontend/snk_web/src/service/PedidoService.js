@@ -21,8 +21,10 @@ const listarPedidos = async ({ id }) => {
 };
 
 // Admin
-const listarTodosPedidos = async () => {
-  return await axios.get("/pedido");
+const listarTodosPedidos = async (options = { page: 1, items: 10 }) => {
+  const pagina = options.page || 1;
+  const itens = options.items || 10;
+  return await axios.get(`/pedido?_pagina=${pagina}&_itens=${itens}`);
 };
 
 const updateStatus = async ({ id, status }) => {

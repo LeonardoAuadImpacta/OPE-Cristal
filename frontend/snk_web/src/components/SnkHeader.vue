@@ -18,12 +18,14 @@
             dense
             color="#aa2514"
             append-icon="mdi-magnify"
+            v-if="!isAdmin"
           ></v-text-field>
         </div>
 
         <router-link
           to="/carrinho"
           style="text-decoration: none; color: inherit"
+          v-if="!isAdmin"
         >
           {{ addCar }}
           <v-icon> mdi-cart-outline </v-icon>
@@ -97,11 +99,6 @@ export default {
   props: {
     snk_title: String,
   },
-  data() {
-    return {
-      admin: false,
-    };
-  },
   methods: {
     logout: function () {
       this.$store.commit("logout");
@@ -121,6 +118,9 @@ export default {
     },
     urlImg() {
       return this.$store.state.session.urlProfile;
+    },
+    isAdmin() {
+      return this.$store.state.session.profile === "ADMIN";
     },
   },
 };

@@ -20,6 +20,7 @@ const mutations = {
       itens: [],
     };
     state.session = null;
+    delete axios.defaults.headers.common.Authorization;
   },
   verifuQtdCarrinho(state) {
     let removeZero = [];

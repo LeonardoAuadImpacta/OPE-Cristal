@@ -17,16 +17,16 @@ const create = (req, res, next) => {
 };
 
 const list = async (req, res, next) => {
-  const pagina = req.params._pagina || 1;
-  const items = req.params._items || 10;
-  const offset = pagina * items <= items ? 0 : (pagina - 1) * items;
+  const pagina = (req.params._pagina > 0 && req.params._pagina) || 1;
+  const itens = (req.params._itens > 0 && req.params._itens) || 10;
+  const offset = pagina * itens <= itens ? 0 : (pagina - 1) * itens;
 
   return ClienteModel.findAll({
     where: {
       profile: "ADMIN",
     },
     offset: offset,
-    limit: items,
+    limit: itens,
   })
     .then((admins) => {
       return res.status(200).json(admins);
@@ -88,12 +88,9 @@ const update = async (req, res, next) => {
       },
     }).then((cliente) => {
       if (cliente) {
-        return res
-          .status(400)
-          .json({
-            error:
-              "Falha ao tentar atualizar administrador. Email já cadastrado",
-          });
+        return res.status(400).json({
+          error: "Falha ao tentar atualizar administrador. Email já cadastrado",
+        });
       }
     });
   }

@@ -3,8 +3,19 @@
     <v-data-table
       :headers="headers"
       :items="admins"
+      :loading="loading"
+      :page="page"
+      :items-per-page="itemsPerPage"
+      v-on:update:page="onPageChange"
+      v-on:update:items-per-page="onItemsPerPageChange"
+      :footer-props="{
+        itemsPerPageOptions: [5, 10, 15],
+        itemsPerPageText: 'Itens por página:',
+        pageText: '{0}-{1} de {2}',
+      }"
       sort-by="nome"
       class="elevation-1 ma-5"
+      locale="pt-BR"
     >
       <template v-slot:top>
         <v-toolbar flat>
@@ -133,7 +144,9 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon v-if="item.id !== idAtual" small @click="deleteItem(item)">
+          mdi-delete
+        </v-icon>
       </template>
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -166,6 +179,9 @@ export default {
     dialogDelete: false,
     showError: false,
     showSuccess: false,
+    loading: true,
+    page: 1,
+    itemsPerPage: 10,
     successMessage: "",
     errorMessage: "",
     headers: [
@@ -203,6 +219,9 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? "Novo acesso" : "Editar acesso";
     },
+    idAtual() {
+      return this.$store.state.session.id;
+    },
   },
 
   watch: {
@@ -221,12 +240,33 @@ export default {
 
   methods: {
     async initialize() {
-      const admins = await listAdmin().then((response) => response.data);
-      this.admins = admins;
+      return listAdmin()
+        .then((response) => {
+          this.admins = response.data;
+        })
+        .catch((error) => {
+          console.log(error.response);
+          this.errorMessage =
+            "Falha ao listar administradores, recarregue a página e tente novamente.";
+          this.showError = true;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
 
     validateField() {
       this.$refs.form.validate();
+    },
+
+    onPageChange(page) {
+      this.page = page;
+      return listAdmin({ page: this.page, items: this.itemsPerPage });
+    },
+
+    async onItemsPerPageChange(items) {
+      this.itemsPerPage = items;
+      return listAdmin({ page: this.page, items: this.itemsPerPage });
     },
 
     editItem(item) {

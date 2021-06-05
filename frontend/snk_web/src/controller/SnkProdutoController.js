@@ -10,7 +10,6 @@ const listProdutos = function (page, limit, view) {
     .then((res) => {
       if (res.status == 200) {
         view.cards = res.data.map((produto) => {
-          // TODO: adicionar campo URL no BD
           return {
             url: produto.urlImage,
             ...produto,

@@ -2,9 +2,13 @@
   <v-data-table
     :headers="headers"
     :items="produtos"
-    hide-default-footer
     sort-by="precoProduto"
     class="elevation-1"
+    :footer-props="{
+      itemsPerPageOptions: [5, 10, 15],
+      itemsPerPageText: 'Itens por página:',
+      pageText: '{0}-{1} de {2}',
+    }"
   >
     <template v-slot:top>
       <v-toolbar flat class="grey darken-2 white--text">
@@ -154,6 +158,9 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
+    </template>
+    <template v-slot:item.descricao="{ item }">
+      {{ truncate(item.descricao) }}
     </template>
     <template class="grey lighten-2" v-slot:[`item.actions`]="{ item }">
       <v-icon color="green" small class="mr-2" @click="editItem(item)">
@@ -306,6 +313,10 @@ export default {
       }
       await this.initialize();
       this.close();
+    },
+    truncate(text) {
+      const limit = 100;
+      return text.length <= limit ? text : text.slice(0, 100) + "...";
     },
   },
 };
