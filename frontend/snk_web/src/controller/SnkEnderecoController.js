@@ -21,20 +21,7 @@ const createEndereco = (idCliente, endereco, view) => {
     });
 };
 
-const listEnderecoByIdCliente = (idCliente, view) => {
-  return _listEnderecoByIdCliente(idCliente)
-    .then((res) => {
-      if (res.status === 200) {
-        view.enderecos = res.data;
-      } else {
-        view.flagAlert("Falha ao listar endereços");
-      }
-    })
-    .catch((error) => {
-      console.log(JSON.stringify(error));
-      view.flagAlert("Falha ao listar endereços");
-    });
-};
+const listEnderecoByIdCliente = _listEnderecoByIdCliente;
 
 const selecionarEndereco = (idCliente, idCarrinho, idEndereco) => {
   return _selecionarEndereco(idCliente, idCarrinho, idEndereco);

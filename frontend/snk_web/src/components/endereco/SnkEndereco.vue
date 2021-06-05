@@ -13,7 +13,7 @@
 
               <v-radio
                 color="red"
-                :value="endereco"
+                :value="endereco.id"
                 class="snk-radio"
                 @click="selecionarEndereco(endereco)"
               ></v-radio>
@@ -26,7 +26,7 @@
         </div>
       </v-radio-group>
     </div>
-    <SnkCriacaoEndereco @SucessoCadastroEndereco="SucessoCadastroEndereco" />
+    <SnkCriacaoEndereco @sucessoCadastroEndereco="sucessoCadastroEndereco" />
   </div>
 </template>
 
@@ -40,16 +40,33 @@ export default {
       selecionado: null,
     };
   },
-  beforeMount() {
-    this.SucessoCadastroEndereco();
+  created() {
+    this.initialise();
   },
   methods: {
+    initialise() {
+      const idCliente = this.$store.state.session.id;
+      const idEnderecoAtual = this.$store.state.carrinho.idEndereco;
+      this.selecionado = idEnderecoAtual;
+
+      listEnderecoByIdCliente(idCliente).then((response) => {
+        this.enderecos = response.data;
+        const enderecoAtual = this.enderecos.filter(
+          (e) => e.id === idEnderecoAtual
+        );
+        if (enderecoAtual.length > 0) {
+          this.$emit("selecionarEndereco", enderecoAtual[0]);
+        }
+      });
+    },
     selecionarEndereco(endereco) {
       this.$emit("selecionarEndereco", endereco);
     },
-    SucessoCadastroEndereco() {
+    sucessoCadastroEndereco() {
       const idCliente = this.$store.state.session.id;
-      listEnderecoByIdCliente(idCliente, this);
+      listEnderecoByIdCliente(idCliente).then((response) => {
+        this.enderecos = response.data;
+      });
     },
   },
   components: {
