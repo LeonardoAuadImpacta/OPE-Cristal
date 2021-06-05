@@ -14,6 +14,7 @@ import { listarPedidos } from "../controller/SnkPedidoController";
 
 export default {
   name: "SnkCompras",
+  title: "SNK | Compras",
   components: {
     SnkCardCompra,
   },

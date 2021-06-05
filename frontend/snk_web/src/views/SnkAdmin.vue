@@ -16,6 +16,7 @@ import SnkSidebar from "../components/admin/SnkSidebar.vue";
 
 export default {
   name: "SnkAdmin",
+  title: "SNK | Área admin",
   components: {
     SnkHeader,
     SnkSidebar,
