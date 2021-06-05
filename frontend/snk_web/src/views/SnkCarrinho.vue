@@ -91,6 +91,7 @@ export default {
     // SnkConfirmaCompraSnk
   },
   name: "SnkCarrinho",
+  title: "SNK | Carrinho",
   data() {
     return {
       dialog: false,

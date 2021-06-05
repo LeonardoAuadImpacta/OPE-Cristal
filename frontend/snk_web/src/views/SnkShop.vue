@@ -14,6 +14,7 @@ import SnkCatalogo from "../components/SnkCatalogo.vue";
 import SnkFootersComp from "../components/SnkFootersComp";
 export default {
   name: "SnkShop",
+  title: "SNK | Catálogo de produtos",
   components: {
     // SnkHeader,
     SnkCarrossel,
