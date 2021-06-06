@@ -107,6 +107,7 @@
                       color="black"
                       v-model="editedItem.descricao"
                       name="input-7-1"
+                      :rules ="descricaoRules"
                       outlined
                       label="Descrição do Produto"
                       auto-grow
@@ -219,21 +220,28 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     urlRules: [
-      function (url) {
+      /*function (url) {
         var r = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
         if (r.test(url) == false) {
           return "URL inválida";
         }
-      },
+      },*/
+      (v) => !new RegExp(/^(ftp|http|https):\/\/[^ "]+$/).test(v) == false || "URL inválida"
     ],
     precoRules: [
       (v) => !!v || "preco é necessário",
       (v) => (!isNaN(parseFloat(v)) && v > 0) || "Numero inválido",
     ],
-    nomeRules: [(v) => !!v || "Nome do produto é necessário"],
+    nomeRules: [
+      (v) => !!v || "Nome do produto é necessário",
+      (v) => !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido"
+    ],
     qteRules: [
       (v) => !!v || "quantidade é necessário",
-      (v) => (Number.isInteger(v) === false && v > 0) || "Numero inválido",
+      (v) => (Number.isInteger(v) === false && v >= 0) || "Numero inválido",
+    ],
+    descricaoRules: [
+      (v) => !!v || "descrição é necessário"
     ],
     categoria: [
       "Corrida",
