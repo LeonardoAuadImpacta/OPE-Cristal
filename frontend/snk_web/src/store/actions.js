@@ -13,6 +13,7 @@ const actions = {
     context.commit("setState", {
       carrinho: {
         id: carrinho.id,
+        idEndereco: carrinho.idEndereco,
         itens: carrinho.itens,
       },
     });

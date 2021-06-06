@@ -134,7 +134,7 @@ export default {
     async createEndereco() {
       const idCliente = this.$store.state.session.id;
       await createEnderecoController(idCliente, this.endereco, this);
-      this.$emit("SucessoCadastroEndereco");
+      this.$emit("sucessoCadastroEndereco");
     },
   },
 };
