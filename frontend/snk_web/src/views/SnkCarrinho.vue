@@ -77,9 +77,8 @@
 
 <script>
 import SnkFootersComp from "../components/SnkFootersComp";
-import SnkTableCarrinho from "../components/SnkTableCarrrinho.vue";
+import SnkTableCarrinho from "../components/SnkTableCarrrinhoItens";
 import SnkEndereco from "../components/endereco/SnkEndereco.vue";
-// import SnkConfirmaCompraSnk from "../components/compra/SnkConfirmaCompraSnk.vue";
 import { preferencia as preferenciaController } from "../controller/SnkMercadoPagoController";
 import { selecionarEndereco as selecionarEnderecoController } from "../controller/SnkEnderecoController";
 
@@ -91,6 +90,7 @@ export default {
     // SnkConfirmaCompraSnk
   },
   name: "SnkCarrinho",
+  title: "SNK | Carrinho",
   data() {
     return {
       dialog: false,

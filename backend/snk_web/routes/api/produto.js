@@ -30,6 +30,14 @@ const createProdutoSchema = {
       errorMessage: "Preço deve ser um valor decimal",
     },
   },
+  quantidade: {
+    in: ["body"],
+    errorMessage: "Quantidade inválida",
+    isEmpty: { negated: true },
+    isInteger: {
+      errorMessage: "Preço deve ser um valor inteiro maior que 0",
+    },
+  },
   urlImage: {
     in: ["body"],
     errorMessage: "URL da imagem inválida",

@@ -1,6 +1,7 @@
 import {
   addItemCarrinho,
   listItemCarrinhos,
+  retirarItemCarrinho,
 } from "../service/ItemCarrinhoService";
 import { findOrCreateCarrinhoByIdCliente } from "../service/./CarrinhoService";
 
@@ -28,7 +29,30 @@ const actions = {
     });
   },
   async adicionarItem(context, { idCliente, idCarrinho, idProduto }) {
-    addItemCarrinho({ idCliente, idCarrinho, idProduto }).then(() => {
+    await addItemCarrinho({ idCliente, idCarrinho, idProduto }).then(() => {
+      context.dispatch("setRemoteCarrinhoItems", { idCliente, idCarrinho });
+    });
+  },
+  async retirarItem(context, { idCliente, idCarrinho, idProduto }) {
+    await retirarItemCarrinho({
+      idCliente,
+      idCarrinho,
+      idProduto,
+      quantidade: 1,
+    }).then(() => {
+      context.dispatch("setRemoteCarrinhoItems", { idCliente, idCarrinho });
+    });
+  },
+  async deletarItens(
+    context,
+    { idCliente, idCarrinho, idProduto, quantidade }
+  ) {
+    await retirarItemCarrinho({
+      idCliente,
+      idCarrinho,
+      idProduto,
+      quantidade,
+    }).then(() => {
       context.dispatch("setRemoteCarrinhoItems", { idCliente, idCarrinho });
     });
   },

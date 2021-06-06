@@ -34,6 +34,7 @@ import SnkForgotPassword from "../components/usuario/SnkForgotPassword.vue";
 
 export default {
   name: "SnkViewLogin",
+  title: "SNK | Login",
   components: {
     // SnkHeader,
     SnkLogin,

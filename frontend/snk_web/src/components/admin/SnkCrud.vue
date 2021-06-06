@@ -2,6 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="produtos"
+    :loading="loading"
     sort-by="precoProduto"
     class="elevation-1"
     :footer-props="{
@@ -77,6 +78,7 @@
                       outlined
                       clearable
                       required
+                      type="number"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="8">
@@ -159,6 +161,14 @@
         </v-dialog>
       </v-toolbar>
     </template>
+    <template v-slot:item.urlImage="{ item }">
+      <v-img
+        :src="item.urlImage"
+        contain
+        max-height="150"
+        max-width="150"
+      ></v-img>
+    </template>
     <template v-slot:item.descricao="{ item }">
       {{ truncate(item.descricao) }}
     </template>
@@ -186,6 +196,7 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    loading: true,
     headers: [
       {
         text: "Código",
@@ -193,6 +204,7 @@ export default {
         sortable: false,
         value: "id",
       },
+      { text: "", value: "urlImage" },
       {
         text: "Produto",
         align: "start",
@@ -201,8 +213,6 @@ export default {
       },
       { text: "Sub-Titulo", value: "subtitulo" },
       { text: "Preço", value: "precoAtual" },
-      { text: "Qantidade", value: "quantidade" },
-      { text: "URL", value: "urlImage" },
       { text: "Descrição", value: "descricao" },
 
       // { text: 'Categoria', value: 'categoria' },
@@ -223,7 +233,7 @@ export default {
     nomeRules: [(v) => !!v || "Nome do produto é necessário"],
     qteRules: [
       (v) => !!v || "quantidade é necessário",
-      (v) => (Number.isInteger(v) == false && v > 0) || "Numero inválido",
+      (v) => (Number.isInteger(v) === false && v > 0) || "Numero inválido",
     ],
     categoria: [
       "Corrida",
@@ -237,20 +247,20 @@ export default {
     deleteProdutoId: -1,
     editedItem: {
       id: 0,
+      urlImage: "",
       nome: "",
       subtitulo: "",
       precoAtual: 0,
-      quantidade: 0,
-      urlImage: "",
       descricao: "",
       categoria: "",
+      quantidade: 0,
     },
     defaultItem: {
+      urlImage: "",
       nameProduto: "",
       precoProduto: 0,
-      quantidade: 0,
-      urlImage: "",
       descricaoProduto: "",
+      quantidade: 0,
     },
   }),
   computed: {
@@ -271,7 +281,13 @@ export default {
   },
   methods: {
     async initialize() {
-      this.produtos = await listProdutosJson(0, 100, this);
+      return listProdutosJson(0, 100, this)
+        .then((data) => {
+          this.produtos = data;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     editItem(item) {
       this.editedIndex = this.produtos.indexOf(item);
@@ -315,6 +331,8 @@ export default {
       this.close();
     },
     truncate(text) {
+      if (!text) return "Sem descrição";
+
       const limit = 100;
       return text.length <= limit ? text : text.slice(0, 100) + "...";
     },

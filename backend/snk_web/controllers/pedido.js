@@ -83,8 +83,12 @@ const get = async (req, res, next) => {
       id: req.params.id,
     },
   });
-
-  return res.status(200).json(pedido);
+  const response = {
+    pedido,
+    produtos: await getProdutos(pedido.idCarrinho),
+    endereco: await getEndereco(pedido.idCarrinho),
+  };
+  return res.status(200).json(response);
 };
 
 const getContext = async (req, res, next) => {

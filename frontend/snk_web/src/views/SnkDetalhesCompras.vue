@@ -56,14 +56,13 @@ export default {
   methods: {
     buscaPedidos() {
       const acquisitionsId = this.$route.params.acquisitionsId;
-      console.log(acquisitionsId);
-      return _buscaPedidos({ id: acquisitionsId });
+      const idCliente = this.$store.state.session.id;
+      return _buscaPedidos(idCliente, acquisitionsId);
     },
   },
   async created() {
     let reponse = await this.buscaPedidos();
     this.compra = reponse.data;
-    console.log(this.compra);
   },
   computed: {
     status() {

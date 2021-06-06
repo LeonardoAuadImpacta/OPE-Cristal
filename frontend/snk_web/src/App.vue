@@ -12,6 +12,7 @@ import SnkAppBar from "./components/SnkAppBar";
 
 export default {
   name: "App",
+  title: "SNK",
 
   components: {
     SnkAppBar,

@@ -1,12 +1,15 @@
 import Vue from "vue";
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
-import router from "./router";
-import store from "./store";
 import axios from "axios";
 import VMask from "v-mask";
 
+import router from "./router";
+import store from "./store";
+import titleMixin from "./mixins/titleMixin";
+
 Vue.use(VMask);
+Vue.mixin(titleMixin);
 
 Vue.config.productionTip = false;
 
@@ -33,7 +36,7 @@ new Vue({
   beforeCreate() {
     this.$store.commit("initialiseStore");
   },
-  mounted() {
+  created() {
     const session = this.$store.state.session;
     if (session && session.token) {
       axios.defaults.headers.common[

@@ -32,4 +32,21 @@ const addItemCarrinho = async ({ idCliente, idCarrinho, idProduto }) => {
   );
 };
 
-export { addItemCarrinho, listItemCarrinhos };
+const retirarItemCarrinho = async ({
+  idCliente,
+  idCarrinho,
+  idProduto,
+  quantidade,
+}) => {
+  return axios.delete(
+    `/cliente/${idCliente}/carrinho/${idCarrinho}/item_carrinho`,
+    {
+      data: {
+        idProduto,
+        quantidade,
+      },
+    }
+  );
+};
+
+export { addItemCarrinho, listItemCarrinhos, retirarItemCarrinho };

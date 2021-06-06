@@ -19,8 +19,9 @@ const createPedido = async ({ idCliente, idCarrinho }) => {
 const listarPedidos = async ({ id }) => {
   return await axios.get(`/cliente/${id}/pedido`);
 };
-const buscaPedidos = async ({ id }) => {
-  return await axios.get(`/pedido/${id}/context`);
+
+const buscaPedidos = async (idCliente, acquisitionsId) => {
+  return await axios.get(`/cliente/${idCliente}/pedido/${acquisitionsId}`);
 };
 
 // Admin

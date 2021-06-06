@@ -14,6 +14,7 @@ import { listarPedidos } from "../controller/SnkPedidoController";
 
 export default {
   name: "SnkCompras",
+  title: "SNK | Compras",
   components: {
     SnkCardCompra,
   },
@@ -30,7 +31,6 @@ export default {
   async created() {
     let reponse = await this.getPedidos();
     this.list = reponse.data;
-    console.log(this.list);
   },
 };
 </script>

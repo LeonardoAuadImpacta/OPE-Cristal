@@ -45,7 +45,7 @@ export default {
           url: "https://fahrenheitmagazine.com/sites/default/files/wp-content/uploads/2019/07/bauhaus-tenis-nike.jpg",
         },
         {
-          text: "Familia",
+          text: "Família",
           url: "https://s.zst.com.br/cms-assets/2020/11/melhor-tenis-adidas-para-corrida.png",
         },
       ],

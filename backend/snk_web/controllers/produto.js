@@ -8,16 +8,15 @@ const create = (req, res, next) => {
     })
     .catch((reason) => {
       console.log(reason);
-      res
-        .status(400)
-        .json({
-          error: "Falha ao criar produto.",
-          details: [{ exception: reason }],
-        });
+      res.status(400).json({
+        error: "Falha ao criar produto.",
+        details: [{ exception: reason }],
+      });
     });
 };
 
 const update = (req, res, next) => {
+  console.log(req.params);
   return ProdutoModel.update(req.params, {
     where: {
       id: req.params.id,
@@ -28,12 +27,10 @@ const update = (req, res, next) => {
     })
     .catch((reason) => {
       console.log(reason);
-      res
-        .status(400)
-        .json({
-          error: "Falha ao atualizar produto.",
-          details: [{ exception: reason }],
-        });
+      res.status(400).json({
+        error: "Falha ao atualizar produto.",
+        details: [{ exception: reason }],
+      });
     });
 };
 
