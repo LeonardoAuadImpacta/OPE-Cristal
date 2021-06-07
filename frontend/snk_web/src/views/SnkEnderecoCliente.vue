@@ -1,72 +1,74 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="enderecos"
-    :loading="loading"
-    class="elevation-1"
-    :footer-props="{
-      itemsPerPageOptions: [5, 10, 15],
-      itemsPerPageText: 'Itens por página:',
-      pageText: '{0}-{1} de {2}',
-    }"
-  >
-    <template v-slot:top>
-      <v-toolbar flat class="grey darken-2 white--text">
-        <v-toolbar-title>Catálogo</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
-        <v-spacer></v-spacer>
-        <SnkCriacaoEndereco
-          @sucessoCadastroEndereco="initialize"
-          @novoEndereco="novoEndereco"
-          :endereco="editedItem"
-          :dialog="dialog"
-        />
-        <v-dialog v-model="dialogDelete" max-width="30%">
-          <v-card>
-            <v-card-title class="headline"
-              >Tem certeza que deseja deletar este item?
-            </v-card-title>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                class="blue-grey lighten-5 red--text"
-                text
-                @click="closeDelete"
-                >Cancelar
-              </v-btn>
-              <v-btn
-                class="blue-grey lighten-5 green--text"
-                text
-                @click="deleteItemConfirm"
-                >OK
-              </v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.urlImage="{ item }">
-      <v-img
-        :src="item.urlImage"
-        contain
-        max-height="150"
-        max-width="150"
-      ></v-img>
-    </template>
-    <template v-slot:item.descricao="{ item }">
-      {{ truncate(item.descricao) }}
-    </template>
-    <template class="grey lighten-2" v-slot:[`item.actions`]="{ item }">
-      <v-icon color="green" small class="mr-2" @click="editItem(item)">
-        mdi-pencil
-      </v-icon>
-      <v-icon color="red" small @click="deleteItem(item)"> mdi-delete</v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize"> Reset</v-btn>
-    </template>
-  </v-data-table>
+  <v-container>
+    <v-data-table
+      :headers="headers"
+      :items="enderecos"
+      :loading="loading"
+      class="elevation-1"
+      :footer-props="{
+        itemsPerPageOptions: [5, 10, 15],
+        itemsPerPageText: 'Itens por página:',
+        pageText: '{0}-{1} de {2}',
+      }"
+    >
+      <template v-slot:top>
+        <v-toolbar flat class="grey darken-2 white--text">
+          <v-toolbar-title>Catálogo</v-toolbar-title>
+          <v-divider class="mx-4" inset vertical></v-divider>
+          <v-spacer></v-spacer>
+          <SnkCriacaoEndereco
+            @sucessoCadastroEndereco="initialize"
+            @novoEndereco="novoEndereco"
+            :endereco="editedItem"
+            :dialog="dialog"
+          />
+          <v-dialog v-model="dialogDelete" max-width="30%">
+            <v-card>
+              <v-card-title class="headline"
+                >Tem certeza que deseja deletar este item?
+              </v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="blue-grey lighten-5 red--text"
+                  text
+                  @click="closeDelete"
+                  >Cancelar
+                </v-btn>
+                <v-btn
+                  class="blue-grey lighten-5 green--text"
+                  text
+                  @click="deleteItemConfirm"
+                  >OK
+                </v-btn>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.urlImage="{ item }">
+        <v-img
+          :src="item.urlImage"
+          contain
+          max-height="150"
+          max-width="150"
+        ></v-img>
+      </template>
+      <template v-slot:item.descricao="{ item }">
+        {{ truncate(item.descricao) }}
+      </template>
+      <template class="grey lighten-2" v-slot:[`item.actions`]="{ item }">
+        <v-icon color="green" small class="mr-2" @click="editItem(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon color="red" small @click="deleteItem(item)"> mdi-delete</v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize"> Reset</v-btn>
+      </template>
+    </v-data-table>
+  </v-container>
 </template>
 
 <script>
