@@ -29,6 +29,13 @@ const routes = [
     alias: "/",
   },
   {
+    path: "/address",
+    name: "SnkEnderecoCliente",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/SnkEnderecoCliente.vue"),
+    alias: "/",
+  },
+  {
     path: "/acquisitions-details/:acquisitionsId",
     name: "SnkDetalhesCompras",
     component: () =>

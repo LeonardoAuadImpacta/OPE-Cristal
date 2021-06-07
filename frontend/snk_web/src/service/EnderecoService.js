@@ -40,4 +40,39 @@ const createEndereco = function (
   });
 };
 
-export { createEndereco, listEnderecoByIdCliente };
+const updateEndereco = function (
+  idCliente,
+  { id, uf, cidade, bairro, rua, numero, complemento, cep }
+) {
+  return axios.put(`cliente/${idCliente}/endereco/${id}`, {
+    uf,
+    cidade,
+    bairro,
+    rua,
+    numero,
+    complemento,
+    cep,
+  });
+};
+
+const deletarEndereco = function (idCliente, { idEndereco }) {
+  return axios.delete(`cliente/${idCliente}/endereco/${idEndereco}`);
+};
+
+const buscarCep = async (cep) => {
+  let myHeaders = new Headers({
+    "Content-Type": "application/json",
+  });
+  return await fetch(`https://viacep.com.br/ws/${cep}/json`, {
+    method: "GET",
+    headers: myHeaders,
+  }).then((r) => r.json());
+};
+
+export {
+  createEndereco,
+  listEnderecoByIdCliente,
+  buscarCep,
+  updateEndereco,
+  deletarEndereco,
+};

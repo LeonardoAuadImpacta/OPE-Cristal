@@ -26,7 +26,11 @@
         </div>
       </v-radio-group>
     </div>
-    <SnkCriacaoEndereco @sucessoCadastroEndereco="sucessoCadastroEndereco" />
+    <SnkCriacaoEndereco
+      :endereco="editEnd"
+      :dialog="false"
+      @sucessoCadastroEndereco="sucessoCadastroEndereco"
+    />
   </div>
 </template>
 
@@ -38,6 +42,9 @@ export default {
     return {
       enderecos: [],
       selecionado: null,
+      editEnd: {
+        id: null,
+      },
     };
   },
   created() {

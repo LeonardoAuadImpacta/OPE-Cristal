@@ -1,17 +1,27 @@
 <template>
   <v-dialog v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="#e07769" dark v-bind="attrs" v-on="on">
+      <v-btn @click="novo" color="#e07769" dark v-bind="attrs" v-on="on">
         Adicionar endereço
       </v-btn>
     </template>
     <v-card>
       <v-card-title>
-        <span class="headline">Novo endereço</span>
+        <span class="headline">{{ modo }}</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
+            <v-col cols="12">
+              <v-text-field
+                label="CEP*"
+                ref="cep"
+                v-model="endereco.cep"
+                :rules="[() => !!endereco.cep || 'Campo obrigatório']"
+                required
+                @change="buscarCep"
+              ></v-text-field>
+            </v-col>
             <v-col cols="12" md="6">
               <v-text-field
                 label="Rua*"
@@ -85,15 +95,6 @@
                 label="UF*"
               ></v-autocomplete>
             </v-col>
-            <v-col cols="12">
-              <v-text-field
-                label="CEP*"
-                ref="cep"
-                v-model="endereco.cep"
-                :rules="[() => !!endereco.cep || 'Campo obrigatório']"
-                required
-              ></v-text-field>
-            </v-col>
           </v-row>
         </v-container>
         <small>*campos obrigatórios</small>
@@ -112,30 +113,57 @@
 </template>
 
 <script>
-import { createEndereco as createEnderecoController } from "../../controller/SnkEnderecoController";
+import {
+  createEndereco as createEnderecoController,
+  updateEndereco as updateEnderecoControler,
+} from "../../controller/SnkEnderecoController";
+import { buscarCep as _buscarCep } from "../../service/EnderecoService";
 
 export default {
+  props: {
+    endereco: null,
+    dialog: null,
+  },
   data() {
     return {
-      dialog: false,
       success: true,
       error: false,
-      endereco: {
-        rua: null,
-        numero: null,
-        bairro: null,
-        cidade: null,
-        uf: null,
-        cep: null,
-      },
     };
   },
   methods: {
     async createEndereco() {
       const idCliente = this.$store.state.session.id;
-      await createEnderecoController(idCliente, this.endereco, this);
+      if (this.edit) {
+        await updateEnderecoControler(idCliente, this.endereco, this);
+      } else {
+        await createEnderecoController(idCliente, this.endereco, this);
+      }
+
       this.$emit("sucessoCadastroEndereco");
     },
+    async buscarCep() {
+      let response = await _buscarCep(this.endereco.cep);
+      this.endereco = {
+        rua: response.logradouro,
+        numero: null,
+        bairro: response.bairro,
+        cidade: response.localidade,
+        uf: response.uf,
+        cep: response.cep,
+      };
+    },
+    novo() {
+      this.$emit("novoEndereco");
+    },
   },
+  computed: {
+    modo() {
+      return this.edit ? "Editar endereço" : "Novo endereço";
+    },
+    edit() {
+      return this.endereco.id != null;
+    },
+  },
+  watch: {},
 };
 </script>

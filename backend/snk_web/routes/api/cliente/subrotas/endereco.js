@@ -45,6 +45,12 @@ const createEnderecoSchema = {
   },
 };
 
+router.put(
+  "/:id",
+  validate([checkSchema(createEnderecoSchema)]),
+  enderecoController.update
+);
+
 router.post(
   "/",
   validate([checkSchema(createEnderecoSchema)]),
@@ -69,6 +75,14 @@ router.get(
     return req.cliente.enderecos.some((e) => e.id === req.params.id);
   }),
   enderecoController.get
+);
+
+router.delete(
+  "/:id",
+  // checkRelation((req) => {
+  //   return req.cliente.enderecos.some((e) => e.id === req.params.id);
+  // }),
+  enderecoController.deletar
 );
 
 module.exports = router;
