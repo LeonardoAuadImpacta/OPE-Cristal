@@ -109,7 +109,7 @@
           >Confirmar Password é necessário</span
         >
         <span v-else-if="!$v.user.confirmPassword.sameAsPassword"
-          >Passwords não conferem</span
+          >Senhas não conferem</span
         >
       </div>
 
@@ -125,6 +125,16 @@
       <div class="snk-flex">
         <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
       </div>
+      <v-dialog value="true" width="50%" v-model="showSuccess">
+        <v-alert type="success" class="ma-0">
+          {{ successMessage }}
+        </v-alert>
+      </v-dialog>
+      <v-dialog value="true" width="50%" v-model="showError">
+        <v-alert type="error" class="ma-0">
+          {{ errorMessage }}
+        </v-alert>
+      </v-dialog>
     </form>
   </div>
 </template>
@@ -140,6 +150,10 @@ Vue.use(Vuelidate);
 export default {
   data() {
     return {
+      successMessage: "",
+      errorMessage: "",
+      showSuccess: false,
+      showError: false,
       user: {
         nome: "",
         sobrenome: "",
@@ -172,13 +186,17 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      await createClienteController(this.user);
-      if (!(localStorage.getItem("response") == "error")) {
-        alert("Usuário criado com sucesso!! :-) ");
-        this.$emit("trocarTela", false);
-      } else {
-        alert("Usuário ou Email já utilizados");
-      }
+      await createClienteController(this.user)
+        .then(() => {
+          this.successMessage = "Usuário criado com sucesso";
+          this.showSuccess = true;
+          this.$emit("trocarTela", false);
+        })
+        .catch(() => {
+          this.errorMessage =
+            "Falha ao criar usuário, endereço de email já cadastrado.";
+          this.showError = true;
+        });
     },
   },
 };

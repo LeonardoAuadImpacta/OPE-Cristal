@@ -13,15 +13,15 @@ import axios from "axios";
  *
  * @returns {Promise}
  */
-const createCliente = function (
+const createCliente = function ({
   nome,
   sobrenome,
   telefone,
   pseudonimo,
   email,
   senha,
-  imgProfile
-) {
+  imgProfile,
+}) {
   return axios.post("/cliente", {
     nome,
     sobrenome,
