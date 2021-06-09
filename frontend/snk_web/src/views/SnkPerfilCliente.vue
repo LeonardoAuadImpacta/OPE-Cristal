@@ -1,174 +1,168 @@
 <template>
   <v-container>
-    <v-data-table
-      :headers="headers"
-      :items="enderecos"
-      :loading="loading"
-      class="elevation-1"
-      :footer-props="{
-        itemsPerPageOptions: [5, 10, 15],
-        itemsPerPageText: 'Itens por página:',
-        pageText: '{0}-{1} de {2}',
-      }"
-    >
-      <template v-slot:top>
-        <v-toolbar flat class="grey darken-2 white--text">
-          <v-toolbar-title>Catálogo</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
-          <v-spacer></v-spacer>
-          <SnkCriacaoEndereco
-            @sucessoCadastroEndereco="initialize"
-            @novoEndereco="novoEndereco"
-            :endereco="editedItem"
-            :dialog="dialog"
+    <v-card class="snk-grid">
+      <div>
+        <v-dialog v-model="dialog" width="500">
+          <v-card>
+            <v-card-title class="text-h5 grey lighten-2">
+              Url da imagem de perfil
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                label="Url"
+                v-model="user.imgProfile"
+                class="fs-line"
+                style="min-width: 100%"
+              />
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="dialog = false"> OK </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-img class="img-comp" :src="user.imgProfile" max-width="250px" />
+        <v-btn
+          color="blue-grey"
+          class="ma-2 white--text icon-cam"
+          fab
+          @click="dialog = true"
+        >
+          <v-icon dark> mdi-camera-plus </v-icon>
+        </v-btn>
+      </div>
+      <div class="snl-flex-col form-snk">
+        <div class="snk-flex">
+          <v-text-field
+            label="Nome"
+            v-model="user.nome"
+            class="fs-line name-comp"
           />
-          <v-dialog v-model="dialogDelete" max-width="30%">
-            <v-card>
-              <v-card-title class="headline"
-                >Tem certeza que deseja deletar este item?
-              </v-card-title>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  class="blue-grey lighten-5 red--text"
-                  text
-                  @click="closeDelete"
-                  >Cancelar
-                </v-btn>
-                <v-btn
-                  class="blue-grey lighten-5 green--text"
-                  text
-                  @click="deleteItemConfirm"
-                  >OK
-                </v-btn>
-                <v-spacer></v-spacer>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-toolbar>
-      </template>
-      <template v-slot:item.urlImage="{ item }">
-        <v-img
-          :src="item.urlImage"
-          contain
-          max-height="150"
-          max-width="150"
-        ></v-img>
-      </template>
-      <template v-slot:item.descricao="{ item }">
-        {{ truncate(item.descricao) }}
-      </template>
-      <template class="grey lighten-2" v-slot:[`item.actions`]="{ item }">
-        <v-icon color="green" small class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon>
-        <v-icon color="red" small @click="deleteItem(item)"> mdi-delete</v-icon>
-      </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize"> Reset</v-btn>
-      </template>
-    </v-data-table>
+          <v-text-field
+            label="Sobrenome"
+            v-model="user.sobrenome"
+            class="fs-line"
+          />
+        </div>
+        <v-text-field label="Apelido" v-model="user.pseudonimo" />
+        <v-text-field label="E-mail" v-model="user.email" />
+        <v-text-field
+          v-model="user.telefone"
+          type="text"
+          pattern="[0-9.]+"
+          required
+          v-mask="'(##) #####-####'"
+          label="Telefone"
+        />
+        <v-text-field
+          v-model="nova_senha"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.required, rules.min]"
+          :type="show1 ? 'text' : 'password'"
+          name="input-10-1"
+          label="Senha"
+          hint="At least 8 characters"
+          counter
+          @click:append="show1 = !show1"
+        ></v-text-field>
+        <div class="lastUp">
+          <label> Ultima modificação em : {{ lastUp }}</label>
+        </div>
+        <v-btn class="snk-salvar" color="#aa2514" @click="salvar">
+          Salvar
+        </v-btn>
+      </div>
+    </v-card>
   </v-container>
 </template>
 
 <script>
-import SnkCriacaoEndereco from "../components/endereco/SnkCriacaoEndereco";
 import {
-  listEnderecoByIdCliente,
-  deletarEndereco,
-} from "../controller/SnkEnderecoController";
+  buscarCliente as _buscarCliente,
+  updateCliente as _updateCliente,
+} from "../service/ClienteService";
 
 export default {
-  name: "SnkEnderecoCliente",
-  title: "SNK | Endereços",
-  components: {
-    SnkCriacaoEndereco,
-  },
+  name: "SnkPerfilCliente",
+  title: "SNK | Meus Dados",
+  components: {},
   data() {
     return {
-      defaultEndereco: {
-        id: null,
-      },
-      enderecos: [],
-      loading: true,
+      show1: true,
+      user: {},
+      submitted: false,
+      nova_senha: 111111,
       dialog: false,
-      dialogDelete: false,
-      list: [],
-      editedItem: {
-        id: null,
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (v) => v.length >= 8 || "Min 8 characters",
+        emailMatch: () => `The email and password you entered don't match`,
       },
-      headers: [
-        {
-          text: "CEP",
-          align: "start",
-          sortable: false,
-          value: "nome",
-        },
-        { text: "Rua", value: "rua" },
-        { text: "Nº", value: "numero" },
-        { text: "Bairro", value: "bairro" },
-        { text: "Cidade", value: "cidade" },
-        { text: "UF", value: "uf" },
-
-        // { text: 'Categoria', value: 'categoria' },
-        { text: "Actions", value: "actions", sortable: false },
-      ],
     };
   },
   methods: {
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-    async deleteItem(item) {
-      const idCliente = this.$store.state.session.id;
-      await deletarEndereco(idCliente, item, this);
-      this.initialize();
-    },
-    async deleteItemConfirm() {
-      // await deletarProduto(this.deleteProdutoId);
-      await this.initialize();
-      this.closeDelete();
-    },
-    async initialize() {
-      const idCliente = this.$store.state.session.id;
-      let response = await listEnderecoByIdCliente(idCliente);
-      this.enderecos = response.data;
-      this.dialog = false;
-    },
-    editItem(item) {
-      this.editedIndex = this.enderecos.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      console.log(this.editedItem);
-      this.dialog = true;
-    },
-    novoEndereco() {
-      this.editedItem = this.defaultEndereco;
+    salvar() {
+      _updateCliente(this.user.id, this.user);
     },
   },
   async created() {
-    await this.initialize();
+    const idCliente = this.$store.state.session.id;
+    this.user = await _buscarCliente({ idCliente });
+    console.log(this.user);
   },
   computed: {
-    formTitle() {
-      return this.editedIndex === -1 ? "Novo Item" : "Editar Item";
+    lastUp() {
+      var d = new Date(this.user.updatedAt),
+        dformat =
+          [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
+          " as " +
+          [d.getHours(), d.getMinutes()].join(":");
+      return dformat;
     },
   },
 };
 </script>
 
 <style scoped>
-.main {
-  margin: 2%;
-  display: flex;
-  flex-direction: column;
-  padding: 2%;
+.fs-line {
+  width: 20%;
 }
 
-h1 {
-  margin-bottom: 2%;
+.snk-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10%;
+  margin-top: 2%;
+}
+
+.img-comp {
+  border-radius: 50%;
+}
+
+.form-snk {
+  grid-column-start: 2;
+  grid-column-end: 6;
+}
+
+.icon-cam {
+  margin: 10px 95px !important;
+}
+
+.lastUp {
+  text-align: right;
+  font-size: 12px;
+  width: 100%;
+  color: #aa2514;
+}
+
+.snk-salvar {
+  color: white;
+  width: 100%;
+  margin: 1%;
+}
+
+.name-comp {
+  margin-right: 5%;
 }
 </style>

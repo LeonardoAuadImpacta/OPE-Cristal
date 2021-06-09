@@ -36,6 +36,13 @@ const routes = [
     alias: "/",
   },
   {
+    path: "/account",
+    name: "SnkPerfilCliente",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/SnkPerfilCliente"),
+    alias: "/",
+  },
+  {
     path: "/acquisitions-details/:acquisitionsId",
     name: "SnkDetalhesCompras",
     component: () =>

@@ -60,6 +60,12 @@ router.post(
   clienteController.create
 );
 
+router.put(
+  "/:id",
+  validate([checkSchema(createClienteSchema)]),
+  clienteController.update
+);
+
 const getClienteSchema = {
   id: {
     in: ["params"],
@@ -72,7 +78,6 @@ const getClienteSchema = {
 router.get(
   "/:id",
   auth.verifyJWT,
-  auth.authorized("ADMIN"),
   validate([checkSchema(getClienteSchema)]),
   clienteController.get
 );

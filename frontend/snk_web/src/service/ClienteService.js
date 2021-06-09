@@ -34,4 +34,13 @@ const createCliente = function (
   });
 };
 
-export { createCliente };
+const updateCliente = function (id, user) {
+  return axios.put(`/cliente/${id}`, user);
+};
+
+const buscarCliente = async function ({ idCliente }) {
+  let response = await axios.get(`/cliente/${idCliente}`);
+  return response.data;
+};
+
+export { createCliente, buscarCliente, updateCliente };

@@ -15,6 +15,28 @@ const create = (req, res, next) => {
     });
 };
 
+const update = (req, res, next) => {
+  return ClienteModel.update(
+    {
+      profile: "CUSTOMER",
+      ...req.params,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then(() => {
+      res.status(201).json();
+    })
+    .catch((reason) => {
+      console.log(reason);
+      // TODO: treat possible reasons and add as "error" on response json
+      res.status(400).json({ error: "Falha ao tentar atualizar usuário" });
+    });
+};
+
 const get = async (req, res, next) => {
   const cliente = await ClienteModel.findOne({
     where: {
@@ -28,4 +50,5 @@ const get = async (req, res, next) => {
 module.exports = {
   create,
   get,
+  update,
 };
