@@ -18,7 +18,7 @@
       sort-desc
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat class="grey darken-2 white--text">
           <v-toolbar-title>Controle de pedidos</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
@@ -53,7 +53,7 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon color="green" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       </template>
       <template v-slot:item.updatedAt="{ item }">
         {{ formatDate(item.updatedAt) }}

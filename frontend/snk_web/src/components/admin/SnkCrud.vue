@@ -220,12 +220,6 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     urlRules: [
-      /*function (url) {
-        var r = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
-        if (r.test(url) == false) {
-          return "URL inválida";
-        }
-      },*/
       (v) => !new RegExp(/^(ftp|http|https):\/\/[^ "]+$/).test(v) == false || "URL inválida"
     ],
     precoRules: [
@@ -241,7 +235,8 @@ export default {
       (v) => (Number.isInteger(v) === false && v >= 0) || "Numero inválido",
     ],
     descricaoRules: [
-      (v) => !!v || "descrição é necessário"
+      (v) => !!v || "descrição é necessário",      
+      (v) => !new RegExp(/^$|^\S+.*/).test(v) == false || "Descrição inválido"
     ],
     categoria: [
       "Corrida",

@@ -18,13 +18,13 @@
       locale="pt-BR"
     >
       <template v-slot:top>
-        <v-toolbar flat>
+        <v-toolbar flat class="grey darken-2 white--text" >
           <v-toolbar-title>Controle de acesso</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+              <v-btn  dark class="mb-2 blue-grey lighten-5 green--text" v-bind="attrs" v-on="on" >
                 Novo acesso
               </v-btn>
             </template>
@@ -118,8 +118,8 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="close"> Cancelar </v-btn>
-                <v-btn color="primary" text @click="save"> Salvar </v-btn>
+                <v-btn class="blue-grey lighten-5 red--text" text @click="close"> Cancelar </v-btn>
+                <v-btn class="blue-grey lighten-5 green--text" text @click="save"> Salvar </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -143,7 +143,7 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon small color="green" class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon v-if="item.id !== idAtual" small @click="deleteItem(item)">
           mdi-delete
         </v-icon>
