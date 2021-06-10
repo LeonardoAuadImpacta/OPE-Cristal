@@ -36,20 +36,23 @@
         <div class="snk-flex">
           <v-text-field
             label="Nome"
+            :rules="nomeRules"
             v-model="user.nome"
             class="fs-line name-comp"
           />
           <v-text-field
             label="Sobrenome"
+            :rules="nomeRules"
             v-model="user.sobrenome"
             class="fs-line"
           />
         </div>
-        <v-text-field label="Apelido" v-model="user.pseudonimo" />
-        <v-text-field label="E-mail" v-model="user.email" />
+        <v-text-field :rules="nomeRules" label="Apelido" v-model="user.pseudonimo" />
+        <v-text-field  :rules="emailRules" label="E-mail" v-model="user.email" />
         <v-text-field
           v-model="user.telefone"
           type="text"
+          :rules="telefoneRules"
           pattern="[0-9.]+"
           required
           v-mask="'(##) #####-####'"
@@ -94,11 +97,21 @@ export default {
       submitted: false,
       nova_senha: 111111,
       dialog: false,
+      nomeRules: [
+          (v) => !!v || "Nome do produto é necessário",
+          (v) => !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido"
+        ],
       rules: {
         required: (value) => !!value || "Required.",
         min: (v) => v.length >= 8 || "Min 8 characters",
         emailMatch: () => `The email and password you entered don't match`,
       },
+      telefoneRules: [
+        (v) => new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) == true || 'telefone inválido',
+      ],
+      emailRules: [
+        (v) => !new RegExp(/^\S+@\S+$/).test(v) == false || 'email inválido',
+      ],
     };
   },
   methods: {
