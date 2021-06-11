@@ -18,7 +18,7 @@
               required
               name="nome"
               label="Nome"
-              :rules="[rules.obrigatorio, rules.nome]"
+              :rules="[rules.obrigatorio, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
               class="flex-grow-0"
             />
           </v-col>
@@ -31,7 +31,7 @@
               required
               name="sobrenome"
               label="Sobrenome"
-              :rules="[rules.obrigatorio, rules.nome]"
+              :rules="[rules.obrigatorio, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
               class="flex-grow-0"
             />
           </v-col>
@@ -44,7 +44,7 @@
               required
               name="pseudonimo"
               label="Pseudônimo"
-              :rules="[rules.obrigatorio, rules.nome]"
+              :rules="[rules.obrigatorio, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
             />
           </v-col>
           <v-col cols="12">
@@ -194,6 +194,10 @@ export default {
           (v && v.length <= 25) || "Limite máximo de caracteres excedido (25).",
         nome: (v) =>
           !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido.",
+        nomeNumeric: (v) =>
+          new RegExp(/\d{1,}/).test(v) == false || "Nome inválido.",
+        nomeSpecials: (v) =>
+          new RegExp(/[^a-zA-Z]/g).test(v) == false || "Nome inválido.",
         telefone: (v) =>
           new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) ==
             true || "Telefone inválido.",
