@@ -1,15 +1,15 @@
 <template>
   <div class="sidebar">
     <div class="menu-items">
-      <router-link
-        to="/admin-area"
-        active-class="active"
-        tag="button"
-        exact
-        class="side-btn"
-      >
-        <div class="link-container">Overview</div>
-      </router-link>
+      <!--      <router-link-->
+      <!--        to="/admin-area"-->
+      <!--        active-class="active"-->
+      <!--        tag="button"-->
+      <!--        exact-->
+      <!--        class="side-btn"-->
+      <!--      >-->
+      <!--        <div class="link-container">Overview</div>-->
+      <!--      </router-link>-->
       <router-link
         to="/admin-area/catalogo"
         active-class="active"
@@ -19,15 +19,15 @@
       >
         <div class="link-container">Controle de Catálogo</div>
       </router-link>
-      <router-link
-        to="/admin-area/estoque"
-        active-class="active"
-        tag="button"
-        exact
-        class="side-btn"
-      >
-        <div class="link-container">Controle de Estoque</div>
-      </router-link>
+      <!--      <router-link-->
+      <!--        to="/admin-area/estoque"-->
+      <!--        active-class="active"-->
+      <!--        tag="button"-->
+      <!--        exact-->
+      <!--        class="side-btn"-->
+      <!--      >-->
+      <!--        <div class="link-container">Controle de Estoque</div>-->
+      <!--      </router-link>-->
       <router-link
         to="/admin-area/controle-acesso"
         active-class="active"
