@@ -31,7 +31,7 @@
               required
               name="sobrenome"
               label="Sobrenome"
-              :rules="[rules.obrigatorio, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
+              :rules="[rules.obrigatorio, rules.nome, rules.nomeNumeric, rules.sobrenomeSpecials, rules.whiteSpacesEnd]"
               class="flex-grow-0"
             />
           </v-col>
@@ -198,6 +198,10 @@ export default {
           new RegExp(/\d{1,}/).test(v) == false || "Nome inválido.",
         nomeSpecials: (v) =>
           new RegExp(/[^a-zA-Z]/g).test(v) == false || "Nome inválido.",
+        sobrenomeSpecials: (v) =>
+          new RegExp(/[^a-zA-Z ]/g).test(v) == false || "Nome inválido.",
+        whiteSpacesEnd: (v) =>
+          new RegExp(/\s$/).test(v) == false || "Sobrenome inválido.",
         telefone: (v) =>
           new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) ==
             true || "Telefone inválido.",
