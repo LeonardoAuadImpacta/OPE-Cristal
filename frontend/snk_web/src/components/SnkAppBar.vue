@@ -17,15 +17,6 @@
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
-          <div class="pesquisa">
-            <v-text-field
-              label="Search"
-              append-icon="mdi-magnify"
-              color="#740000"
-              hide-details
-            />
-          </div>
-          <v-spacer></v-spacer>
           <router-link
             to="/carrinho"
             style="text-decoration: none; color: inherit"
