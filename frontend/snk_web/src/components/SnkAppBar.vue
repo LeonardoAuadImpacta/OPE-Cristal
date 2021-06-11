@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="cont">
+    <div class="cont" v-if="!isAdmin">
       <v-card v-if="logged" color="silver" class="SNK-topBar">
         <v-app-bar color="silver">
           <div class="snk-bar snk-flex">
@@ -159,6 +159,12 @@ export default {
     },
     urlImg() {
       return this.$store.state.session.urlProfile;
+    },
+    isAdmin() {
+      return (
+        this.$store.state.session != null &&
+        this.$store.state.session.profile === "ADMIN"
+      );
     },
   },
 };

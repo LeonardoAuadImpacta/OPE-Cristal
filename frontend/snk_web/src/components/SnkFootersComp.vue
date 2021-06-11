@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="footer">
     <v-footer :padless="padless">
       <v-card flat tile width="100%" class="text-center" color="#740000">
         <v-card-text class="white--text">
@@ -22,4 +22,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

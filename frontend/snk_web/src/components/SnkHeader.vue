@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-card class="snk-dk">
-      <div class="body-top"></div>
       <div v-if="logged" class="header">
         <div class="snk-flex">
           <img class="snk-logo" src="../assets/mini_logo.png" />
@@ -28,7 +27,7 @@
           v-if="!isAdmin"
         >
           {{ addCar }}
-          <v-icon> mdi-cart-outline </v-icon>
+          <v-icon> mdi-cart-outline</v-icon>
         </router-link>
 
         <div class="snk-flex">
@@ -70,7 +69,7 @@
           style="text-decoration: none; color: inherit"
         >
           {{ addCar }}
-          <v-icon> mdi-cart-outline </v-icon>
+          <v-icon> mdi-cart-outline</v-icon>
         </router-link>
 
         <v-icon
