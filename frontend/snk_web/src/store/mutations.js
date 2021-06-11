@@ -14,6 +14,9 @@ const mutations = {
   setUserSession(state, payload) {
     state.session = payload;
   },
+  setUserImgProfile(state, urlProfile) {
+    state.session.urlProfile = urlProfile;
+  },
   async logout(state) {
     state.carrinho = {
       id: null,
