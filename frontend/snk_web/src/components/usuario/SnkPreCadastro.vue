@@ -113,14 +113,47 @@
         >
       </div>
 
-      <input
-        type="submit"
-        value="Cadastrar"
-        class="
-          snk-background-base-color snk-text-title snk-cursor-pointer
-          rounded-lg
-        "
-      />
+    <template>
+      <v-dialog
+        v-model="dialog"
+        width="250"
+      >
+      <template v-slot:activator="{ on, attrs }">
+        <input 
+            type="submit"
+            value="Cadastrar"
+            v-bind="attrs"
+            dark
+            v-on="on"
+            @click="snackbar = true"
+            class="
+              snk-background-base-color snk-text-title snk-cursor-pointer
+              rounded-lg
+            "
+          />
+        </template >
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="timeout"
+          color="success"
+          outlined
+          top
+        >
+          {{ text }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="blue"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+            >
+              X
+            </v-btn>
+          </template>
+        </v-snackbar>
+      </v-dialog>
+    </template>
 
       <div class="snk-flex">
         <p @click="trocarTela()" class="snk-cursor-pointer">entrar na conta</p>
@@ -140,6 +173,9 @@ Vue.use(Vuelidate);
 export default {
   data() {
     return {
+      snackbar: false,
+      text: '',
+      timeout: 2000,
       user: {
         nome: "",
         sobrenome: "",
@@ -165,19 +201,21 @@ export default {
     trocarTela: function () {
       this.$emit("trocarTela", false);
     },
+    
     async handleSubmit() {
       this.submitted = true;
       // stop here if form is invalid
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.$emit("snackbar", false);
         return;
       }
       await createClienteController(this.user);
       if (!(localStorage.getItem("response") == "error")) {
-        alert("Usuário criado com sucesso!! :-) ");
         this.$emit("trocarTela", false);
+        this.text = 'Usuário cadastrado com sucesso!!';
       } else {
-        alert("Usuário ou Email já utilizados");
+        this.text = "Usuário ou Email já utilizados";
       }
     },
   },
