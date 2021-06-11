@@ -18,22 +18,13 @@
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
-            <div class="pesquisa">
-              <v-text-field
-                label="Search"
-                append-icon="mdi-magnify"
-                color="#740000"
-                hide-details
-              />
-            </div>
-            <v-spacer></v-spacer>
             <router-link
               to="/carrinho"
               style="text-decoration: none; color: inherit"
               v-if="!admin"
             >
               {{ addCar }}
-              <v-icon> mdi-cart-outline</v-icon>
+              <v-icon> mdi-cart-outline </v-icon>
             </router-link>
             <v-spacer></v-spacer>
             <div class="snk-flex">
@@ -70,15 +61,15 @@
               <v-list-item>
                 <router-link to="/shop" class="snk-flex">
                   <v-list-item-icon>
-                    <v-icon> mdi-store</v-icon>
+                    <v-icon> mdi-store </v-icon>
                   </v-list-item-icon>
-                  <v-list-item-title> Catálogo</v-list-item-title>
+                  <v-list-item-title> Catálogo </v-list-item-title>
                 </router-link>
               </v-list-item>
               <v-list-item>
                 <router-link to="/account" class="snk-flex">
                   <v-list-item-icon>
-                    <v-icon> mdi-account</v-icon>
+                    <v-icon> mdi-account </v-icon>
                   </v-list-item-icon>
                   <v-list-item-title>Perfil</v-list-item-title>
                 </router-link>
@@ -86,7 +77,7 @@
               <v-list-item>
                 <router-link to="/address" class="snk-flex">
                   <v-list-item-icon>
-                    <v-icon> mdi-map-marker-multiple</v-icon>
+                    <v-icon> mdi-map-marker-multiple </v-icon>
                   </v-list-item-icon>
                   <v-list-item-title>Endereços</v-list-item-title>
                 </router-link>
@@ -94,7 +85,7 @@
               <v-list-item>
                 <router-link to="/acquisitions" class="snk-flex">
                   <v-list-item-icon>
-                    <v-icon> mdi-table-multiple</v-icon>
+                    <v-icon> mdi-table-multiple </v-icon>
                   </v-list-item-icon>
                   <v-list-item-title>Compras</v-list-item-title>
                 </router-link>
@@ -102,18 +93,18 @@
               <v-list-item>
                 <router-link to="/carrinho" class="snk-flex">
                   <v-list-item-icon>
-                    <v-icon> mdi-cart-outline</v-icon>
+                    <v-icon> mdi-cart-outline </v-icon>
                   </v-list-item-icon>
                   <v-list-item-title
-                    >Carrinho : {{ addCar }} {{ strItens }}
-                  </v-list-item-title>
+                    >Carrinho : {{ addCar }} {{ strItens }}</v-list-item-title
+                  >
                 </router-link>
               </v-list-item>
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
       </v-card>
-
+      <div v-if="false === logged" class="body-top"></div>
       <div v-if="false === logged" class="header off">
         <router-link to="/" class="snk-flex">
           <img class="snk-logo" src="../assets/mini_logo.png" />
