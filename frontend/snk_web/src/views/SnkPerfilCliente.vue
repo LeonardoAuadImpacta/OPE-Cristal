@@ -37,21 +37,21 @@
           <v-text-field
             :loading="loading"
             label="Nome"
-            :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
+            :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
             v-model="user.nome"
             class="fs-line name-comp"
           />
           <v-text-field
             :loading="loading"
             label="Sobrenome"
-            :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
+            :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
             v-model="user.sobrenome"
             class="fs-line"
           />
         </div>
         <v-text-field
           :loading="loading"
-          :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
+          :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
           @change="nomeOnChange"
           label="Apelido"
           v-model="user.pseudonimo"
@@ -118,6 +118,10 @@ export default {
           (v && v.length <= 25) || "Limite máximo de caracteres excedido (25).",
         nome: (v) =>
           !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido.",
+        nomeNumeric: (v) =>
+          new RegExp(/\d{1,}/).test(v) == false || "Nome inválido.",
+        nomeSpecials: (v) =>
+          new RegExp(/[^a-zA-Z]/g).test(v) == false || "Nome inválido.",
         telefone: (v) =>
           new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) ==
             true || "Telefone inválido.",
