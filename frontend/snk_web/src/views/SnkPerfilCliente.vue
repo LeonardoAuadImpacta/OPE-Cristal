@@ -37,21 +37,40 @@
           <v-text-field
             :loading="loading"
             label="Nome"
-            :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
+            :rules="[
+              rules.obrigatorio,
+              rules.quantidade,
+              rules.nome,
+              rules.nomeNumeric,
+              rules.nomeSpecials,
+            ]"
             v-model="user.nome"
             class="fs-line name-comp"
           />
           <v-text-field
             :loading="loading"
             label="Sobrenome"
-            :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric,rules.sobrenomeSpecials, rules.whiteSpacesEnd]"
+            :rules="[
+              rules.obrigatorio,
+              rules.quantidade,
+              rules.nome,
+              rules.nomeNumeric,
+              rules.sobrenomeSpecials,
+              rules.whiteSpacesEnd,
+            ]"
             v-model="user.sobrenome"
             class="fs-line"
           />
         </div>
         <v-text-field
           :loading="loading"
-          :rules="[rules.obrigatorio, rules.quantidade, rules.nome, rules.nomeNumeric, rules.nomeSpecials]"
+          :rules="[
+            rules.obrigatorio,
+            rules.quantidade,
+            rules.nome,
+            rules.nomeNumeric,
+            rules.nomeSpecials,
+          ]"
           @change="nomeOnChange"
           label="Apelido"
           v-model="user.pseudonimo"
@@ -145,6 +164,7 @@ export default {
         this.loading = true;
         updateCliente(this.user.id, this.user)
           .then(() => {
+            this.$store.commit("setUserImgProfile", this.user.imgProfile);
             this.successMessage = "Perfil atualizado com suceso!";
             this.showSuccess = true;
           })
