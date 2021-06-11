@@ -23,16 +23,16 @@ const incrementOrCreate = async (req, res, next) => {
     const { idCarrinho, idProduto, quantidade } = req.params;
 
     // Controle de estoque despriorizado
-    //if (quantidade > produto.quantidade) {
-    //return res.status(400).json({ error: "Quantidade superior ao estoque" });
-    //}
+    if (quantidade > produto.quantidade) {
+      return res.status(400).json({ error: "Quantidade superior ao estoque" });
+    }
 
     const precoVenda = produto.precoAtual;
 
     // Controle de estoque despriorizado
-    //await produto.update({
-    //quantidade: produto.quantidade - quantidade,
-    //});
+    await produto.update({
+      quantidade: produto.quantidade - quantidade,
+    });
 
     return ItemCarrinhoModel.findOrCreate({
       where: {
@@ -85,9 +85,9 @@ const decrementOrDelete = async (req, res, next) => {
     const { idCarrinho, idProduto, quantidade } = req.params;
 
     // Controle de estoque despriorizado
-    //await produto.update({
-    //quantidade: produto.quantidade + quantidade,
-    //});
+    await produto.update({
+      quantidade: produto.quantidade + quantidade,
+    });
 
     return ItemCarrinhoModel.findOne({
       where: {
