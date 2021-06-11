@@ -1,0 +1,29 @@
+[
+    {
+        "id":1,
+        "cep": "03267-070",
+        "endereco": "Rua Rosicler",
+        "bairro": "Vila Nova Pauliceia",
+        "cidade": "São Paulo",
+        "uf": "SP",
+        "numero": 255
+    },
+    {
+        "id":2,
+        "cep": "03267-070",
+        "endereco": "Rua Rosicler",
+        "bairro": "Vila Nova Pauliceia",
+        "cidade": "São Paulo",
+        "uf": "SP",
+        "numero": 2
+    },
+    {
+        "id":2,
+        "cep": "03267-070",
+        "endereco": "Rua Rosicler",
+        "bairro": "Vila Nova Pauliceia",
+        "cidade": "São Paulo",
+        "uf": "SP",
+        "numero": 78
+    }
+]

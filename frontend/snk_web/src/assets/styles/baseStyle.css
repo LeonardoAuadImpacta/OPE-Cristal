@@ -1,44 +1,55 @@
-body,html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Rubik', sans-serif;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 .snk-text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .snk-text-rigth {
-    text-align: right;
+  text-align: right;
 }
 
 .snk-text-base-color {
-    color: #aa2514;
+  color: #aa2514;
 }
 
 .snk-background-base-color {
-    background-color: #aa2514;
+  background-color: #aa2514;
 }
 
 .snk-text-title {
-    letter-spacing: 5pt;
-    font-weight: bold;
+  letter-spacing: 5pt;
+  font-weight: bold;
 }
 
 .snk-cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.snk-flex { 
-    display: flex;
-    justify-content: space-between;
+.snk-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
-.snk-flex-around { 
-    display: flex;
-    justify-content: space-around;
+.snk-flex-around {
+  display: flex;
+  justify-content: space-around;
 }
 
-
-
-
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
