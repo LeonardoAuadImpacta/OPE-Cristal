@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import SnkViewLogin from "../views/SnkViewLogin.vue";
 import SnkAdmin from "../views/SnkAdmin.vue";
+import SnkPreCadastro from "../views/usuario/SnkPreCadastro";
 
 Vue.use(VueRouter);
 
@@ -53,6 +54,11 @@ const routes = [
     path: "/login",
     name: "SnkViewLogin",
     component: SnkViewLogin,
+  },
+  {
+    path: "/cadastro",
+    name: "SnkPreCadastro",
+    component: SnkPreCadastro,
   },
   {
     path: "/admin-area",

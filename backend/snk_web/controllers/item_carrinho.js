@@ -96,9 +96,9 @@ const decrementOrDelete = async (req, res, next) => {
       },
     })
       .then((item_carrinho) => {
-        if (item_carrinho.quantidade <= 1) {
+        if (item_carrinho.quantidade <= quantidade) {
           item_carrinho.destroy();
-          return res.status(200).json({});
+          return res.status(200).json(item_carrinho);
         } else {
           item_carrinho.decrement("quantidade", { by: quantidade });
           item_carrinho.reload().then((item_carrinho) => {

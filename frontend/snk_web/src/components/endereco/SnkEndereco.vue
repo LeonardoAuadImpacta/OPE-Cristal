@@ -28,7 +28,6 @@
     </div>
     <SnkCriacaoEndereco
       :endereco="editEnd"
-      :dialog="false"
       @sucessoCadastroEndereco="sucessoCadastroEndereco"
     />
   </div>
