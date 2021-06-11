@@ -8,10 +8,9 @@
 
       <v-stepper-content color="primary" class="" step="1">
         <SnkTableCarrinho />
-        <v-btn color="#aa2514" class="white--text" @click="e6 = 2">
+        <v-btn color="#aa2514" class="white--text" @click="proximoPasso">
           Continuar
         </v-btn>
-        <v-btn text> Voltar </v-btn>
       </v-stepper-content>
 
       <v-stepper-step :complete="e6 > 2" step="2" color="#aa2514">
@@ -134,6 +133,20 @@ export default {
   },
 
   methods: {
+    proximoPasso() {
+      switch (this.e6) {
+        case 1:
+          if (this.$store.state.carrinho.itens.length === 0) {
+            this.errorMessage = "Adicione itens no carrinho para continuar.";
+            this.showError = true;
+            break;
+          }
+          this.e6 += 1;
+          break;
+        default:
+          this.e6 += 1;
+      }
+    },
     selecionarEndereco(val) {
       this.endereco = val;
     },
@@ -155,7 +168,6 @@ export default {
       this.pay = val;
     },
     async fecharPedido() {
-      // TODO enviar pedido pro back
       await preferenciaController(this.$store.state.carrinho.id, this);
       this.$store.commit("fecharPedido");
       // this.$router.push("/acquisitions");

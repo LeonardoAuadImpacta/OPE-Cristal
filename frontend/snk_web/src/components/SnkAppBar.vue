@@ -74,7 +74,7 @@
                 <v-list-item-title> Catálogo </v-list-item-title>
               </router-link>
             </v-list-item>
-            <v-list-item >
+            <v-list-item>
               <router-link to="/account" class="snk-flex">
                 <v-list-item-icon>
                   <v-icon> mdi-account </v-icon>
@@ -82,7 +82,7 @@
                 <v-list-item-title>Perfil</v-list-item-title>
               </router-link>
             </v-list-item>
-            <v-list-item >
+            <v-list-item>
               <router-link to="/address" class="snk-flex">
                 <v-list-item-icon>
                   <v-icon> mdi-map-marker-multiple </v-icon>

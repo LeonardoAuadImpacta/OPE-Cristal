@@ -21,7 +21,9 @@
         value="entrar"
       />
       <div class="snk-flex">
-        <p @click="trocarTela()" class="snk-cursor-pointer">criar conta</p>
+        <router-link to="/cadastro">
+          <p class="snk-cursor-pointer">Criar conta</p>
+        </router-link>
         <p
           @click="trocarTelaForgot()"
           class="snk-text-rigth snk-text-base-color snk-cursor-pointer"

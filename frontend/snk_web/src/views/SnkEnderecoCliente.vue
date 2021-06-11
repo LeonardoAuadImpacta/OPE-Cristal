@@ -13,7 +13,7 @@
     >
       <template v-slot:top>
         <v-toolbar flat class="grey darken-2 white--text">
-          <v-toolbar-title>Catálogo</v-toolbar-title>
+          <v-toolbar-title>Endereços</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <SnkCriacaoEndereco
@@ -102,7 +102,7 @@ export default {
           text: "CEP",
           align: "start",
           sortable: false,
-          value: "nome",
+          value: "cep",
         },
         { text: "Rua", value: "rua" },
         { text: "Nº", value: "numero" },
@@ -110,7 +110,6 @@ export default {
         { text: "Cidade", value: "cidade" },
         { text: "UF", value: "uf" },
 
-        // { text: 'Categoria', value: 'categoria' },
         { text: "Actions", value: "actions", sortable: false },
       ],
     };
@@ -138,11 +137,11 @@ export default {
       let response = await listEnderecoByIdCliente(idCliente);
       this.enderecos = response.data;
       this.dialog = false;
+      this.loading = false;
     },
     editItem(item) {
       this.editedIndex = this.enderecos.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      console.log(this.editedItem);
       this.dialog = true;
     },
     novoEndereco() {

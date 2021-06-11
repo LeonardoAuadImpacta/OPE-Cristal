@@ -32,59 +32,70 @@
           <v-icon dark> mdi-camera-plus </v-icon>
         </v-btn>
       </div>
-      <div class="snl-flex-col form-snk">
+      <v-form class="snl-flex-col form-snk" ref="form" v-model="valid">
         <div class="snk-flex">
           <v-text-field
+            :loading="loading"
             label="Nome"
-            :rules="nomeRules"
+            :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
             v-model="user.nome"
             class="fs-line name-comp"
           />
           <v-text-field
+            :loading="loading"
             label="Sobrenome"
-            :rules="nomeRules"
+            :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
             v-model="user.sobrenome"
             class="fs-line"
           />
         </div>
-        <v-text-field :rules="nomeRules" label="Apelido" v-model="user.pseudonimo" />
-        <v-text-field  :rules="emailRules" label="E-mail" v-model="user.email" />
         <v-text-field
-          v-model="user.telefone"
-          type="text"
-          :rules="telefoneRules"
-          pattern="[0-9.]+"
-          required
-          v-mask="'(##) #####-####'"
-          label="Telefone"
+          :loading="loading"
+          :rules="[rules.obrigatorio, rules.quantidade, rules.nome]"
+          @change="nomeOnChange"
+          label="Apelido"
+          v-model="user.pseudonimo"
         />
         <v-text-field
-          v-model="nova_senha"
-          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
-          :type="show1 ? 'text' : 'password'"
-          name="input-10-1"
-          label="Senha"
-          hint="At least 8 characters"
-          counter
-          @click:append="show1 = !show1"
-        ></v-text-field>
+          :loading="loading"
+          v-model="user.telefone"
+          type="text"
+          :rules="[rules.telefone]"
+          pattern="[0-9.]+"
+          v-mask="'(##) #####-####'"
+          label="Telefone"
+          required
+        />
+        <v-text-field
+          :loading="loading"
+          disabled
+          label="E-mail"
+          v-model="user.email"
+          messages="Não é possível editar o e-mail"
+        />
         <div class="lastUp">
           <label> Ultima modificação em : {{ lastUp }}</label>
         </div>
         <v-btn class="snk-salvar" color="#aa2514" @click="salvar">
           Salvar
         </v-btn>
-      </div>
+      </v-form>
     </v-card>
+    <v-dialog value="true" width="50%" v-model="showSuccess">
+      <v-alert type="success" class="ma-0">
+        {{ successMessage }}
+      </v-alert>
+    </v-dialog>
+    <v-dialog value="true" width="50%" v-model="showError">
+      <v-alert type="error" class="ma-0">
+        {{ errorMessage }}
+      </v-alert>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
-import {
-  buscarCliente as _buscarCliente,
-  updateCliente as _updateCliente,
-} from "../service/ClienteService";
+import { buscarCliente, updateCliente } from "../service/ClienteService";
 
 export default {
   name: "SnkPerfilCliente",
@@ -92,37 +103,58 @@ export default {
   components: {},
   data() {
     return {
-      show1: true,
+      valid: false,
       user: {},
       submitted: false,
-      nova_senha: 111111,
       dialog: false,
-      nomeRules: [
-          (v) => !!v || "Nome do produto é necessário",
-          (v) => !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido"
-        ],
+      successMessage: "",
+      errorMessage: "",
+      showSuccess: false,
+      showError: false,
+      loading: true,
       rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-        emailMatch: () => `The email and password you entered don't match`,
+        obrigatorio: (v) => !!v || "Campo obrigatório.",
+        quantidade: (v) =>
+          (v && v.length <= 25) || "Limite máximo de caracteres excedido (25).",
+        nome: (v) =>
+          !new RegExp(/^$|^\S+.*/).test(v) == false || "Nome inválido.",
+        telefone: (v) =>
+          new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) ==
+            true || "Telefone inválido.",
       },
-      telefoneRules: [
-        (v) => new RegExp(/^\([0-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$/).test(v) == true || 'telefone inválido',
-      ],
-      emailRules: [
-        (v) => !new RegExp(/^\S+@\S+$/).test(v) == false || 'email inválido',
-      ],
     };
+  },
+  created() {
+    const idCliente = this.$store.state.session.id;
+    buscarCliente({ idCliente }).then((response) => {
+      this.user = response;
+      this.loading = false;
+    });
   },
   methods: {
     salvar() {
-      _updateCliente(this.user.id, this.user);
+      if (this.valid) {
+        this.loading = true;
+        updateCliente(this.user.id, this.user)
+          .then(() => {
+            this.successMessage = "Perfil atualizado com suceso!";
+            this.showSuccess = true;
+          })
+          .catch(() => {
+            this.errorMessage = "Falha ao atualizar perfil. :(";
+            this.showError = true;
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
     },
-  },
-  async created() {
-    const idCliente = this.$store.state.session.id;
-    this.user = await _buscarCliente({ idCliente });
-    console.log(this.user);
+    nomeOnChange() {
+      console.log(this.user.pseudonimo);
+    },
+    validateField() {
+      this.$refs.form.validate();
+    },
   },
   computed: {
     lastUp() {
@@ -133,6 +165,9 @@ export default {
           [d.getHours(), d.getMinutes()].join(":");
       return dformat;
     },
+  },
+  watch: {
+    model: "validateField",
   },
 };
 </script>

@@ -10,11 +10,6 @@
         class="SnkLogin"
       />
       <img src="../assets/banner_login_base.jpg" class="img-login" />
-      <SnkPreCadastro
-        @trocarTela="trocarTela"
-        v-if="tela_cadastro"
-        class="SnkLogin"
-      />
       <SnkForgotPassword
         @trocarTelaForgot="trocarTelaForgot"
         v-if="tela_forgot"
@@ -29,7 +24,6 @@
 import SnkFootersComp from "../components/SnkFootersComp.vue";
 // import SnkHeader from '../components/SnkHeader.vue'
 import SnkLogin from "../components/SnkLogin.vue";
-import SnkPreCadastro from "../components/usuario/SnkPreCadastro.vue";
 import SnkForgotPassword from "../components/usuario/SnkForgotPassword.vue";
 
 export default {
@@ -38,7 +32,6 @@ export default {
   components: {
     // SnkHeader,
     SnkLogin,
-    SnkPreCadastro,
     SnkForgotPassword,
     SnkFootersComp,
   },

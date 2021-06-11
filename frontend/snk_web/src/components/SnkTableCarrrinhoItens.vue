@@ -51,8 +51,11 @@
           max-width="75"
         ></v-img>
       </template>
-      <template v-slot:item.descricao="{ item }">
+      <template v-slot:[`item.descricao`]="{ item }">
         {{ truncate(item.descricao) }}
+      </template>
+      <template v-slot:[`item.precoVenda`]="{ item }">
+        {{ (item.precoVenda * item.quantidade).toFixed(2) }}
       </template>
       <template class="grey lighten-2" v-slot:[`item.actions`]="{ item }">
         <v-icon color="red" small @click="deleteItem(item)"> mdi-delete</v-icon>
@@ -71,9 +74,7 @@
           mdi-plus
         </v-icon>
       </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize"> Reset</v-btn>
-      </template>
+      <template v-slot:no-data> Sem itens no carrinho </template>
     </v-data-table>
   </div>
 </template>
@@ -111,6 +112,7 @@ export default {
         idCarrinho: this.$store.state.carrinho.id,
       });
       this.itens = this.$store.state.carrinho.itens;
+      this.loading = false;
     },
     save() {
       this.snack = true;
@@ -146,7 +148,6 @@ export default {
     },
     editItem() {},
     async adicionar(item) {
-      console.log(item);
       await this.$store.dispatch("adicionarItem", {
         idCliente: this.$store.state.session.id,
         idCarrinho: this.$store.state.carrinho.id,
@@ -155,7 +156,6 @@ export default {
       await this.initialize();
     },
     async retirar(item) {
-      console.log(item);
       await this.$store.dispatch("retirarItem", {
         idCliente: this.$store.state.session.id,
         idCarrinho: this.$store.state.carrinho.id,

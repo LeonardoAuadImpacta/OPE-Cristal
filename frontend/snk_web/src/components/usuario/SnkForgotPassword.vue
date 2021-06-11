@@ -1,43 +1,35 @@
 <template>
   <div>
-    <form @submit.prevent="handleSubmit">
+    <v-form
+      class="v-form"
+      ref="form"
+      v-model="valid"
+      @submit.prevent="handleSubmit"
+    >
       <label
         class="snk-text-center snk-text-base-color snk-text-title"
         id="title"
         >Recuperar dados de acesso</label
       >
-      <input
+      <v-text-field
         v-model="email"
         required
-        class="form-control"
         type="email"
         name="email"
-        placeholder="E-mail"
-        :class="{ 'is-invalid': submitted && $v.email.$error }"
+        label="E-mail"
+        :rules="[rules.email, rules.obrigatorio]"
+        class="flex-grow-0"
       />
-      <div v-if="submitted && $v.email.$error" class="invalid-feedback">
-        <span v-if="!$v.email.required">Email é necessário</span>
-        <span v-else-if="!$v.email.email">Email não confere</span>
-      </div>
 
-      <input
+      <v-text-field
         v-model="confirmEmail"
         type="email"
         required
-        class="form-control"
         name="confirmEmail"
-        id="cEmail"
-        :class="{ 'is-invalid': submitted && $v.confirmEmail.$error }"
-        placeholder="confirme o email"
+        label="Confirme o e-mail"
+        :rules="[rules.emailMatch]"
+        class="flex-grow-0"
       />
-      <div v-if="submitted && $v.confirmEmail.$error" class="invalid-feedback">
-        <span v-if="!$v.confirmEmail.required"
-          >Confirmar Password é necessário</span
-        >
-        <span v-else-if="!$v.confirmEmail.sameAsEmail"
-          >Passwords não conferem</span
-        >
-      </div>
 
       <input
         @click="trocarTelaForgot()"
@@ -56,26 +48,37 @@
           entrar na conta
         </p>
       </div>
-    </form>
+    </v-form>
+    <v-dialog
+      @click:outside="voltarParaLogin"
+      value="true"
+      width="50%"
+      v-model="showSuccess"
+    >
+      <v-alert type="success" class="ma-0">
+        {{ successMessage }}
+      </v-alert>
+    </v-dialog>
+    <v-dialog hide-overlay value="true" width="50%" v-model="showError">
+      <v-alert type="error" class="ma-0">
+        {{ errorMessage }}
+      </v-alert>
+    </v-dialog>
   </div>
 </template>
-<script>
-import { required, email, sameAs } from "vuelidate/lib/validators";
-import Vuelidate from "vuelidate";
-import Vue from "vue";
-Vue.use(Vuelidate);
 
+<script>
 export default {
   data() {
     return {
       email: "",
       confirmEmail: "",
-      submitted: false,
+      valid: false,
+      successMessage: "",
+      errorMessage: "",
+      showError: false,
+      showSuccess: false,
     };
-  },
-  validations: {
-    email: { required, email },
-    confirmEmail: { required, sameAsEmail: sameAs("email") },
   },
   methods: {
     trocarTelaForgot: function () {
@@ -85,70 +88,50 @@ export default {
       this.$emit("trocarTelaForgot", false);
     },
     async handleSubmit() {
-      this.submitted = true;
-      // stop here if form is invalid
-      /*this.$v.$touch();
-                if (this.$v.$invalid) {
-                    return;
-                }*/
-      if (this.email != this.confirmEmail) {
-        alert("Passwords não batem!!");
-        this.$emit("trocarTelaForgot", true);
-      } else {
-        alert("Verificação enviada no email!! " + `email = ${this.email}`);
-        this.$emit("trocarTelaForgot", false);
+      this.validateField();
+      if (this.valid) {
+        this.successMessage = `Instruções de reset de senha enviadas para o e-mail informado: ${this.email}`;
+        this.showSuccess = true;
       }
-
-      /*await createClienteController(
-                    this.user  
-                );
-                if (!(localStorage.getItem('response') == 'error')){
-                    alert("Usuário criado com sucesso!! :-) ");
-                    this.$emit("trocarTela", false);
-                }
-                else{
-                     alert("Usuário ou Email já utilizados");
-                }*/
     },
+    validateField() {
+      this.$refs.form.validate();
+    },
+  },
+  computed: {
+    rules() {
+      return {
+        obrigatorio: (v) => !!v || "Campo obrigatório.",
+        email: (v) =>
+          !new RegExp(/^\S+@\S+$/).test(v) == false || "E-mail inválido.",
+        emailMatch: (v) =>
+          (!!v && v) === this.email || "E-mails não são iguais.",
+      };
+    },
+  },
+  watch: {
+    emailMatch: "validateField",
+    model: "validateField",
   },
 };
 </script>
 
 <style scoped>
-div {
-  background-color: white;
-}
-form {
+.v-form {
   display: flex;
   flex-direction: column;
   padding: 10% 20%;
   justify-content: space-evenly;
   height: 100%;
 }
-form p,
-form label,
+.v-form p,
+.v-form label,
 input[type="submit"] {
   font-weight: bold;
 }
 
-form label {
+.v-form label {
   font-size: 25pt;
-}
-
-input[type="email"],
-input[type="password"] {
-  border: 0px;
-  border-bottom: 2px solid #aa2514;
-  -webkit-transition: width 0.35s ease-in-out;
-  transition: 0.3s ease-in-out;
-  margin: 3% 0;
-}
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border: 2px solid #aa2514;
-  outline: none;
-  font-size: 15pt;
-  border-radius: 5px;
 }
 
 input[type="submit"] {
