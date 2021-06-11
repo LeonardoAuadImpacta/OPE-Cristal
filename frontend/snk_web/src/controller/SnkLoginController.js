@@ -8,6 +8,7 @@ export const login = function (email, password, view) {
         view.$store.commit("setUserSession", cliente);
         if (cliente.profile == "ADMIN") {
           view.$router.push({ name: "SnkAdmin" });
+          view.$store.commit("setToken", cliente.token);
         } else {
           view.$store.commit("setToken", cliente.token);
           view.$store.dispatch("setCarrinho", { idCliente: cliente.id });

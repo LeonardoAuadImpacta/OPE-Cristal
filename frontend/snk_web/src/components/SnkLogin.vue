@@ -92,8 +92,8 @@ export default {
       setTimeout(() => (this.error = false), this.timeAlert);
     },
   },
-  beforeMount() {
-    this.$store.commit("logout");
+  async beforeMount() {
+    await this.$store.commit("logout");
   },
 };
 </script>

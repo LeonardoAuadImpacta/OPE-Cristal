@@ -14,13 +14,13 @@ const mutations = {
   setUserSession(state, payload) {
     state.session = payload;
   },
-  logout(state) {
+  async logout(state) {
     state.carrinho = {
       id: null,
       itens: [],
     };
     state.session = null;
-    delete axios.defaults.headers.common.Authorization;
+    axios.defaults.headers.common.Authorization = "";
   },
   verifuQtdCarrinho(state) {
     let removeZero = [];
